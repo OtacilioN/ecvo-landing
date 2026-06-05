@@ -241,18 +241,27 @@ h3 {
   position: absolute;
 }
 
-.card-jiu {
+.card-kick {
+  background: rgba(214, 61, 46, 0.9);
+  border-color: rgba(255, 250, 241, 0.45);
+  box-shadow: 0 24px 80px rgba(214, 61, 46, 0.34);
+  font-size: clamp(1.8rem, 3.2vw, 3.8rem);
   right: 12vw;
-  top: 21vh;
+  top: 9vh;
+}
+
+.card-nogi {
+  right: 18vw;
+  top: 63vh;
 }
 
 .card-muay {
   right: 6vw;
-  top: 49vh;
+  top: 58vh;
 }
 
 .card-boxe {
-  right: 24vw;
+  right: 34vw;
   top: 68vh;
 }
 
