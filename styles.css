@@ -1,0 +1,374 @@
+:root {
+  color-scheme: dark;
+  --ink: #f4efe6;
+  --muted: #bcb1a3;
+  --bg: #11110f;
+  --panel: #1a1814;
+  --line: #403a31;
+  --red: #d63d2e;
+  --gold: #c9a24b;
+  --green: #748b5b;
+  --white: #fffaf1;
+  --max: 1160px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 70% 10%, rgba(214, 61, 46, 0.16), transparent 32rem),
+    linear-gradient(135deg, #14120f 0%, #0d0d0c 54%, #191712 100%);
+  color: var(--ink);
+  font-family: "Trebuchet MS", "Gill Sans", Verdana, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  margin: 0 auto;
+  max-width: var(--max);
+  padding: 22px clamp(18px, 4vw, 32px);
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.site-header::before {
+  backdrop-filter: blur(16px);
+  background: rgba(17, 17, 15, 0.72);
+  border: 1px solid rgba(244, 239, 230, 0.12);
+  content: "";
+  inset: 12px;
+  position: absolute;
+  z-index: -1;
+}
+
+.brand {
+  align-items: baseline;
+  display: flex;
+  gap: 12px;
+}
+
+.brand-mark {
+  color: var(--white);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.brand-copy,
+nav a,
+.eyebrow {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+nav {
+  display: flex;
+  gap: clamp(12px, 2vw, 28px);
+}
+
+nav a {
+  padding: 8px 0;
+}
+
+.hero {
+  display: grid;
+  min-height: 92vh;
+  overflow: hidden;
+  padding: 120px clamp(18px, 5vw, 72px) 48px;
+  place-items: center;
+  position: relative;
+}
+
+.hero::after {
+  background: linear-gradient(180deg, transparent, var(--bg));
+  bottom: 0;
+  content: "";
+  height: 120px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+.hero-copy {
+  max-width: var(--max);
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 0;
+  margin: 0 0 18px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  color: var(--white);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(6rem, 20vw, 17rem);
+  line-height: 0.78;
+  margin-bottom: 32px;
+}
+
+h2 {
+  color: var(--white);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.2rem, 5vw, 5.2rem);
+  line-height: 0.96;
+  margin-bottom: 0;
+}
+
+h3 {
+  color: var(--white);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.7rem;
+  margin-bottom: 14px;
+}
+
+.lede {
+  color: var(--ink);
+  font-size: clamp(1.15rem, 2.4vw, 1.85rem);
+  line-height: 1.3;
+  max-width: 760px;
+}
+
+.hero-actions,
+.contact-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.button {
+  border: 1px solid var(--line);
+  display: inline-flex;
+  font-weight: 800;
+  justify-content: center;
+  min-height: 48px;
+  padding: 14px 18px;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button.primary {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--white);
+}
+
+.button.secondary {
+  background: rgba(244, 239, 230, 0.06);
+  color: var(--ink);
+}
+
+.hero-media {
+  inset: 0;
+  opacity: 0.72;
+  position: absolute;
+}
+
+.ring-grid {
+  background-image:
+    linear-gradient(rgba(244, 239, 230, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 239, 230, 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+  inset: 0;
+  mask-image: radial-gradient(circle at 70% 45%, black, transparent 66%);
+  position: absolute;
+}
+
+.strike-line {
+  background: var(--red);
+  height: 3px;
+  position: absolute;
+  transform: rotate(-18deg);
+  transform-origin: left center;
+  width: 58vw;
+}
+
+.strike-line-a {
+  right: -10vw;
+  top: 28vh;
+}
+
+.strike-line-b {
+  background: var(--gold);
+  right: -20vw;
+  top: 58vh;
+}
+
+.discipline-card {
+  border: 1px solid rgba(244, 239, 230, 0.2);
+  color: var(--white);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.2rem, 2vw, 2.3rem);
+  padding: 18px 22px;
+  position: absolute;
+}
+
+.card-jiu {
+  right: 12vw;
+  top: 21vh;
+}
+
+.card-muay {
+  right: 6vw;
+  top: 49vh;
+}
+
+.card-boxe {
+  right: 24vw;
+  top: 68vh;
+}
+
+.section {
+  margin: 0 auto;
+  max-width: var(--max);
+  padding: 84px clamp(18px, 4vw, 32px);
+}
+
+.section-dark {
+  max-width: none;
+  padding-left: max(clamp(18px, 5vw, 72px), calc((100vw - var(--max)) / 2 + 32px));
+  padding-right: max(clamp(18px, 5vw, 72px), calc((100vw - var(--max)) / 2 + 32px));
+}
+
+.section-heading {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: minmax(160px, 0.4fr) minmax(0, 1fr);
+  margin-bottom: 44px;
+}
+
+.modalidades-grid {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.modalidades-grid article {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  min-height: 260px;
+  padding: 28px;
+}
+
+.modalidades-grid span {
+  color: var(--gold);
+  display: block;
+  font-weight: 800;
+  margin-bottom: 58px;
+}
+
+.modalidades-grid p,
+.method-list,
+.contact p {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.split,
+.contact {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 40px;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+}
+
+.method-list p {
+  font-size: 1.2rem;
+}
+
+ul {
+  display: grid;
+  gap: 14px;
+  margin: 28px 0 0;
+  padding-left: 20px;
+}
+
+li::marker {
+  color: var(--red);
+}
+
+footer {
+  align-items: center;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: var(--max);
+  padding: 28px clamp(18px, 4vw, 32px);
+}
+
+@media (max-width: 800px) {
+  .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  .hero {
+    min-height: 88vh;
+  }
+
+  .discipline-card {
+    display: none;
+  }
+
+  .section-heading,
+  .split,
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  .modalidades-grid {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+}

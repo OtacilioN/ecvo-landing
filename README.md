@@ -1,2 +1,29 @@
-# ecvo-landing
-Landing page estatica da ECVO
+# ECVO Landing Page
+
+Landing page estática da ECVO, preparada para GitHub Pages.
+
+## Publicação
+
+- Domínio: `ecvo.com.br`
+- Fonte do GitHub Pages: branch `main`, pasta raiz (`/`)
+- Arquivo `CNAME`: `ecvo.com.br`
+
+## DNS esperado
+
+Registros `A` do domínio raiz:
+
+```txt
+185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+```
+
+Registros `AAAA` opcionais para IPv6:
+
+```txt
+2606:50c0:8000::153
+2606:50c0:8001::153
+2606:50c0:8002::153
+2606:50c0:8003::153
+```
