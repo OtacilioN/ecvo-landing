@@ -19,6 +19,12 @@ Registros `A` do domínio raiz:
 185.199.111.153
 ```
 
+Registro `CNAME` do subdomínio `www`:
+
+```txt
+www.ecvo.com.br -> otacilion.github.io
+```
+
 Registros `AAAA` opcionais para IPv6:
 
 ```txt
