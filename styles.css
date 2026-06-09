@@ -9,6 +9,7 @@
   --red: #e0402f;
   --red-deep: #b32d20;
   --gold: #d4ad58;
+  --steel: #7fa6cf;
   --white: #fffaf1;
   --max: 1160px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -765,6 +766,183 @@ h3 {
   }
 }
 
+/* ---------- Horários ---------- */
+/* Cada modalidade tem uma cor de acento, aplicada via data-mod. */
+[data-mod="muaythai"] {
+  --mod: var(--red);
+}
+[data-mod="kickboxing"] {
+  --mod: var(--gold);
+}
+[data-mod="boxe"] {
+  --mod: var(--ink);
+}
+[data-mod="nogi"] {
+  --mod: var(--steel);
+}
+
+.horarios-legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  list-style: none;
+  margin: 0 0 36px;
+  padding: 0;
+}
+
+.horarios-legenda li {
+  align-items: center;
+  color: var(--muted);
+  display: inline-flex;
+  font-size: 0.72rem;
+  font-weight: 700;
+  gap: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.horarios-legenda li::before {
+  background: var(--mod);
+  border-radius: 50%;
+  content: "";
+  height: 9px;
+  width: 9px;
+}
+
+.horarios-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.dia {
+  background: linear-gradient(160deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 26px 24px;
+  transition:
+    transform 320ms var(--ease),
+    border-color 320ms var(--ease),
+    box-shadow 320ms var(--ease);
+}
+
+.dia:hover {
+  border-color: rgba(224, 64, 47, 0.4);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.5);
+  transform: translateY(-6px);
+}
+
+.dia-head {
+  align-items: baseline;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  padding-bottom: 16px;
+}
+
+.dia-head h3 {
+  font-family: "Anton", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.dia-count {
+  color: var(--gold);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.dia-aulas {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.aula {
+  align-items: center;
+  border-bottom: 1px solid rgba(56, 51, 43, 0.5);
+  display: flex;
+  gap: 14px;
+  padding: 14px 0 14px 14px;
+  position: relative;
+}
+
+.aula::before {
+  background: var(--mod);
+  border-radius: 999px;
+  bottom: 12px;
+  content: "";
+  left: 0;
+  position: absolute;
+  top: 12px;
+  width: 3px;
+}
+
+.aula:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.aula:last-child::before {
+  bottom: 2px;
+}
+
+.aula-hora {
+  color: var(--white);
+  flex-shrink: 0;
+  font-family: "Anton", sans-serif;
+  font-size: 1.18rem;
+  letter-spacing: 0.02em;
+  min-width: 58px;
+}
+
+.aula-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.aula-nome {
+  color: var(--ink);
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.aula-prof {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.horarios-nota {
+  color: var(--muted);
+  font-size: 0.98rem;
+  margin: 32px 0 0;
+}
+
+.horarios-nota a {
+  color: var(--gold);
+  font-weight: 700;
+  border-bottom: 1px solid transparent;
+  transition: border-color 200ms var(--ease);
+}
+
+.horarios-nota a:hover {
+  border-color: var(--gold);
+}
+
 /* ---------- Método ---------- */
 .split,
 .contact {
@@ -953,7 +1131,8 @@ footer {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
-  .modalidades-grid {
+  .modalidades-grid,
+  .horarios-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -996,7 +1175,8 @@ footer {
 }
 
 @media (max-width: 540px) {
-  .modalidades-grid {
+  .modalidades-grid,
+  .horarios-grid {
     grid-template-columns: 1fr;
   }
 
