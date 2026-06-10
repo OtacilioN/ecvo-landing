@@ -20,6 +20,7 @@
 }
 
 html {
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
@@ -38,6 +39,14 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+main {
+  overflow-x: hidden;
+}
+
+section[id] {
+  scroll-margin-top: 120px;
 }
 
 :focus-visible {
@@ -766,6 +775,141 @@ h3 {
   }
 }
 
+/* ---------- Professores ---------- */
+.professores {
+  border-top: 1px solid var(--line);
+}
+
+.professores-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.professor-profile {
+  background:
+    linear-gradient(160deg, rgba(244, 239, 230, 0.06), transparent 34%),
+    linear-gradient(160deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: minmax(180px, 0.82fr) minmax(0, 1fr);
+  min-height: 440px;
+  overflow: hidden;
+  position: relative;
+  transition:
+    border-color 320ms var(--ease),
+    box-shadow 320ms var(--ease),
+    transform 320ms var(--ease);
+}
+
+.professor-profile::before {
+  background: linear-gradient(180deg, var(--gold), var(--red));
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 3px;
+}
+
+.professor-profile:hover {
+  border-color: rgba(212, 173, 88, 0.48);
+  box-shadow: 0 26px 64px rgba(0, 0, 0, 0.52);
+  transform: translateY(-6px);
+}
+
+.professor-profile-featured {
+  border-color: rgba(212, 173, 88, 0.34);
+}
+
+.professor-media {
+  background: #0b0a09;
+  margin: 0;
+  min-height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.professor-media::after {
+  background:
+    linear-gradient(90deg, transparent 68%, rgba(15, 14, 12, 0.86)),
+    linear-gradient(180deg, transparent 56%, rgba(15, 14, 12, 0.38));
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.professor-retrato {
+  display: block;
+  filter: saturate(0.92) contrast(1.04);
+  height: 100%;
+  min-height: 440px;
+  object-fit: cover;
+  transition:
+    filter 320ms var(--ease),
+    transform 520ms var(--ease);
+  width: 100%;
+}
+
+.professor-profile:hover .professor-retrato {
+  filter: saturate(1.04) contrast(1.08);
+  transform: scale(1.035);
+}
+
+.professor-retrato-rodrigo {
+  object-position: 50% 24%;
+}
+
+.professor-retrato-vinicius {
+  object-position: 45% 18%;
+}
+
+.professor-retrato-barbosa {
+  object-position: 50% 20%;
+}
+
+.professor-retrato-sauro {
+  object-position: 52% 24%;
+}
+
+.professor-body {
+  align-content: start;
+  display: grid;
+  padding: clamp(24px, 3vw, 34px);
+}
+
+.professor-area {
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  margin: 0 0 14px;
+  text-transform: uppercase;
+}
+
+.professor-body h3 {
+  font-family: "Anton", sans-serif;
+  font-size: clamp(1.9rem, 3vw, 2.7rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.professor-body p:not(.professor-area) {
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.68;
+  margin: 0;
+}
+
+.professor-body p:not(.professor-area) + p {
+  margin-top: 16px;
+}
+
 /* ---------- Horários ---------- */
 /* Cada modalidade tem uma cor de acento, aplicada via data-mod. */
 [data-mod="muaythai"] {
@@ -1025,6 +1169,7 @@ h3 {
 /* ---------- Contato ---------- */
 .contact {
   align-items: center;
+  overflow: hidden;
   position: relative;
 }
 
@@ -1135,6 +1280,10 @@ footer {
   .horarios-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .professores-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 800px) {
@@ -1149,6 +1298,7 @@ footer {
   }
 
   nav {
+    gap: 8px 14px;
     width: 100%;
   }
 
@@ -1167,6 +1317,10 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  section[id] {
+    scroll-margin-top: 190px;
+  }
+
   footer {
     align-items: flex-start;
     flex-direction: column;
@@ -1178,6 +1332,24 @@ footer {
   .modalidades-grid,
   .horarios-grid {
     grid-template-columns: 1fr;
+  }
+
+  .professor-profile {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .professor-media {
+    aspect-ratio: 5 / 4;
+  }
+
+  .professor-media::after {
+    background: linear-gradient(180deg, transparent 56%, rgba(15, 14, 12, 0.82));
+  }
+
+  .professor-retrato {
+    height: 100%;
+    min-height: 0;
   }
 
   .hero-stats {
