@@ -823,16 +823,6 @@ h3 {
   border-color: rgba(212, 173, 88, 0.34);
 }
 
-.professor-profile-wide {
-  grid-column: 1 / -1;
-  grid-template-columns: minmax(260px, 0.45fr) minmax(0, 1fr);
-  min-height: 380px;
-}
-
-.professor-profile-wide .professor-body {
-  max-width: 720px;
-}
-
 .professor-media {
   background: #0b0a09;
   margin: 0;
@@ -886,6 +876,10 @@ h3 {
 
 .professor-retrato-oyama {
   object-position: 50% 19%;
+}
+
+.professor-retrato-dimitri {
+  object-position: 50% 16%;
 }
 
 .professor-body {
@@ -1297,10 +1291,6 @@ footer {
 
   .professores-grid {
     grid-template-columns: 1fr;
-  }
-
-  .professor-profile-wide {
-    grid-column: auto;
   }
 }
 
