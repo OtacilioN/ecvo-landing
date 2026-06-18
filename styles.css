@@ -310,13 +310,31 @@ h3 {
 h1 {
   color: var(--white);
   font-family: "Anton", sans-serif;
-  font-size: clamp(6rem, 23vw, 19rem);
   font-weight: 400;
   letter-spacing: 0.02em;
-  line-height: 0.82;
+  line-height: 0.9;
   margin-bottom: 28px;
   text-transform: uppercase;
   text-shadow: 0 12px 60px rgba(224, 64, 47, 0.28);
+}
+
+h1 span {
+  display: block;
+  font-size: clamp(6rem, 23vw, 19rem);
+  line-height: 0.82;
+}
+
+h1 strong {
+  color: var(--gold);
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  line-height: 1.25;
+  margin-top: 24px;
+  max-width: 720px;
+  text-shadow: none;
 }
 
 h2 {
@@ -628,6 +646,24 @@ h3 {
   margin-top: auto;
   padding: 6px 12px;
   text-transform: uppercase;
+}
+
+.card-link {
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin-top: 18px;
+  text-decoration: underline;
+  text-decoration-color: rgba(212, 173, 88, 0.5);
+  text-underline-offset: 5px;
+  transition:
+    color 200ms var(--ease),
+    text-decoration-color 200ms var(--ease);
+}
+
+.card-link:hover {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
 }
 
 .modalidade-detalhes {
@@ -1098,6 +1134,72 @@ h3 {
   border-color: var(--gold);
 }
 
+/* ---------- Como chegar ---------- */
+.route-section {
+  border-top: 1px solid var(--line);
+}
+
+.route-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.38fr);
+}
+
+.route-card,
+.route-note {
+  background:
+    linear-gradient(160deg, rgba(224, 64, 47, 0.12), transparent 38%),
+    linear-gradient(160deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: clamp(26px, 4vw, 42px);
+}
+
+.route-kicker,
+.route-note span {
+  color: var(--gold);
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.route-card h3 {
+  font-family: "Anton", sans-serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin-bottom: 22px;
+  text-transform: uppercase;
+}
+
+.route-card p,
+.route-note p {
+  color: var(--muted);
+  margin: 0;
+  max-width: 62ch;
+}
+
+.route-card p + p {
+  margin-top: 14px;
+}
+
+.route-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.route-note {
+  align-content: end;
+  display: grid;
+}
+
 /* ---------- Método ---------- */
 .split,
 .contact {
@@ -1175,6 +1277,138 @@ h3 {
   content: "✦";
   left: 0;
   position: absolute;
+}
+
+/* ---------- FAQ ---------- */
+.faq-section {
+  border-top: 1px solid var(--line);
+}
+
+.faq-list {
+  display: grid;
+  gap: 10px;
+}
+
+.faq-list details {
+  background: linear-gradient(160deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.faq-list summary {
+  color: var(--white);
+  cursor: pointer;
+  font-weight: 800;
+  list-style: none;
+  padding: 20px 24px;
+  position: relative;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  color: var(--gold);
+  content: "+";
+  font-family: "Anton", sans-serif;
+  font-size: 1.5rem;
+  line-height: 1;
+  position: absolute;
+  right: 24px;
+  top: 18px;
+}
+
+.faq-list details[open] summary::after {
+  content: "-";
+}
+
+.faq-list p {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  margin: 0;
+  padding: 18px 24px 22px;
+}
+
+/* ---------- Modality pages ---------- */
+.modality-page main {
+  overflow: hidden;
+}
+
+.modality-hero {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(224, 64, 47, 0.3), transparent 34%),
+    radial-gradient(circle at 12% 78%, rgba(212, 173, 88, 0.14), transparent 36%),
+    var(--bg);
+  border-bottom: 1px solid var(--line);
+  min-height: 78vh;
+  padding: 180px max(clamp(18px, 5vw, 72px), calc((100vw - var(--max)) / 2 + 32px)) 88px;
+  position: relative;
+}
+
+.modality-hero::before {
+  background-image:
+    linear-gradient(rgba(244, 239, 230, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 239, 230, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  content: "";
+  inset: 0;
+  mask-image: radial-gradient(circle at 70% 20%, black, transparent 58%);
+  opacity: 0.6;
+  position: absolute;
+}
+
+.modality-hero > * {
+  max-width: 760px;
+  position: relative;
+  z-index: 1;
+}
+
+.modality-hero h1 {
+  font-size: clamp(4rem, 12vw, 10rem);
+  line-height: 0.9;
+  margin-bottom: 28px;
+}
+
+.modality-hero p:not(.eyebrow) {
+  color: var(--ink);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.modality-content {
+  border-top: 0;
+  display: grid;
+  gap: clamp(36px, 6vw, 72px);
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+}
+
+.modality-content h2 {
+  font-size: clamp(2.2rem, 4.8vw, 4.8rem);
+}
+
+.modality-points {
+  display: grid;
+  gap: 14px;
+}
+
+.modality-points article {
+  background: linear-gradient(160deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.modality-points h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.modality-points p {
+  color: var(--muted);
+  margin: 0;
 }
 
 /* ---------- Contato ---------- */
@@ -1292,7 +1526,15 @@ footer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .route-grid {
+    grid-template-columns: 1fr;
+  }
+
   .professores-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modality-content {
     grid-template-columns: 1fr;
   }
 }

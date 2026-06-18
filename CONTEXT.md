@@ -1,6 +1,6 @@
 # ECVO Landing
 
-Glossário da landing pública da ECVO. Mantém consistente a linguagem usada para apresentar a oferta da academia.
+Glossário da landing pública da ECVO. Mantém consistente a linguagem usada para apresentar a oferta da escola de combate e lutas.
 
 ## Language
 
