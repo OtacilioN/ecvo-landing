@@ -8,6 +8,12 @@ Landing page estática da ECVO, preparada para GitHub Pages.
 - Fonte do GitHub Pages: branch `main`, pasta raiz (`/`)
 - Arquivo `CNAME`: `ecvo.com.br`
 
+## SEO e métricas
+
+- Google Analytics: `G-381LW2ZL4V`
+- Google Search Console: propriedade de domínio `ecvo.com.br`
+- Sitemap: `https://ecvo.com.br/sitemap.xml`
+
 ## DNS esperado
 
 Registros `A` do domínio raiz:
