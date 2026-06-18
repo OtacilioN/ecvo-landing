@@ -546,7 +546,7 @@ h3 {
 .modalidades-grid {
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
 }
 
 .modalidades-grid article {
@@ -931,6 +931,9 @@ h3 {
 }
 [data-mod="nogi"] {
   --mod: var(--steel);
+}
+[data-mod="mma"] {
+  --mod: var(--red-deep);
 }
 
 .horarios-legenda {
