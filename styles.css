@@ -930,6 +930,10 @@ h3 {
   object-position: 50% 16%;
 }
 
+.professor-retrato-anderson {
+  object-position: 50% 42%;
+}
+
 .professor-body {
   align-content: start;
   display: grid;

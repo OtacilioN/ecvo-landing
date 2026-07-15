@@ -1,6 +1,6 @@
 # Instruções para o Perfil da Empresa no Google da ECVO
 
-Objetivo: ajudar a ECVO aparecer melhor em buscas locais como "kickboxing em João Pessoa", "MMA em João Pessoa" e "escola de combate e lutas em João Pessoa".
+Objetivo: ajudar a ECVO aparecer melhor em buscas locais como "academia de Jiu-Jitsu perto de mim", "Jiu-Jitsu em João Pessoa", "Jiu-Jitsu no Valentina", "kickboxing em João Pessoa", "MMA em João Pessoa" e "escola de combate e lutas em João Pessoa".
 
 ## 1. Acesso
 
@@ -32,6 +32,7 @@ Cadastre serviços individuais:
 - MMA
 - Muay Thai
 - Boxe
+- Jiu-Jitsu
 - NoGi
 - Kickboxing infantil, se disponível como serviço
 
@@ -69,7 +70,10 @@ Exemplos de palavras que podem aparecer naturalmente nas avaliações:
 - MMA em João Pessoa;
 - muay thai;
 - boxe;
+- Jiu-Jitsu;
 - NoGi;
+- jiu-jitsu em João Pessoa;
+- academia de jiu-jitsu no Valentina;
 - Valentina;
 - ECVO.
 
