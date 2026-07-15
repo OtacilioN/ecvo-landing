@@ -15,7 +15,7 @@ Use exatamente estes dados:
 - Nome: ECVO
 - Nome completo: Escola de Combate Vinicius de Oliveira
 - Site: https://ecvo.com.br/
-- WhatsApp/telefone: +55 83 9925-0754
+- WhatsApp/telefone: +55 83 99421-2431
 - Instagram: https://www.instagram.com/ecvo.jp/
 - Endereço: R. Inspetora Emilia Mendonca Gomes, 195 - Valentina, João Pessoa - PB, 58064-360
 - Referência: junto à Dinamos Suplementos
