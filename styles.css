@@ -1427,6 +1427,125 @@ h3 {
   margin: 0;
 }
 
+.modality-points p a {
+  border-bottom: 1px solid rgba(212, 173, 88, 0.52);
+  color: var(--ink);
+  font-weight: 700;
+  transition: border-color 180ms var(--ease), color 180ms var(--ease);
+}
+
+.modality-points p a:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ---------- Wellhub e TotalPass ---------- */
+.platform-note {
+  align-items: center;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.84rem;
+  gap: 0.35em;
+  margin: 22px 0 0;
+}
+
+.platform-note::before {
+  background: var(--gold);
+  border-radius: 50%;
+  content: "";
+  height: 7px;
+  width: 7px;
+}
+
+.platform-note a {
+  border-bottom: 1px solid rgba(212, 173, 88, 0.62);
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.platform-note a:hover {
+  color: var(--gold);
+}
+
+.benefits-section {
+  background:
+    linear-gradient(130deg, rgba(212, 173, 88, 0.1), transparent 45%),
+    var(--panel);
+  border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: clamp(32px, 6vw, 82px);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+}
+
+.benefits-intro h2 {
+  font-size: clamp(2.25rem, 4.5vw, 4.5rem);
+  margin-bottom: 22px;
+}
+
+.benefits-intro > p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 1.04rem;
+  line-height: 1.72;
+  margin: 0;
+  max-width: 52ch;
+}
+
+.benefits-cards {
+  display: grid;
+  gap: 14px;
+}
+
+.benefit-card {
+  background: linear-gradient(150deg, rgba(244, 239, 230, 0.075), transparent 35%), var(--panel-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  padding: clamp(24px, 3vw, 34px);
+  transition: border-color 240ms var(--ease), transform 240ms var(--ease);
+}
+
+.benefit-card:hover {
+  border-color: rgba(212, 173, 88, 0.62);
+  transform: translateX(6px);
+}
+
+.benefit-card-kicker {
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.benefit-card h3 {
+  color: var(--white);
+  font-family: "Anton", sans-serif;
+  font-size: clamp(1.65rem, 2.5vw, 2.3rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  margin: 12px 0;
+  text-transform: uppercase;
+}
+
+.benefit-card p {
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+
+.benefit-page .modality-hero {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(212, 173, 88, 0.26), transparent 34%),
+    radial-gradient(circle at 12% 78%, rgba(224, 64, 47, 0.18), transparent 36%),
+    var(--bg);
+}
+
+.benefit-page .modality-hero h1 {
+  max-width: 900px;
+}
+
 /* ---------- Contato ---------- */
 .contact {
   align-items: center;
@@ -1551,6 +1670,10 @@ footer {
   }
 
   .modality-content {
+    grid-template-columns: 1fr;
+  }
+
+  .benefits-section {
     grid-template-columns: 1fr;
   }
 }
