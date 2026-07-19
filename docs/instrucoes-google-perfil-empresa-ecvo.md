@@ -1,6 +1,6 @@
 # Instruções para o Perfil da Empresa no Google da ECVO
 
-Objetivo: ajudar a ECVO aparecer melhor em buscas locais como "academia de Jiu-Jitsu perto de mim", "Jiu-Jitsu em João Pessoa", "Jiu-Jitsu no Valentina", "kickboxing em João Pessoa", "MMA em João Pessoa" e "escola de combate e lutas em João Pessoa".
+Objetivo: ajudar a ECVO aparecer melhor em buscas locais como "academia de Jiu-Jitsu perto de mim", "Jiu-Jitsu em João Pessoa", "Jiu-Jitsu no Valentina", "Kickboxing em João Pessoa", "MMA em João Pessoa" e "escola de combate e lutas em João Pessoa".
 
 ## 1. Acesso
 
@@ -17,7 +17,7 @@ Use exatamente estes dados:
 - Site: https://ecvo.com.br/
 - WhatsApp/telefone: +55 83 99421-2431
 - Instagram: https://www.instagram.com/ecvo.jp/
-- Endereço: R. Inspetora Emilia Mendonca Gomes, 195 - Valentina, João Pessoa - PB, 58064-360
+- Endereço: R. Inspetora Emília Mendonça Gomes, 195 - Valentina, João Pessoa - PB, 58064-360
 - Referência: junto à Dinamos Suplementos
 
 Evite escrever um endereço diferente em cada lugar. O Google cruza site, mapa, redes sociais e diretórios locais.
@@ -34,7 +34,7 @@ Cadastre serviços individuais:
 - Boxe
 - Jiu-Jitsu
 - NoGi
-- Kickboxing infantil, se disponível como serviço
+- Kickboxing Infantil, se disponível como serviço
 
 Em cada serviço, escreva uma descrição curta mencionando João Pessoa e Valentina naturalmente.
 
@@ -66,14 +66,14 @@ O ideal é pedir que o aluno conte com as próprias palavras:
 
 Exemplos de palavras que podem aparecer naturalmente nas avaliações:
 
-- kickboxing em João Pessoa;
+- Kickboxing em João Pessoa;
 - MMA em João Pessoa;
-- muay thai;
-- boxe;
+- Muay Thai;
+- Boxe;
 - Jiu-Jitsu;
 - NoGi;
-- jiu-jitsu em João Pessoa;
-- academia de jiu-jitsu no Valentina;
+- Jiu-Jitsu em João Pessoa;
+- academia de Jiu-Jitsu no Valentina;
 - Valentina;
 - ECVO.
 
