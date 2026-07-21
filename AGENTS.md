@@ -12,3 +12,8 @@
 - Depois de alterar os dados, execute `node scripts/generate-testimonials.mjs` e valide com `node scripts/generate-testimonials.mjs --check`, `node scripts/validate-site.mjs`, `node --check scripts/generate-testimonials.mjs` e `git diff --check`.
 - Não publique, faça commit ou push sem autorização explícita do usuário.
 
+## Origem e legado
+
+- A fonte única da página “Como tudo começou” é `data/origin-story.mjs`. Não edite diretamente a chamada gerada em `index.html` nem `historia-ecvo/index.html`.
+- Preserve a separação entre a trajetória de Marcelo Petino e o depoimento de Vinicius. Não transforme títulos, graduações ou o número aproximado de lutas em promessa comercial.
+- Depois de alterar essa história, execute `node scripts/generate-origin-story.mjs` e `node scripts/generate-origin-story.mjs --check`, além das validações gerais do site.

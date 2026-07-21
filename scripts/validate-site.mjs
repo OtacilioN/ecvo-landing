@@ -1,6 +1,7 @@
 import { access, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { modalities, site } from "../data/ecvo-content.mjs";
+import { originStory } from "../data/origin-story.mjs";
 import { testimonials } from "../data/testimonials.mjs";
 
 const root = resolve(import.meta.dirname, "..");
@@ -75,9 +76,27 @@ for (const testimonial of testimonials) {
   });
 }
 
+const originPage = await read("historia-ecvo/index.html");
+const originSchemas = schemaBlocks(originPage).flat();
+
+expect((originPage.match(/<h1[ >]/g) || []).length === 1, "historia-ecvo/index.html: deve ter exatamente um H1");
+expect(originPage.includes('<link rel="canonical" href="https://ecvo.com.br/historia-ecvo/" />'), "historia-ecvo/index.html: canonical incorreto");
+expect(originPage.includes('<meta property="og:url" content="https://ecvo.com.br/historia-ecvo/" />'), "historia-ecvo/index.html: OG URL incorreta");
+expect(originPage.includes('aria-label="Caminho de navegação"'), "historia-ecvo/index.html: breadcrumb visível ausente");
+expect(originPage.includes('data-track="whatsapp_click"'), "historia-ecvo/index.html: evento de WhatsApp ausente");
+expect(originPage.includes(originStory.mentor.name), "historia-ecvo/index.html: Marcelo Petino ausente");
+expect(originPage.includes(originStory.vinicius.name), "historia-ecvo/index.html: Vinicius de Oliveira ausente");
+expect((originPage.match(/<article>/g) || []).length === originStory.mentor.achievements.length, "historia-ecvo/index.html: conquistas fora de sincronia");
+expect(originSchemas.some((schema) => schema['@type'] === 'AboutPage'), "historia-ecvo/index.html: AboutPage JSON-LD ausente");
+expect(originSchemas.some((schema) => schema['@type'] === 'BreadcrumbList'), "historia-ecvo/index.html: BreadcrumbList JSON-LD ausente");
+expect(sitemap.includes(`${site.url}/historia-ecvo/`), "sitemap.xml: página da história da ECVO ausente");
+expect(home.includes('href="/historia-ecvo/"'), "index.html: link para a história da ECVO ausente");
+expect((home.match(/<!-- origin:home:start -->/g) || []).length === 1, "index.html: início da chamada de origem deve ser único");
+expect((home.match(/<!-- origin:home:end -->/g) || []).length === 1, "index.html: fim da chamada de origem deve ser único");
+
 if (failures.length) {
   console.error(failures.map((failure) => `- ${failure}`).join("\n"));
   process.exitCode = 1;
 } else {
-  console.log(`Validação concluída: ${modalities.length} páginas de modalidades, ${testimonials.length} depoimentos, schemas, CTAs e sitemap consistentes.`);
+  console.log(`Validação concluída: ${modalities.length} páginas de modalidades, ${testimonials.length} depoimentos, história da ECVO, schemas, CTAs e sitemap consistentes.`);
 }
