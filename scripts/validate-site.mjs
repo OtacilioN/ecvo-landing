@@ -21,6 +21,47 @@ function schemaBlocks(html) {
 }
 
 const home = await read("index.html");
+const homeHead = home.match(/<head>([\s\S]*?)<\/head>/)?.[1] ?? "";
+const homeSchemas = schemaBlocks(home).flat();
+const homeBusiness = homeSchemas.find((schema) => (
+  Array.isArray(schema["@type"])
+    ? schema["@type"].includes("LocalBusiness")
+    : schema["@type"] === "LocalBusiness"
+));
+
+expect(home.includes(`<title>${site.homeTitle}</title>`), "index.html: title deve usar o posicionamento geral da ECVO");
+expect(home.includes(`<meta property="og:title" content="${site.homeTitle}" />`), "index.html: OG title deve ser igual ao title geral");
+expect(home.includes(`<meta name="twitter:title" content="${site.homeTitle}" />`), "index.html: Twitter title deve ser igual ao title geral");
+expect(home.includes(`<h1 id="hero-title" data-reveal>${site.positioning}</h1>`), "index.html: H1 deve apresentar a ECVO como escola de lutas e artes marciais");
+expect(homeBusiness?.description?.startsWith(site.positioning), "index.html: LocalBusiness deve começar pelo posicionamento geral da ECVO");
+expect(!/Academia de Jiu-Jitsu/i.test(homeHead), "index.html: metadados gerais não podem definir a ECVO como academia de Jiu-Jitsu");
+
+const generalistPages = [
+  "index.html",
+  "modalidades/index.html",
+  "depoimentos-alunos/index.html",
+  "historia-ecvo/index.html",
+  "wellhub-joao-pessoa/index.html",
+  "totalpass-joao-pessoa/index.html",
+];
+
+for (const relativePath of generalistPages) {
+  const html = relativePath === "index.html" ? home : await read(relativePath);
+  const head = html.match(/<head>([\s\S]*?)<\/head>/)?.[1] ?? "";
+  const titleSignals = [
+    head.match(/<title>([^<]+)<\/title>/)?.[1],
+    head.match(/<meta property="og:title" content="([^"]+)"\s*\/?>/)?.[1],
+    head.match(/<meta name="twitter:title" content="([^"]+)"\s*\/?>/)?.[1],
+  ];
+
+  expect(titleSignals.every(Boolean), `${relativePath}: title, OG title e Twitter title devem estar completos`);
+  expect(new Set(titleSignals).size === 1, `${relativePath}: title, OG title e Twitter title devem ser iguais`);
+  expect(
+    titleSignals.every((title) => !/(?:Jiu-Jitsu|NoGi)/i.test(title ?? "")),
+    `${relativePath}: títulos generalistas não podem posicionar a ECVO como Jiu-Jitsu ou NoGi`,
+  );
+}
+
 for (const modality of modalities) {
   const relativePath = `${modality.slug}/index.html`;
   const html = await read(relativePath);

@@ -76,7 +76,7 @@ ${generatedNote}
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>${escapeHtml(originStory.pageTitle)} | ECVO</title>
+    <title>${escapeHtml(originStory.pageTitle)}</title>
     <meta name="description" content="${escapeHtml(originStory.description)}" />
     <link rel="canonical" href="${url}" />
     <meta property="og:title" content="${escapeHtml(originStory.pageTitle)}" />

@@ -5,6 +5,9 @@
 export const site = {
   name: "ECVO",
   fullName: "Escola de Combate Vinicius de Oliveira",
+  positioning: "Escola de lutas e artes marciais em João Pessoa",
+  homeTitle: "Escola de Lutas e Artes Marciais em João Pessoa | ECVO",
+  modalitiesTitle: "Modalidades de Lutas e Artes Marciais em João Pessoa | ECVO",
   url: "https://ecvo.com.br",
   phone: "+55 83 99421-2431",
   whatsapp: "5583994212431",

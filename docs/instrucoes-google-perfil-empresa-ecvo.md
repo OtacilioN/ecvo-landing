@@ -1,6 +1,6 @@
 # Instruções para o Perfil da Empresa no Google da ECVO
 
-Objetivo: ajudar a ECVO aparecer melhor em buscas locais como "academia de Jiu-Jitsu perto de mim", "Jiu-Jitsu em João Pessoa", "Jiu-Jitsu no Valentina", "Kickboxing em João Pessoa", "MMA em João Pessoa" e "escola de combate e lutas em João Pessoa".
+Objetivo: posicionar a ECVO como escola de lutas e artes marciais em João Pessoa e ajudar a escola a aparecer em buscas locais amplas e específicas, como "artes marciais no Valentina", "Kickboxing em João Pessoa", "Jiu-Jitsu em João Pessoa", "NoGi em João Pessoa", "MMA em João Pessoa", "Muay Thai em João Pessoa" e "Boxe em João Pessoa".
 
 ## 1. Acesso
 
@@ -66,14 +66,14 @@ O ideal é pedir que o aluno conte com as próprias palavras:
 
 Exemplos de palavras que podem aparecer naturalmente nas avaliações:
 
+- escola de lutas e artes marciais em João Pessoa;
+- artes marciais no Valentina;
 - Kickboxing em João Pessoa;
-- MMA em João Pessoa;
-- Muay Thai;
-- Boxe;
-- Jiu-Jitsu;
-- NoGi;
 - Jiu-Jitsu em João Pessoa;
-- academia de Jiu-Jitsu no Valentina;
+- NoGi em João Pessoa;
+- MMA em João Pessoa;
+- Muay Thai em João Pessoa;
+- Boxe em João Pessoa;
 - Valentina;
 - ECVO.
 

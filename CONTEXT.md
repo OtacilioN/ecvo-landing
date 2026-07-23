@@ -2,6 +2,12 @@
 
 Glossário da landing pública da ECVO. Mantém consistente a linguagem usada para apresentar a oferta da escola de combate e lutas.
 
+## Posicionamento
+
+Nas páginas generalistas, apresente a ECVO como **escola de lutas e artes marciais em João Pessoa**. Não use Jiu-Jitsu, NoGi ou qualquer outra modalidade isolada como definição principal da escola.
+
+Títulos e descrições centrados em uma modalidade são reservados às páginas específicas dessa modalidade. Ao listar a oferta completa, preserve o equilíbrio entre Kickboxing, Jiu-Jitsu, NoGi, MMA, Muay Thai e Boxe.
+
 ## Language
 
 **Modalidade**:

@@ -81,6 +81,7 @@ function renderStory(testimonial, index) {
 
 function renderPage() {
   const url = "https://ecvo.com.br/depoimentos-alunos/";
+  const title = "Depoimentos de alunos da ECVO | João Pessoa";
   const description = "Conheça histórias reais de alunos da ECVO em João Pessoa: saúde, disciplina, autoestima e evolução por meio das artes marciais.";
   const schemas = [
     {
@@ -109,16 +110,16 @@ ${generatedNote}
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Depoimentos de alunos da ECVO | João Pessoa</title>
+    <title>${title}</title>
     <meta name="description" content="${description}" />
     <link rel="canonical" href="${url}" />
-    <meta property="og:title" content="Histórias reais de alunos da ECVO" />
+    <meta property="og:title" content="${title}" />
     <meta property="og:description" content="${description}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${url}" />
     <meta property="og:image" content="https://ecvo.com.br/assets/alunos/otacilio.webp" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Histórias reais de alunos da ECVO" />
+    <meta name="twitter:title" content="${title}" />
     <meta name="twitter:description" content="${description}" />
     <meta name="twitter:image" content="https://ecvo.com.br/assets/alunos/otacilio.webp" />
     <meta name="theme-color" content="#11110f" />
