@@ -1,19 +1,29 @@
 # ECVO Landing
 
-Glossário da landing pública da ECVO. Mantém consistente a linguagem usada para apresentar a oferta da escola de combate e lutas.
+Glossário da landing pública da Escola de Combate Vinícius Oliveira.
 
 ## Posicionamento
 
-Nas páginas generalistas, apresente a ECVO como **escola de lutas e artes marciais em João Pessoa**. Não use Jiu-Jitsu, NoGi ou qualquer outra modalidade isolada como definição principal da escola.
+A ECVO é uma **escola de Kickboxing em João Pessoa**, localizada no Valentina. A escola é dedicada exclusivamente ao Kickboxing e tem **Vinícius Oliveira como único professor**.
 
-Títulos e descrições centrados em uma modalidade são reservados às páginas específicas dessa modalidade. Ao listar a oferta completa, preserve o equilíbrio entre Kickboxing, Jiu-Jitsu, NoGi, MMA, Muay Thai e Boxe.
+Use o nome completo exatamente como **Escola de Combate Vinícius Oliveira**. Preserve o acento em “Vinícius” e não acrescente “de” ao nome institucional.
 
-## Language
+## Oferta pública
 
-**Modalidade**:
-A linha de treino de artes marciais oferecida pela ECVO ao público.
-_Avoid_: Categoria, produto
+- Kickboxing para adultos;
+- Kickboxing Infantil;
+- treinos conduzidos pelo professor Vinícius Oliveira;
+- Wellhub (antigo Gympass) e TotalPass, sempre com confirmação prévia de elegibilidade e disponibilidade.
 
-**MMA**:
-Artes marciais mistas: modalidade avançada que combina técnicas em pé, técnicas de chão e transições para alunos que querem seguir carreira de lutador ou ingressar no mundo da luta.
-_Avoid_: Combate genérico, luta livre
+Não apresente a ECVO como escola generalista. Não anuncie outra prática, outro professor ou horários que não estejam confirmados em `data/ecvo-content.mjs`.
+
+## Linguagem
+
+**Kickboxing**:
+A única modalidade oferecida pela ECVO. A comunicação pode distinguir o treino adulto da turma infantil, sem tratá-los como modalidades diferentes.
+
+**Professor**:
+Vinícius Oliveira é o único professor da ECVO. Use o singular nas superfícies públicas.
+
+**Primeiro treino**:
+Convite para conversar pelo WhatsApp, confirmar o horário e receber orientação sobre roupas e equipamentos. Não prometer gratuidade, resultado, vaga ou elegibilidade de benefício sem confirmação.

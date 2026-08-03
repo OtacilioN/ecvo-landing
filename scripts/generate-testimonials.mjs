@@ -47,7 +47,7 @@ function renderHomeSection() {
   return `${homeStart}
       <section class="section section-dark home-testimonials" id="depoimentos" aria-labelledby="depoimentos-title">
         <div class="section-heading" data-reveal>
-          <p class="eyebrow">06 — Histórias de alunos</p>
+          <p class="eyebrow">Histórias de alunos</p>
           <div>
             <h2 id="depoimentos-title">O treino continua fora do tatame.</h2>
             <p class="testimonials-intro">Saúde, confiança, disciplina e constância contadas por quem escolheu começar.</p>
@@ -82,7 +82,7 @@ function renderStory(testimonial, index) {
 function renderPage() {
   const url = "https://ecvo.com.br/depoimentos-alunos/";
   const title = "Depoimentos de alunos da ECVO | João Pessoa";
-  const description = "Conheça histórias reais de alunos da ECVO em João Pessoa: saúde, disciplina, autoestima e evolução por meio das artes marciais.";
+  const description = "Conheça histórias reais de alunos da ECVO em João Pessoa: saúde, disciplina, autoestima e evolução por meio do Kickboxing.";
   const schemas = [
     {
       "@context": "https://schema.org",
@@ -136,8 +136,8 @@ ${generatedNote}
     <script>document.documentElement.classList.add("js");</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../styles.css?v=11" />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css?v=12" />
   </head>
   <body class="testimonials-page">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -145,10 +145,11 @@ ${generatedNote}
       <a class="brand" href="/" aria-label="ECVO início">
         <img class="brand-logo" src="../assets/ecvo-logo.png" alt="" width="40" height="40" />
         <span class="brand-mark">ECVO</span>
-        <span class="brand-copy">Escola de Combate</span>
+        <span class="brand-copy">Kickboxing · João Pessoa</span>
       </a>
       <nav aria-label="Navegação principal">
-        <a href="/#modalidades">Modalidades</a>
+        <a href="/#kickboxing">Kickboxing</a>
+        <a href="/#professor">Professor</a>
         <a href="/#horarios">Horários</a>
         <a href="/#como-chegar">Como chegar</a>
         <a class="nav-app-link" href="https://wa.me/5583994212431?text=Ol%C3%A1%21%20Li%20as%20hist%C3%B3rias%20dos%20alunos%20no%20site%20da%20ECVO%20e%20gostaria%20de%20agendar%20meu%20primeiro%20treino." data-track="whatsapp_click" data-cta-position="header">Quero começar</a>
@@ -162,7 +163,7 @@ ${generatedNote}
           <h1 id="page-title"><span>Depoimentos de alunos da ECVO</span>O motivo muda. A evolução fica.</h1>
         </div>
         <div class="testimonials-hero-copy">
-          <p>Não são promessas de resultado. São experiências de alunos que encontraram nas artes marciais um caminho para cuidar da saúde, fortalecer a mente e construir constância.</p>
+          <p>Não são promessas de resultado. São experiências de alunos que encontraram no Kickboxing um caminho para cuidar da saúde, fortalecer a mente e construir constância.</p>
           <dl>
             <div><dt>${String(testimonials.length).padStart(2, "0")}</dt><dd>histórias</dd></div>
             <div><dt>01</dt><dd>equipe</dd></div>
@@ -174,11 +175,11 @@ ${generatedNote}
 ${testimonials.map(renderStory).join("\n")}
       </section>
       <section class="section contact testimonials-final-cta" aria-labelledby="contato-title">
-        <div><p class="eyebrow">Sua história pode começar agora</p><h2 id="contato-title">Experimente o treino antes de decidir que não é para você.</h2><p class="method-intro">Fale com a equipe, escolha uma modalidade e encontre um horário para começar.</p></div>
+        <div><p class="eyebrow">Sua história pode começar agora</p><h2 id="contato-title">Experimente o treino antes de decidir que não é para você.</h2><p class="method-intro">Fale com a equipe e encontre um horário de Kickboxing para começar com o professor Vinícius Oliveira.</p></div>
         <div class="contact-actions"><a class="button primary" href="https://wa.me/5583994212431?text=Ol%C3%A1%21%20Li%20as%20hist%C3%B3rias%20dos%20alunos%20no%20site%20da%20ECVO%20e%20gostaria%20de%20agendar%20meu%20primeiro%20treino." data-track="whatsapp_click" data-cta-position="final">Agendar pelo WhatsApp <span class="button-arrow" aria-hidden="true">→</span></a><a class="button secondary" href="/#horarios" data-track="schedule_view" data-cta-position="final">Consultar horários</a></div>
       </section>
     </main>
-    <footer><div class="footer-brand"><img class="brand-logo" src="../assets/ecvo-logo.png" alt="" width="44" height="44" /><span class="brand-mark">ECVO</span><span>Escola de Combate</span></div><a href="/">Voltar para o início</a><span class="footer-meta">João Pessoa · PB · © ECVO</span></footer>
+    <footer><div class="footer-brand"><img class="brand-logo" src="../assets/ecvo-logo.png" alt="" width="44" height="44" /><span class="brand-mark">ECVO</span><span>Escola de Combate Vinícius Oliveira</span></div><a href="/">Voltar para o início</a><span class="footer-meta">Kickboxing · João Pessoa · PB · © ECVO</span></footer>
     <a class="whatsapp-float" href="https://wa.me/5583994212431?text=Ol%C3%A1%21%20Li%20as%20hist%C3%B3rias%20dos%20alunos%20no%20site%20da%20ECVO%20e%20gostaria%20de%20agendar%20meu%20primeiro%20treino." aria-label="Falar com a ECVO no WhatsApp" data-track="whatsapp_click" data-cta-position="floating"><svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M16 3C9.4 3 4 8.4 4 15c0 2.1.5 4.1 1.6 5.9L4 29l8.3-1.5c1.7.9 3.6 1.4 5.7 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.9.9.9-4.8-.2-.4c-1-1.6-1.5-3.4-1.5-5.3 0-5.6 4.6-10.2 10.2-10.2S26.2 9.4 26.2 15 21.6 24.8 16 24.8zm5.6-7.6c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.5.3-.7.3-1.4.2-1.5-.1-.1-.3-.2-.6-.4z" /></svg></a>
     <script src="../script.js?v=3"></script>
   </body>

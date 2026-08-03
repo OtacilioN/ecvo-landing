@@ -38,7 +38,7 @@ function renderHomeSection() {
           <p class="eyebrow">Como tudo começou</p>
           <h2 id="origin-home-title">${escapeHtml(originStory.home.title)}</h2>
           <p>${escapeHtml(originStory.home.copy)}</p>
-          <a class="card-link" href="/historia-ecvo/">Conhecer a história de Marcelo e Vinicius <span aria-hidden="true">→</span></a>
+          <a class="card-link" href="/historia-ecvo/">Conhecer a história de Marcelo e Vinícius <span aria-hidden="true">→</span></a>
         </div>
       </aside>
 ${homeEnd}`;
@@ -96,19 +96,19 @@ ${analytics()}
     <script>document.documentElement.classList.add("js");</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../styles.css?v=11" />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css?v=12" />
   </head>
   <body class="origin-page">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <header class="site-header" aria-label="Topo">
-      <a class="brand" href="/" aria-label="ECVO início"><img class="brand-logo" src="../assets/ecvo-logo.png" alt="" width="40" height="40" /><span class="brand-mark">ECVO</span><span class="brand-copy">Escola de Combate</span></a>
-      <nav aria-label="Navegação principal"><a href="/#professores">Professores</a><a href="/depoimentos-alunos/">Histórias de alunos</a><a href="/#horarios">Horários</a><a class="nav-app-link" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="header">Quero começar</a></nav>
+      <a class="brand" href="/" aria-label="ECVO início"><img class="brand-logo" src="../assets/ecvo-logo.png" alt="" width="40" height="40" /><span class="brand-mark">ECVO</span><span class="brand-copy">Kickboxing · João Pessoa</span></a>
+      <nav aria-label="Navegação principal"><a href="/#kickboxing">Kickboxing</a><a href="/#professor">Professor</a><a href="/depoimentos-alunos/">Histórias de alunos</a><a href="/#horarios">Horários</a><a class="nav-app-link" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="header">Quero começar</a></nav>
     </header>
     <main id="conteudo">
       <nav class="breadcrumb" aria-label="Caminho de navegação"><ol><li><a href="/">Início</a></li><li aria-current="page">Como tudo começou</li></ol></nav>
       <section class="origin-hero" aria-labelledby="page-title">
-        <div class="origin-hero-copy"><p class="eyebrow"><span class="pulse"></span>Legado · Mestre e aluno</p><h1 id="page-title"><span>A história por trás da ECVO</span>Como tudo começou.</h1><p>Antes de existir uma escola, existiu alguém disposto a ensinar — e alguém disposto a reconhecer de onde veio.</p></div>
+        <div class="origin-hero-copy"><p class="eyebrow"><span class="pulse"></span>Origem · Mentor e aluno</p><h1 id="page-title"><span>A história por trás da ECVO</span>Como tudo começou.</h1><p>Antes de existir a Escola de Combate Vinícius Oliveira, existiu alguém disposto a ensinar — e alguém disposto a reconhecer de onde veio.</p></div>
       </section>
 
       <section class="section origin-choice" aria-labelledby="escolha-title">
@@ -124,16 +124,16 @@ ${analytics()}
       </section>
 
       <section class="section origin-lineage" aria-labelledby="legado-title">
-        <div class="origin-lineage-heading"><p class="eyebrow">A transmissão</p><h2 id="legado-title">O legado continua em quem reconhece o próprio mestre.</h2></div>
+        <div class="origin-lineage-heading"><p class="eyebrow">A transmissão</p><h2 id="legado-title">O legado continua em quem reconhece o próprio mentor.</h2></div>
         <figure class="origin-quote"><blockquote><p>${escapeHtml(originStory.vinicius.quote)}</p></blockquote><figcaption><strong>${escapeHtml(originStory.vinicius.name)}</strong><span>${escapeHtml(originStory.vinicius.role)}</span></figcaption></figure>
       </section>
 
       <section class="section contact origin-final-cta" aria-labelledby="contato-title">
-        <div><p class="eyebrow">O próximo capítulo</p><h2 id="contato-title">Toda trajetória começa com a decisão de entrar no treino.</h2><p class="method-intro">Conheça a ECVO, escolha uma modalidade e dê o primeiro passo com orientação.</p></div>
+        <div><p class="eyebrow">O próximo capítulo</p><h2 id="contato-title">Toda trajetória começa com a decisão de entrar no treino.</h2><p class="method-intro">Conheça o Kickboxing da ECVO e dê o primeiro passo com o professor Vinícius Oliveira.</p></div>
         <div class="contact-actions"><a class="button primary" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="final">Falar no WhatsApp <span class="button-arrow" aria-hidden="true">→</span></a><a class="button secondary" href="/#horarios" data-track="schedule_view" data-cta-position="final">Consultar horários</a></div>
       </section>
     </main>
-    <footer><div class="footer-brand"><img class="brand-logo" src="../assets/ecvo-logo.png" alt="" width="44" height="44" /><span class="brand-mark">ECVO</span><span>Escola de Combate</span></div><a href="/">Voltar para o início</a><span class="footer-meta">João Pessoa · PB · © ECVO</span></footer>
+    <footer><div class="footer-brand"><img class="brand-logo" src="../assets/ecvo-logo.png" alt="" width="44" height="44" /><span class="brand-mark">ECVO</span><span>Escola de Combate Vinícius Oliveira</span></div><a href="/">Voltar para o início</a><span class="footer-meta">Kickboxing · João Pessoa · PB · © ECVO</span></footer>
     <a class="whatsapp-float" href="${whatsapp}" aria-label="Falar com a ECVO no WhatsApp" data-track="whatsapp_click" data-cta-position="floating">${whatsappIcon()}</a>
     <script src="../script.js?v=3"></script>
   </body>

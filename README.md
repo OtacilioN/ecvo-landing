@@ -1,6 +1,6 @@
-# ECVO Landing Page
+# ECVO — Escola de Kickboxing
 
-Landing page estática da ECVO, preparada para GitHub Pages.
+Landing page estática da Escola de Combate Vinícius Oliveira, dedicada exclusivamente ao Kickboxing em João Pessoa e preparada para GitHub Pages.
 
 ## Publicação
 

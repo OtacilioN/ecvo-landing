@@ -6,7 +6,7 @@ export const testimonials = [
     imageAlt: "Otacilio em dois momentos da sua jornada de treino na ECVO",
     highlight: "23 kg a menos. Uma rotina que finalmente ficou.",
     theme: "Saúde, constância e Kickboxing",
-    quote: "Comecei na ECVO em outubro de 2025, com 120 kg e sem nunca ter considerado praticar uma luta. Já tinha tentado musculação várias vezes, mas nunca conseguia manter a rotina por mais de dois ou três meses. Conheci o Kickboxing por acaso, após uma recomendação médica para procurar um esporte, e me apaixonei desde a primeira aula.\n\nMesmo começando sem coordenação motora ou controle do corpo, a paciência e a didática do professor Vinicius me ajudaram a evoluir um pouco a cada treino. Em julho de 2026, já tinha perdido 23 kg e, mais importante, finalmente encontrei uma atividade física que tenho prazer em praticar. Para quem quer cuidar da saúde, mas acha que luta não é para você: vale a pena experimentar.",
+    quote: "Comecei na ECVO em outubro de 2025, com 120 kg e sem nunca ter considerado praticar uma luta. Já tinha tentado musculação várias vezes, mas nunca conseguia manter a rotina por mais de dois ou três meses. Conheci o Kickboxing por acaso, após uma recomendação médica para procurar um esporte, e me apaixonei desde a primeira aula.\n\nMesmo começando sem coordenação motora ou controle do corpo, a paciência e a didática do professor Vinícius me ajudaram a evoluir um pouco a cada treino. Em julho de 2026, já tinha perdido 23 kg e, mais importante, finalmente encontrei uma atividade física que tenho prazer em praticar. Para quem quer cuidar da saúde, mas acha que luta não é para você: vale a pena experimentar.",
     homeQuote: "Comecei com 120 kg, sem nunca ter considerado praticar uma luta. Em julho de 2026, já tinha perdido 23 kg e, mais importante, finalmente encontrei uma atividade física que tenho prazer em praticar.",
     featured: true,
     featuredOrder: 1,
@@ -32,7 +32,7 @@ export const testimonials = [
     imageAlt: "Vanderson, aluno da ECVO",
     highlight: "Evolução dentro e fora do tatame.",
     theme: "Disciplina, foco e pertencimento",
-    quote: "Sou muito grato por fazer parte da equipe ECVO. Mais do que aprender um esporte, tenho evoluído a cada treino, tanto no físico quanto no mental. A disciplina, o foco e a superação que encontro aqui fazem diferença dentro e fora do tatame. Obrigado aos professores e a toda a equipe por fazerem parte dessa caminhada. Tenho orgulho de fazer parte da ECVO!",
+    quote: "Sou muito grato por fazer parte da equipe ECVO. Mais do que aprender um esporte, tenho evoluído a cada treino, tanto no físico quanto no mental. A disciplina, o foco e a superação que encontro aqui fazem diferença dentro e fora do tatame. Obrigado ao professor e a toda a equipe por fazerem parte dessa caminhada. Tenho orgulho de fazer parte da ECVO!",
     homeQuote: "Mais do que aprender um esporte, tenho evoluído a cada treino, tanto no físico quanto no mental. A disciplina, o foco e a superação fazem diferença dentro e fora do tatame.",
     featured: true,
     featuredOrder: 3,
@@ -52,4 +52,3 @@ export const testimonials = [
     featuredReason: "História relevante para a página completa; a homepage prioriza relatos com resultados mais específicos e complementares.",
   },
 ];
-

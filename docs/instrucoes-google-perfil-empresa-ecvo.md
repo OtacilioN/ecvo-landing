@@ -1,107 +1,95 @@
 # Instruções para o Perfil da Empresa no Google da ECVO
 
-Objetivo: posicionar a ECVO como escola de lutas e artes marciais em João Pessoa e ajudar a escola a aparecer em buscas locais amplas e específicas, como "artes marciais no Valentina", "Kickboxing em João Pessoa", "Jiu-Jitsu em João Pessoa", "NoGi em João Pessoa", "MMA em João Pessoa", "Muay Thai em João Pessoa" e "Boxe em João Pessoa".
+Objetivo: posicionar a ECVO como escola de Kickboxing em João Pessoa e alinhar o perfil ao novo cenário da Escola de Combate Vinícius Oliveira.
 
 ## 1. Acesso
 
-O site já recebeu marcação técnica de negócio local. Para isso, não é necessário dar acesso ao Perfil da Empresa no Google.
+O site já contém marcação técnica de negócio local. Isso não altera automaticamente o Perfil da Empresa no Google.
 
-O acesso só será necessário se alguém for configurar, corrigir ou acompanhar o Perfil da Empresa diretamente. Nesse caso, o dono deve adicionar a pessoa como gerente no Perfil da Empresa, sem compartilhar senha pessoal.
+Para configurar, corrigir ou acompanhar o perfil, o dono deve adicionar a pessoa responsável como gerente, sem compartilhar senha pessoal.
 
 ## 2. Dados que precisam ficar iguais ao site
 
 Use exatamente estes dados:
 
 - Nome: ECVO
-- Nome completo: Escola de Combate Vinicius de Oliveira
+- Nome completo: Escola de Combate Vinícius Oliveira
+- Posicionamento: Escola de Kickboxing em João Pessoa
+- Professor: Vinícius Oliveira
 - Site: https://ecvo.com.br/
 - WhatsApp/telefone: +55 83 99421-2431
 - Instagram: https://www.instagram.com/ecvo.jp/
 - Endereço: R. Inspetora Emília Mendonça Gomes, 195 - Valentina, João Pessoa - PB, 58064-360
 - Referência: junto à Dinamos Suplementos
 
-Evite escrever um endereço diferente em cada lugar. O Google cruza site, mapa, redes sociais e diretórios locais.
+Evite escrever nome, endereço ou oferta de forma diferente em cada lugar. O Google cruza site, mapa, redes sociais e diretórios locais.
 
-## 3. Categorias e serviços
+## 3. Categoria e serviços
 
-No Perfil da Empresa, escolha a categoria mais próxima de escola de artes marciais, centro de treinamento ou escola de esportes, conforme as opções disponíveis no Google.
+Escolha a categoria disponível mais próxima de escola de Kickboxing, escola de artes marciais, centro de treinamento ou escola de esportes.
 
-Cadastre serviços individuais:
+Mantenha somente estes serviços:
 
-- Kickboxing
-- MMA
-- Muay Thai
-- Boxe
-- Jiu-Jitsu
-- NoGi
-- Kickboxing Infantil, se disponível como serviço
+- Kickboxing;
+- Kickboxing Infantil, se a turma continuar disponível.
 
-Em cada serviço, escreva uma descrição curta mencionando João Pessoa e Valentina naturalmente.
+Remova do perfil qualquer serviço que a ECVO não ofereça mais. Nas descrições, mencione João Pessoa e Valentina naturalmente e identifique Vinícius Oliveira como o único professor.
 
 ## 4. Fotos
 
-Enviar fotos reais toda semana ajuda bastante em busca local.
-
-Priorize:
+Priorize fotos reais e autorizadas de:
 
 - fachada ou entrada da ECVO;
 - sala de treino;
-- aulas em andamento;
-- professores orientando alunos;
+- aulas de Kickboxing em andamento;
+- professor Vinícius Oliveira orientando alunos;
 - equipamentos;
-- fotos de turmas e eventos, quando autorizado.
+- turmas e eventos, quando autorizado.
 
-Não use apenas artes, banners ou logo. O Google e os alunos precisam reconhecer o espaço real.
+Remova fotos que comuniquem uma oferta ou um corpo docente que não existem mais. Não use apenas artes, banners ou logo: o público precisa reconhecer o espaço real.
 
 ## 5. Avaliações
 
 Peça avaliações para alunos reais. Não compre avaliações e não combine textos prontos.
 
-O ideal é pedir que o aluno conte com as próprias palavras:
+O ideal é pedir que cada aluno conte com as próprias palavras:
 
-- qual modalidade treina;
+- como conheceu o Kickboxing;
 - se é iniciante ou já tinha experiência;
-- como foi a aula;
-- em qual bairro/cidade treina.
+- como foi o acompanhamento do professor Vinícius Oliveira;
+- em qual bairro ou cidade treina.
 
-Exemplos de palavras que podem aparecer naturalmente nas avaliações:
+Termos que podem aparecer naturalmente:
 
-- escola de lutas e artes marciais em João Pessoa;
-- artes marciais no Valentina;
 - Kickboxing em João Pessoa;
-- Jiu-Jitsu em João Pessoa;
-- NoGi em João Pessoa;
-- MMA em João Pessoa;
-- Muay Thai em João Pessoa;
-- Boxe em João Pessoa;
-- Valentina;
+- escola de Kickboxing no Valentina;
+- Kickboxing Infantil em João Pessoa;
+- professor Vinícius Oliveira;
+- Escola de Combate Vinícius Oliveira;
 - ECVO.
 
 ## 6. Postagens no Perfil da Empresa
 
-Publicar ao menos 1 vez por semana:
+Publicar com regularidade:
 
-- horários das turmas;
-- chamada para primeiro treino;
+- horários das turmas de Kickboxing;
+- chamada para o primeiro treino;
 - fotos de aula;
-- eventos internos;
-- participação em competição;
-- destaque de professor;
-- novidade de modalidade.
+- conteúdo técnico da modalidade;
+- eventos internos e participação em competição;
+- destaque do professor Vinícius Oliveira.
 
-Sempre colocar um botão ou chamada para WhatsApp/site quando possível.
+Sempre incluir uma chamada para o WhatsApp ou para o site quando possível.
 
-## 7. Checklist mensal
+## 7. Checklist da transição
 
-Uma vez por mês, revisar:
+- remover serviços antigos;
+- substituir descrições generalistas pelo posicionamento exclusivo em Kickboxing;
+- manter somente Vinícius Oliveira como professor;
+- conferir fotos, postagens antigas e perguntas públicas;
+- atualizar horários sem transformar antigos horários em novas turmas;
+- revisar links do site e do WhatsApp.
 
-- endereço;
-- telefone;
-- site;
-- horários;
-- serviços;
-- fotos recentes;
-- avaliações novas sem resposta;
-- link do site funcionando.
+## 8. Checklist mensal
 
-Responder avaliações com calma e naturalidade. Isso mostra atividade e melhora confiança para quem encontrou a ECVO no Google.
+Revisar endereço, telefone, site, horários, serviços, fotos recentes, avaliações sem resposta e links. Responder avaliações com calma e naturalidade.

@@ -13,7 +13,6 @@ const escapeHtml = (value) => String(value)
   .replaceAll('"', "&quot;");
 
 const jsonLd = (value) => JSON.stringify(value).replaceAll("<", "\\u003c");
-
 const pageUrl = (slug) => `${site.url}/${slug}/`;
 const whatsappUrl = (modality) => `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Olá! Encontrei a ECVO pela página de ${modality.name} e gostaria de saber como participar do primeiro treino.`)}`;
 
@@ -33,13 +32,14 @@ function renderHeader(modality, whatsapp) {
       <a class="brand" href="/" aria-label="ECVO início">
         <img class="brand-logo" src="../assets/ecvo-logo.png" alt="" width="40" height="40" />
         <span class="brand-mark">ECVO</span>
-        <span class="brand-copy">Escola de Combate</span>
+        <span class="brand-copy">Kickboxing · João Pessoa</span>
       </a>
       <nav aria-label="Navegação principal">
-        <a href="/modalidades/">Modalidades</a>
+        <a href="/modalidades/">Treinos</a>
+        <a href="#professor">Professor</a>
         <a href="#horarios">Horários</a>
         <a href="#localizacao">Como chegar</a>
-        <a class="nav-app-link" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="header">Quero ${escapeHtml(modality.name)}</a>
+        <a class="nav-app-link" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="header">Quero começar</a>
       </nav>
     </header>`;
 }
@@ -47,14 +47,14 @@ function renderHeader(modality, whatsapp) {
 function renderSchedule(modality) {
   const days = schedule.map(({ day, classes }) => ({
     day,
-    classes: classes.filter(([, slugs]) => slugs.split(" ").includes(modality.slug)),
+    classes: classes.filter(([, slug]) => slug === modality.slug),
   })).filter(({ classes }) => classes.length);
 
   return `      <section class="section modality-schedule" id="horarios" aria-labelledby="horarios-title">
         <div class="section-heading">
           <p class="eyebrow">Horários de ${escapeHtml(modality.name)}</p>
           <h2 id="horarios-title">Encontre seu espaço na semana.</h2>
-          <p class="method-intro">Confira a grade atual da modalidade. Para confirmar disponibilidade, fale com a equipe.</p>
+          <p class="method-intro">Confira a grade atual. Para confirmar disponibilidade, fale com a equipe.</p>
         </div>
         <div class="modality-schedule-grid">
 ${days.map(({ day, classes }) => `          <article class="modality-day">
@@ -67,39 +67,29 @@ ${classes.map(([time, , className, teacher]) => `              <li><time>${time}
       </section>`;
 }
 
-function homeScheduleClass(slugs) {
-  if (slugs.includes("muay-thai")) return "muaythai";
-  if (slugs.includes("kickboxing")) return "kickboxing";
-  if (slugs.includes("boxe")) return "boxe";
-  if (slugs.includes("mma")) return "mma";
-  return "nogi";
-}
-
 function renderHomeSchedule() {
   return `<div class="horarios-grid">
 ${schedule.map(({ day, classes }) => `          <article class="dia" data-reveal>
             <header class="dia-head"><h3>${day}</h3><span class="dia-count">${classes.length} aula${classes.length === 1 ? "" : "s"}</span></header>
             <ul class="dia-aulas">
-${classes.map(([time, slugs, name, teacher]) => `              <li class="aula" data-mod="${homeScheduleClass(slugs)}"><span class="aula-hora">${time}</span><span class="aula-info"><span class="aula-nome">${name}</span><span class="aula-prof">${teacher}</span></span></li>`).join("\n")}
+${classes.map(([time, , name, teacher]) => `              <li class="aula" data-mod="kickboxing"><span class="aula-hora">${time}</span><span class="aula-info"><span class="aula-nome">${name}</span><span class="aula-prof">${teacher}</span></span></li>`).join("\n")}
             </ul>
           </article>`).join("\n")}
         </div>`;
 }
 
-function renderTeachers(modality) {
-  return `      <section class="section modality-teachers" aria-labelledby="professores-title">
+function renderTeacher(modality) {
+  const teacher = teachers[modality.teacherIds[0]];
+  return `      <section class="section modality-teachers" id="professor" aria-labelledby="professor-title">
         <div class="section-heading">
           <p class="eyebrow">Quem acompanha seu treino</p>
-          <h2 id="professores-title">Professores da modalidade.</h2>
+          <h2 id="professor-title">Um professor. Uma direção técnica.</h2>
         </div>
         <div class="modality-teachers-grid">
-${modality.teacherIds.map((id) => {
-  const teacher = teachers[id];
-  return `          <article class="modality-teacher-card">
+          <article class="modality-teacher-card">
             <img src="..${teacher.image}" alt="${escapeHtml(teacher.alt)}" width="160" height="160" loading="lazy" decoding="async" />
             <div><p>${escapeHtml(teacher.area)}</p><h3>${escapeHtml(teacher.name)}</h3><p>${escapeHtml(teacher.summary)}</p></div>
-          </article>`;
-}).join("\n")}
+          </article>
         </div>
       </section>`;
 }
@@ -107,12 +97,12 @@ ${modality.teacherIds.map((id) => {
 function renderRelated(modality) {
   const bySlug = new Map(modalities.map((item) => [item.slug, item]));
   return `      <section class="section related-modalities" aria-labelledby="relacionadas-title">
-        <div class="section-heading"><p class="eyebrow">Continue explorando</p><h2 id="relacionadas-title">Modalidades relacionadas.</h2></div>
+        <div class="section-heading"><p class="eyebrow">Continue explorando</p><h2 id="relacionadas-title">Outra forma de treinar Kickboxing.</h2></div>
         <div class="related-modalities-grid">
 ${modality.related.map((slug) => {
-  const related = bySlug.get(slug);
-  return `          <a href="/${related.slug}/"><span>Conheça também</span><strong>${escapeHtml(related.name)}</strong><small>${escapeHtml(related.hero)}</small></a>`;
-}).join("\n")}
+    const related = bySlug.get(slug);
+    return `          <a href="/${related.slug}/"><span>Conheça a turma</span><strong>${escapeHtml(related.name)}</strong><small>${escapeHtml(related.hero)}</small></a>`;
+  }).join("\n")}
         </div>
       </section>`;
 }
@@ -137,7 +127,7 @@ function renderPage(modality) {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Início", item: `${site.url}/` },
-        { "@type": "ListItem", position: 2, name: "Modalidades", item: `${site.url}/modalidades/` },
+        { "@type": "ListItem", position: 2, name: "Treinos", item: `${site.url}/modalidades/` },
         { "@type": "ListItem", position: 3, name: modality.name, item: url },
       ],
     },
@@ -177,15 +167,15 @@ ${analytics()}
     <script>document.documentElement.classList.add("js");</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../styles.css?v=9" />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css?v=12" />
   </head>
   <body class="modality-page" data-modality="${escapeHtml(modality.name)}">
 ${renderHeader(modality, whatsapp)}
     <main id="conteudo">
-      <nav class="breadcrumb" aria-label="Caminho de navegação"><ol><li><a href="/">Início</a></li><li><a href="/modalidades/">Modalidades</a></li><li aria-current="page">${escapeHtml(modality.name)}</li></ol></nav>
+      <nav class="breadcrumb" aria-label="Caminho de navegação"><ol><li><a href="/">Início</a></li><li><a href="/modalidades/">Treinos</a></li><li aria-current="page">${escapeHtml(modality.name)}</li></ol></nav>
       <section class="modality-hero" aria-labelledby="page-title">
-        <p class="eyebrow"><span class="pulse"></span>${escapeHtml(modality.name)} no Valentina, João Pessoa</p>
+        <p class="eyebrow"><span class="pulse"></span>ECVO · Escola exclusiva de Kickboxing</p>
         <h1 id="page-title">${escapeHtml(modality.name)} em João Pessoa</h1>
         <p>${escapeHtml(modality.hero)}</p>
         <div class="hero-actions">
@@ -200,7 +190,7 @@ ${renderHeader(modality, whatsapp)}
       </section>
 
       <section class="section modality-content" aria-labelledby="beneficios-title">
-        <div><p class="eyebrow">Benefícios da modalidade</p><h2 id="beneficios-title">Técnica, presença e evolução no treino.</h2></div>
+        <div><p class="eyebrow">O que o treino desenvolve</p><h2 id="beneficios-title">Técnica, presença e evolução.</h2></div>
         <div class="modality-points">${modality.benefits.map(([title, copy]) => `<article><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}</div>
       </section>
 
@@ -209,10 +199,10 @@ ${renderHeader(modality, whatsapp)}
         <ol>${modality.firstTraining.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol>
       </section>
 
-${renderTeachers(modality)}
+${renderTeacher(modality)}
 ${renderSchedule(modality)}
       <section class="section modality-method" aria-labelledby="metodo-title">
-        <div><p class="eyebrow">Estrutura e metodologia</p><h2 id="metodo-title">Treino técnico com acompanhamento.</h2></div>
+        <div><p class="eyebrow">Estrutura e metodologia</p><h2 id="metodo-title">Uma escola inteira dedicada ao Kickboxing.</h2></div>
         <p class="method-intro">${escapeHtml(modality.method)}</p>
       </section>
 
@@ -228,11 +218,11 @@ ${renderSchedule(modality)}
 
 ${renderRelated(modality)}
       <section class="section contact modality-final-cta" aria-labelledby="contato-title">
-        <div><p class="eyebrow">${escapeHtml(modality.name)} na ECVO</p><h2 id="contato-title">Quer realizar seu primeiro treino?</h2><p class="method-intro">Chame a equipe, confirme o horário e comece com orientação.</p></div>
+        <div><p class="eyebrow">${escapeHtml(modality.name)} na ECVO</p><h2 id="contato-title">Quer realizar seu primeiro treino?</h2><p class="method-intro">Chame a equipe, confirme o horário e comece com o professor Vinícius Oliveira.</p></div>
         <div class="contact-actions"><a class="button primary" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="final">Falar no WhatsApp</a><a class="button secondary" href="#horarios" data-track="schedule_view" data-cta-position="final">Consultar horários</a></div>
       </section>
     </main>
-    <footer><div class="footer-brand"><span>ECVO</span><small>Escola de Combate</small></div><span class="footer-meta">João Pessoa · PB · © ECVO</span></footer>
+    <footer><div class="footer-brand"><span>ECVO</span><small>${escapeHtml(site.fullName)}</small></div><span class="footer-meta">Kickboxing · João Pessoa · PB · © ECVO</span></footer>
     <a class="whatsapp-float" href="${whatsapp}" aria-label="Falar sobre ${escapeHtml(modality.name)} no WhatsApp" data-track="whatsapp_click" data-cta-position="floating">WhatsApp</a>
     <script src="../script.js?v=3"></script>
   </body>
@@ -240,21 +230,21 @@ ${renderRelated(modality)}
 `;
 }
 
-function renderModalitiesIndex() {
-  const title = site.modalitiesTitle;
-  const description = "Conheça as modalidades da ECVO, escola de lutas e artes marciais no Valentina, em João Pessoa: Kickboxing, Jiu-Jitsu, NoGi, MMA, Muay Thai e Boxe.";
-  const socialDescription = "Conheça as modalidades da ECVO, escola de lutas e artes marciais no Valentina, em João Pessoa.";
-  const cards = modalities.map((modality) => `          <a href="/${modality.slug}/"><span>Modalidade</span><h2>${escapeHtml(modality.name)}</h2><p>${escapeHtml(modality.hero)}</p><strong>Conhecer ${escapeHtml(modality.name)} <span aria-hidden="true">→</span></strong></a>`).join("\n");
+function renderTrainingIndex() {
+  const title = site.trainingTitle;
+  const description = "Conheça os treinos de Kickboxing para adultos e crianças da ECVO, no Valentina, em João Pessoa, com o professor Vinícius Oliveira.";
+  const cards = modalities.map((modality) => `          <a href="/${modality.slug}/"><span>Treino</span><h2>${escapeHtml(modality.name)}</h2><p>${escapeHtml(modality.hero)}</p><strong>Conhecer a turma <span aria-hidden="true">→</span></strong></a>`).join("\n");
+  const breadcrumbs = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Início", item: `${site.url}/` }, { "@type": "ListItem", position: 2, name: "Treinos", item: `${site.url}/modalidades/` }] };
   return `<!doctype html>
 ${generatedNote}
-<html lang="pt-BR"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>${escapeHtml(title)}</title><meta name="description" content="${escapeHtml(description)}" /><link rel="canonical" href="${site.url}/modalidades/" /><meta property="og:title" content="${escapeHtml(title)}" /><meta property="og:description" content="${escapeHtml(socialDescription)}" /><meta property="og:type" content="website" /><meta property="og:url" content="${site.url}/modalidades/" /><meta property="og:image" content="${site.url}${site.logo}" /><meta name="twitter:card" content="summary" /><meta name="twitter:title" content="${escapeHtml(title)}" /><meta name="twitter:description" content="${escapeHtml(socialDescription)}" /><meta name="twitter:image" content="${site.url}${site.logo}" /><meta name="theme-color" content="#11110f" /><link rel="icon" type="image/png" href="../assets/ecvo-logo.png" />${analytics()}<script>document.documentElement.classList.add("js");</script><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" /><link rel="stylesheet" href="../styles.css?v=9" /><script type="application/ld+json">${jsonLd({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Início", item: `${site.url}/` }, { "@type": "ListItem", position: 2, name: "Modalidades", item: `${site.url}/modalidades/` }] })}</script></head><body class="modality-page" data-modality="Modalidades"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header" aria-label="Topo"><a class="brand" href="/" aria-label="ECVO início"><img class="brand-logo" src="../assets/ecvo-logo.png" alt="" width="40" height="40" /><span class="brand-mark">ECVO</span><span class="brand-copy">Escola de Combate</span></a><nav aria-label="Navegação principal"><a href="/#horarios">Horários</a><a href="/#como-chegar">Como chegar</a></nav></header><main id="conteudo"><nav class="breadcrumb" aria-label="Caminho de navegação"><ol><li><a href="/">Início</a></li><li aria-current="page">Modalidades</li></ol></nav><section class="modality-hero"><p class="eyebrow"><span class="pulse"></span>Artes marciais no Valentina, João Pessoa</p><h1>Modalidades na ECVO</h1><p>Conheça as práticas oferecidas pela ECVO e encontre uma forma de começar com orientação.</p><div class="hero-actions"><a class="button primary" href="/#horarios" data-track="schedule_view" data-cta-position="hero">Consultar horários</a></div></section><section class="section" aria-labelledby="modalidades-title"><div class="section-heading"><p class="eyebrow">Escolha sua modalidade</p><h2 id="modalidades-title">Cada treino tem seu caminho.</h2></div><div class="modalities-directory">${cards}</div></section></main><footer><div class="footer-brand"><span>ECVO</span><small>Escola de Combate</small></div><span class="footer-meta">João Pessoa · PB · © ECVO</span></footer><script src="../script.js?v=3"></script></body></html>\n`;
+<html lang="pt-BR"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>${escapeHtml(title)}</title><meta name="description" content="${escapeHtml(description)}" /><link rel="canonical" href="${site.url}/modalidades/" /><meta property="og:title" content="${escapeHtml(title)}" /><meta property="og:description" content="${escapeHtml(description)}" /><meta property="og:type" content="website" /><meta property="og:url" content="${site.url}/modalidades/" /><meta property="og:image" content="${site.url}${site.logo}" /><meta name="twitter:card" content="summary" /><meta name="twitter:title" content="${escapeHtml(title)}" /><meta name="twitter:description" content="${escapeHtml(description)}" /><meta name="twitter:image" content="${site.url}${site.logo}" /><meta name="theme-color" content="#11110f" /><link rel="icon" type="image/png" href="../assets/ecvo-logo.png" />${analytics()}<script>document.documentElement.classList.add("js");</script><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet" /><link rel="stylesheet" href="../styles.css?v=12" /><script type="application/ld+json">${jsonLd(breadcrumbs)}</script></head><body class="modality-page" data-modality="Kickboxing"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header" aria-label="Topo"><a class="brand" href="/" aria-label="ECVO início"><img class="brand-logo" src="../assets/ecvo-logo.png" alt="" width="40" height="40" /><span class="brand-mark">ECVO</span><span class="brand-copy">Kickboxing · João Pessoa</span></a><nav aria-label="Navegação principal"><a href="/#professor">Professor</a><a href="/#horarios">Horários</a><a href="/#como-chegar">Como chegar</a></nav></header><main id="conteudo"><nav class="breadcrumb" aria-label="Caminho de navegação"><ol><li><a href="/">Início</a></li><li aria-current="page">Treinos</li></ol></nav><section class="modality-hero"><p class="eyebrow"><span class="pulse"></span>Uma escola · Uma modalidade · Um professor</p><h1>Kickboxing para adultos e crianças</h1><p>A ECVO é dedicada exclusivamente ao Kickboxing. Escolha a turma e comece com acompanhamento do professor Vinícius Oliveira.</p><div class="hero-actions"><a class="button primary" href="/#horarios" data-track="schedule_view" data-cta-position="hero">Consultar horários</a></div></section><section class="section" aria-labelledby="treinos-title"><div class="section-heading"><p class="eyebrow">Treinos na ECVO</p><h2 id="treinos-title">O mesmo método em cada fase.</h2></div><div class="modalities-directory">${cards}</div></section></main><footer><div class="footer-brand"><span>ECVO</span><small>${escapeHtml(site.fullName)}</small></div><span class="footer-meta">Kickboxing · João Pessoa · PB · © ECVO</span></footer><script src="../script.js?v=3"></script></body></html>\n`;
 }
 
 async function main() {
   const checkOnly = process.argv.includes("--check");
   const outputs = [
     ...modalities.map((modality) => [modality.slug, renderPage(modality)]),
-    ["modalidades", renderModalitiesIndex()],
+    ["modalidades", renderTrainingIndex()],
   ];
   const failures = [];
   for (const [directory, output] of outputs) {
@@ -267,6 +257,7 @@ async function main() {
       await writeFile(target, output);
     }
   }
+
   const homePath = resolve(root, "index.html");
   const home = await readFile(homePath, "utf8");
   const scheduleMarkers = /(<!-- schedule:start -->)[\s\S]*?(<!-- schedule:end -->)/;
@@ -279,6 +270,7 @@ async function main() {
   } else {
     await writeFile(homePath, nextHome);
   }
+
   if (failures.length) {
     throw new Error(`Páginas fora de sincronia: ${failures.join(", ")}. Execute: node scripts/generate-modality-pages.mjs`);
   }
