@@ -1,6 +1,6 @@
-# ECVO — Escola de Kickboxing
+# ECVO — Landing temporária
 
-Landing page estática da Escola de Combate Vinícius Oliveira, dedicada exclusivamente ao Kickboxing em João Pessoa e preparada para GitHub Pages.
+Landing page estática da Escola de Combate Vinícius Oliveira, preparada para GitHub Pages. No estado atual, o site comunica que as turmas estão completas e direciona visitantes exclusivamente ao Instagram oficial.
 
 ## Publicação
 
@@ -13,6 +13,8 @@ Landing page estática da Escola de Combate Vinícius Oliveira, dedicada exclusi
 - Google Analytics: `G-381LW2ZL4V`
 - Google Search Console: propriedade de domínio `ecvo.com.br`
 - Sitemap: `https://ecvo.com.br/sitemap.xml`
+
+Durante a pausa de aquisição, somente a home permanece indexável. As rotas históricas exibem o mesmo aviso, usam `noindex` e apontam o canonical para a home.
 
 ## DNS esperado
 

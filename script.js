@@ -4,53 +4,33 @@ window.addEventListener("scroll", () => {
   header?.classList.toggle("is-scrolled", window.scrollY > 24);
 });
 
-// Keep conversion events lightweight and useful across the static pages.
 document.addEventListener("click", (event) => {
   const link = event.target.closest("a");
   if (!link) return;
 
-  const href = link.getAttribute("href") || "";
-  const eventName = link.dataset.track
-    || (href.includes("wa.me/") ? "whatsapp_click" : "")
-    || (href.includes("maps.app.goo.gl") ? "map_click" : "")
-    || (href === "#horarios" || href === "/#horarios" ? "schedule_view" : "");
-
+  const eventName = link.dataset.track;
   if (!eventName || typeof window.gtag !== "function") return;
 
   window.gtag("event", eventName, {
-    modality: document.body.dataset.modality || "ECVO",
     page_path: window.location.pathname,
     cta_position: link.dataset.ctaPosition || "content",
   });
 });
 
-// Scroll-reveal: stagger elements into view as they enter the viewport.
 const revealEls = document.querySelectorAll("[data-reveal]");
 const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 if (prefersReduced || !("IntersectionObserver" in window)) {
-  revealEls.forEach((el) => el.classList.add("is-visible"));
+  revealEls.forEach((element) => element.classList.add("is-visible"));
 } else {
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((entry, i) => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        // Stagger siblings revealing together for a cascade effect.
-        el.style.transitionDelay = `${i * 80}ms`;
-        el.classList.add("is-visible");
-        obs.unobserve(el);
-      });
-    },
-    { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
-  );
+  const observer = new IntersectionObserver((entries, currentObserver) => {
+    entries.forEach((entry, index) => {
+      if (!entry.isIntersecting) return;
+      entry.target.style.transitionDelay = `${index * 90}ms`;
+      entry.target.classList.add("is-visible");
+      currentObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.15 });
 
-  revealEls.forEach((el) => observer.observe(el));
-
-  // Safety net: never leave content hidden if something prevents an intersection.
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      revealEls.forEach((el) => el.classList.add("is-visible"));
-    }, 2500);
-  });
+  revealEls.forEach((element) => observer.observe(element));
 }
