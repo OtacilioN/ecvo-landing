@@ -118,12 +118,19 @@
   text-transform: uppercase;
 }
 
-.pause-instagram {
+.pause-instagram.button.primary {
+  background: var(--red-deep);
+  border-color: var(--red-deep);
   gap: 12px;
   margin-top: clamp(38px, 6vw, 64px);
   min-height: 58px;
   padding-inline: 24px;
   width: fit-content;
+}
+
+.pause-instagram.button.primary:hover {
+  background: #8f2219;
+  border-color: #8f2219;
 }
 
 .pause-instagram svg {
