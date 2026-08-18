@@ -1,3 +1,37 @@
+// Queue analytics immediately, but download the third-party library only after
+// the page has loaded and the browser has idle time. Early conversion events
+// stay in dataLayer and are processed when gtag.js becomes available.
+window.dataLayer = window.dataLayer || [];
+window.gtag = window.gtag || function gtag() {
+  window.dataLayer.push(arguments);
+};
+window.gtag("js", new Date());
+window.gtag("config", "G-381LW2ZL4V");
+
+function loadAnalytics() {
+  if (document.querySelector("script[data-ecvo-analytics]")) return;
+
+  const analyticsScript = document.createElement("script");
+  analyticsScript.async = true;
+  analyticsScript.dataset.ecvoAnalytics = "";
+  analyticsScript.src = "https://www.googletagmanager.com/gtag/js?id=G-381LW2ZL4V";
+  document.head.append(analyticsScript);
+}
+
+function scheduleAnalytics() {
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(loadAnalytics, { timeout: 2000 });
+  } else {
+    window.setTimeout(loadAnalytics, 0);
+  }
+}
+
+if (document.readyState === "complete") {
+  scheduleAnalytics();
+} else {
+  window.addEventListener("load", scheduleAnalytics, { once: true });
+}
+
 const header = document.querySelector(".site-header");
 
 window.addEventListener("scroll", () => {

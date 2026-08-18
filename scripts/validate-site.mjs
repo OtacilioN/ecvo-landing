@@ -44,7 +44,9 @@ const homeBusiness = homeSchemas.find((schema) => (
 expect(home.includes(`<title>${site.homeTitle}</title>`), "index.html: title deve usar o posicionamento geral da ECVO");
 expect(home.includes(`<meta property="og:title" content="${site.homeTitle}" />`), "index.html: OG title deve ser igual ao title geral");
 expect(home.includes(`<meta name="twitter:title" content="${site.homeTitle}" />`), "index.html: Twitter title deve ser igual ao title geral");
-expect(home.includes(`<h1 id="hero-title" data-reveal>${site.positioning}</h1>`), "index.html: H1 deve apresentar a ECVO como escola de lutas e artes marciais");
+expect(home.includes(`<h1 id="hero-title">${site.positioning}</h1>`), "index.html: H1 deve apresentar a ECVO como escola de lutas e artes marciais sem animação que atrase o LCP");
+expect(!home.match(/<section class="hero"[\s\S]*?<\/section>/)?.[0].includes("data-reveal"), "index.html: conteúdo inicial do hero não pode ficar oculto por animação");
+expect(homeHead.includes('rel="preload" as="style" href="styles.css?v=17"'), "index.html: CSS principal deve ser carregado sem bloquear a renderização");
 expect(homeBusiness?.description?.startsWith(site.positioning), "index.html: LocalBusiness deve começar pelo posicionamento geral da ECVO");
 expect(homeBusiness?.address?.streetAddress === site.address, "index.html: streetAddress deve usar o endereço canônico");
 expect(homeBusiness?.address?.postalCode === site.postalCode, "index.html: postalCode deve usar o CEP canônico");
@@ -164,6 +166,10 @@ const publicHtmlPaths = [
 for (const relativePath of publicHtmlPaths) {
   const html = relativePath === "index.html" ? home : await read(relativePath);
   expect(!html.includes("Kickboxing Infantil"), `${relativePath}: o nome anterior do Kickboxing Kids não deve aparecer publicamente`);
+  expect(html.includes("archivo-black-latin.woff2"), `${relativePath}: fonte crítica local deve ser pré-carregada`);
+  expect(!html.includes("family=Archivo+Black"), `${relativePath}: Archivo Black não pode depender do Google Fonts`);
+  expect(!html.includes('script async src="https://www.googletagmanager.com/gtag/js'), `${relativePath}: Analytics não pode bloquear o carregamento inicial`);
+  expect(html.includes("script.js?v=4"), `${relativePath}: carregador adiado do Analytics deve usar script.js v4`);
   for (const teacherName of teachersOnHold) {
     expect(!html.includes(teacherName), `${relativePath}: ${teacherName} não deve aparecer no HTML público`);
   }
