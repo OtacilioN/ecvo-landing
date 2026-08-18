@@ -47,9 +47,6 @@ export const schedule = [
     ["18:00", "kickboxing-infantil-joao-pessoa", "Kickboxing - Turma Kids"],
     ["20:00", "kickboxing-joao-pessoa", "Kickboxing"],
   ] },
-  { day: "Terça", classes: [
-    ["20:00", "mma-joao-pessoa", "MMA"],
-  ] },
   { day: "Quarta", classes: [
     ["07:30", "muay-thai-joao-pessoa", "Muay Thai"],
     ["09:00", "kickboxing-joao-pessoa", "Kickboxing"],
@@ -57,16 +54,12 @@ export const schedule = [
     ["18:00", "kickboxing-infantil-joao-pessoa", "Kickboxing - Turma Kids"],
     ["20:00", "kickboxing-joao-pessoa", "Kickboxing"],
   ] },
-  { day: "Quinta", classes: [
-    ["20:00", "mma-joao-pessoa", "MMA"],
-  ] },
   { day: "Sexta", classes: [
     ["07:30", "muay-thai-joao-pessoa", "Muay Thai"],
     ["09:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["17:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["18:00", "kickboxing-infantil-joao-pessoa", "Kickboxing - Turma Kids"],
     ["20:00", "kickboxing-joao-pessoa", "Kickboxing"],
-    ["20:00", "mma-joao-pessoa", "MMA"],
   ] },
 ];
 

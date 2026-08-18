@@ -16,6 +16,7 @@ const modalitiesWithoutPublishedSchedule = [
   "karate-joao-pessoa",
   "karate-turma-kids-joao-pessoa",
   "judo-turma-kids-joao-pessoa",
+  "mma-joao-pessoa",
 ];
 
 function expect(condition, message) {
@@ -70,7 +71,7 @@ for (const teacherName of activeTeacherNames) {
 for (const teacherName of teachersOnHold) {
   expect(!home.includes(teacherName), `index.html: ${teacherName} não deve aparecer publicamente`);
 }
-expect(publishedClasses.length === 18, "data/ecvo-content.mjs: a grade confirmada deve conter 18 aulas");
+expect(publishedClasses.length === 15, "data/ecvo-content.mjs: a grade confirmada deve conter 15 aulas");
 expect(publishedClasses.every((entry) => entry.length === 3), "data/ecvo-content.mjs: horários públicos não devem armazenar nome de professor");
 expect((publicHomeSchedule.match(/class="aula"/g) || []).length === publishedClasses.length, "index.html: grade pública fora de sincronia com a fonte");
 expect((publicHomeSchedule.match(/class="dia"/g) || []).length === schedule.length, "index.html: quantidade de dias da grade fora de sincronia");
