@@ -1,21 +1,191 @@
 /**
- * Fonte única para a comunicação pública temporária da ECVO.
- * Enquanto as turmas estiverem completas, nenhuma página pública deve exibir
- * oferta, horários, dados de contato ou dados de localização.
+ * Fonte única para as páginas de modalidades e seus horários.
+ * As páginas públicas são geradas estaticamente por scripts/generate-modality-pages.mjs.
  */
 export const site = {
   name: "ECVO",
-  fullName: "Escola de Combate Vinícius Oliveira",
-  title: "ECVO | Sem vagas no momento",
-  description: "No momento estamos sem vagas na equipe da ECVO, siga nosso instagram para ficar por dentro de novidades",
+  fullName: "Escola de Combate Vinicius de Oliveira",
+  positioning: "Escola de lutas e artes marciais em João Pessoa",
+  homeTitle: "Escola de Lutas e Artes Marciais em João Pessoa | ECVO",
+  modalitiesTitle: "Modalidades de Lutas e Artes Marciais em João Pessoa | ECVO",
   url: "https://ecvo.com.br",
+  phone: "+55 83 99421-2431",
+  whatsapp: "5583994212431",
+  address: "Rua Funcionário Publico Paulo Antônio Bastos Portela, 144",
+  neighborhood: "Valentina",
+  locality: "João Pessoa",
+  region: "PB",
+  postalCode: "58.067-242",
+  reference: "Ao lado do Instituto Educacional Sucesso",
+  mapUrl: "https://www.google.com/maps/search/?api=1&query=Rua+Funcion%C3%A1rio+Publico+Paulo+Ant%C3%B4nio+Bastos+Portela%2C+144%2C+Valentina%2C+Jo%C3%A3o+Pessoa+-+PB%2C+58.067-242",
   instagram: "https://www.instagram.com/ecvo.jp/",
-  instagramHandle: "@ecvo.jp",
   logo: "/assets/ecvo-logo.png",
 };
 
-// As rotas históricas permanecem acessíveis, mas exibem somente o aviso temporário.
-export const modalities = [
-  { slug: "kickboxing-joao-pessoa", name: "Kickboxing" },
-  { slug: "kickboxing-infantil-joao-pessoa", name: "Kickboxing Infantil" },
+export const teachers = {
+  vinicius: {
+    name: "Prof. Vinicius",
+    area: "Head Coach · Kickboxing · Boxe",
+    image: "/assets/profVinicius.jpeg",
+    alt: "Professor Vinicius, head coach da ECVO",
+    summary: "Professor de Kickboxing e técnico de Boxe, Vinicius de Oliveira conduz o treino com disciplina, respeito, coragem e superação.",
+  },
+  oyama: {
+    name: "Prof. Oyama",
+    area: "Muay Thai · Técnica · Evolução",
+    image: "/assets/profOyama.jpeg",
+    alt: "Professor Oyama, professor de Muay Thai da ECVO",
+    summary: "Oyama compartilha fundamentos de Muay Thai com atenção à técnica e à evolução consistente de cada aluno.",
+  },
+};
+
+export const schedule = [
+  { day: "Segunda", classes: [
+    ["07:30", "muay-thai-joao-pessoa", "Muay Thai"],
+    ["09:00", "kickboxing-joao-pessoa", "Kickboxing"],
+    ["17:00", "kickboxing-joao-pessoa", "Kickboxing"],
+    ["18:00", "kickboxing-infantil-joao-pessoa", "Kickboxing - Turma Kids"],
+    ["20:00", "kickboxing-joao-pessoa", "Kickboxing"],
+  ] },
+  { day: "Terça", classes: [
+    ["20:00", "mma-joao-pessoa", "MMA"],
+  ] },
+  { day: "Quarta", classes: [
+    ["07:30", "muay-thai-joao-pessoa", "Muay Thai"],
+    ["09:00", "kickboxing-joao-pessoa", "Kickboxing"],
+    ["17:00", "kickboxing-joao-pessoa", "Kickboxing"],
+    ["18:00", "kickboxing-infantil-joao-pessoa", "Kickboxing - Turma Kids"],
+    ["20:00", "kickboxing-joao-pessoa", "Kickboxing"],
+  ] },
+  { day: "Quinta", classes: [
+    ["20:00", "mma-joao-pessoa", "MMA"],
+  ] },
+  { day: "Sexta", classes: [
+    ["07:30", "muay-thai-joao-pessoa", "Muay Thai"],
+    ["09:00", "kickboxing-joao-pessoa", "Kickboxing"],
+    ["17:00", "kickboxing-joao-pessoa", "Kickboxing"],
+    ["18:00", "kickboxing-infantil-joao-pessoa", "Kickboxing - Turma Kids"],
+    ["20:00", "kickboxing-joao-pessoa", "Kickboxing"],
+    ["20:00", "mma-joao-pessoa", "MMA"],
+  ] },
 ];
+
+const firstTraining = [
+  "Escolha um horário que combine com a sua rotina.",
+  "Agende pelo WhatsApp e diga qual modalidade você quer conhecer.",
+  "A equipe orienta sobre roupas e equipamentos antes da aula.",
+  "Participe do treino com acompanhamento do professor.",
+];
+
+export const modalities = [
+  {
+    slug: "jiu-jitsu-joao-pessoa", name: "Jiu-Jitsu", title: "Jiu-Jitsu em João Pessoa | ECVO",
+    description: "Treine Jiu-Jitsu no Valentina, em João Pessoa, com acompanhamento técnico e turmas para diferentes níveis. Consulte horários e fale com a ECVO.",
+    hero: "Treine Jiu-Jitsu no Valentina, em João Pessoa, com acompanhamento técnico para desenvolver posições, controle, raspagens e finalizações no tatame.",
+    audiences: ["Quem quer começar no Jiu-Jitsu com orientação desde os fundamentos.", "Praticantes que buscam aprofundar técnica, posições e leitura de jogo.", "Pessoas que querem incluir uma prática de luta agarrada na rotina de treino.", "Alunos interessados em evolução esportiva, respeitando o próprio momento."],
+    benefits: [["Controle e técnica", "O treino explora posições, transições, controles e finalizações com progressão."], ["Coordenação", "Movimentações, base e conexão com o parceiro ajudam a desenvolver consciência corporal."], ["Disciplina no tatame", "A prática valoriza atenção, respeito ao parceiro e constância no aprendizado."]],
+    scheduleSlugs: ["jiu-jitsu-joao-pessoa"],
+    method: "Na ECVO, o Jiu-Jitsu é apresentado como uma prática técnica de chão, com espaço para quem treina de forma recreativa e para quem quer avançar no esporte.",
+    related: ["nogi-joao-pessoa", "mma-joao-pessoa"],
+    faq: [["Preciso ter experiência para começar?", "Não. Fale com a equipe para encontrar a turma de Jiu-Jitsu mais adequada ao seu momento."], ["Preciso comprar kimono antes da primeira aula?", "A equipe informa o que levar e quais equipamentos fazem sentido antes do seu primeiro treino."], ["Qual é a diferença entre Jiu-Jitsu e NoGi?", "No Jiu-Jitsu com kimono, a roupa faz parte das pegadas e controles. No NoGi, a luta acontece sem kimono, com uma dinâmica diferente de movimentação e controle."], ["Há turmas para iniciantes?", "A ECVO recebe alunos em diferentes níveis. Confirme pelo WhatsApp o horário mais indicado para começar."]],
+  },
+  {
+    slug: "nogi-joao-pessoa", name: "NoGi", title: "NoGi em João Pessoa | ECVO",
+    description: "Treine NoGi no Valentina, em João Pessoa, com técnica de luta agarrada sem kimono, controle e movimentação. Consulte horários na ECVO.",
+    hero: "Treine NoGi no Valentina, em João Pessoa, e desenvolva controle, movimentação, transições e finalizações na luta agarrada sem kimono.",
+    audiences: ["Iniciantes curiosos para conhecer a luta agarrada sem kimono.", "Praticantes de Jiu-Jitsu que querem explorar uma dinâmica diferente de pegadas e movimentação.", "Pessoas que buscam técnica, coordenação e condicionamento em uma prática de chão.", "Alunos interessados em aprofundar fundamentos de grappling."],
+    benefits: [["Movimentação", "A ausência do kimono muda as pegadas e incentiva ajustes de posição e deslocamento."], ["Controle", "Entradas, transições e finalizações são treinadas com atenção aos fundamentos."], ["Evolução técnica", "O NoGi amplia o repertório de luta agarrada de forma complementar ao Jiu-Jitsu com kimono."]],
+    scheduleSlugs: ["nogi-joao-pessoa"],
+    method: "NoGi é a vertente de luta agarrada sem kimono. Na ECVO, ele compartilha base técnica com o Jiu-Jitsu, mas trabalha uma dinâmica própria de controle e movimentação.",
+    related: ["jiu-jitsu-joao-pessoa", "mma-joao-pessoa"],
+    faq: [["O que é NoGi?", "NoGi é uma prática de luta agarrada sem kimono. Por isso, as pegadas e a movimentação têm dinâmica diferente do Jiu-Jitsu com kimono."], ["Posso começar no NoGi sem experiência?", "Sim. Fale com a equipe para confirmar a turma e receber orientação sobre como participar do primeiro treino."], ["Preciso levar kimono?", "Não. Como a prática é sem kimono, a equipe orienta pelo WhatsApp quais roupas e equipamentos são adequados."], ["NoGi e Jiu-Jitsu têm horário juntos?", "A grade atual identifica a turma como Jiu-Jitsu/NoGi. Confirme pelo WhatsApp como o conteúdo é organizado no horário escolhido."]],
+  },
+  {
+    slug: "kickboxing-joao-pessoa", name: "Kickboxing", title: "Kickboxing em João Pessoa | ECVO",
+    description: "Treine Kickboxing no Valentina, em João Pessoa, com acompanhamento técnico e turmas para diferentes níveis. Consulte horários e fale com a ECVO.",
+    hero: "Treine Kickboxing no Valentina, em João Pessoa, com técnica de socos e chutes, coordenação, condicionamento e uma progressão adequada para diferentes níveis.",
+    audiences: ["Pessoas iniciantes que querem aprender socos, chutes e movimentação com orientação.", "Quem busca uma rotina de treino que combine técnica e condicionamento.", "Praticantes que desejam aprimorar combinações, distância e coordenação.", "Alunos interessados em evolução esportiva dentro da modalidade."],
+    benefits: [["Socos e chutes", "Combinações são desenvolvidas com foco em base, postura e técnica."], ["Coordenação", "Deslocamentos e sequências ajudam a organizar ritmo, distância e tempo de reação."], ["Condicionamento", "O treino pode desafiar o corpo com consistência, sem prometer resultados específicos."]],
+    scheduleSlugs: ["kickboxing-joao-pessoa"],
+    method: "O Kickboxing na ECVO combina trabalho técnico, acompanhamento do professor e turmas para diferentes níveis. A equipe pode orientar sobre a prática recreativa e sobre objetivos esportivos.",
+    related: ["muay-thai-joao-pessoa", "boxe-joao-pessoa", "kickboxing-infantil-joao-pessoa"],
+    faq: [["Preciso ter luvas no primeiro treino?", "Fale com a equipe antes de ir. Ela orienta sobre roupas e equipamentos para o primeiro treino."], ["Kickboxing é indicado para iniciantes?", "A ECVO recebe alunos em diferentes níveis. Confirme pelo WhatsApp qual horário é mais adequado para começar."], ["Qual é a diferença entre Kickboxing e Muay Thai?", "As duas modalidades trabalham combate em pé, mas têm técnicas e regras próprias. A equipe pode explicar como cada turma aborda seus fundamentos."], ["O treino envolve contato desde a primeira aula?", "A organização do treino é orientada pelo professor. Confirme com a equipe como funciona a aula para iniciantes."]],
+  },
+  {
+    slug: "muay-thai-joao-pessoa", name: "Muay Thai", title: "Muay Thai em João Pessoa | ECVO",
+    description: "Treine Muay Thai no Valentina, em João Pessoa, com técnica de mãos, pernas, joelhos e cotovelos. Consulte horários e fale com a ECVO.",
+    hero: "Treine Muay Thai no Valentina, em João Pessoa, com orientação técnica para desenvolver golpes com mãos, pernas, joelhos e cotovelos dentro da metodologia da turma.",
+    audiences: ["Iniciantes que querem conhecer os fundamentos do Muay Thai com acompanhamento.", "Pessoas que buscam condicionamento, coordenação e técnica de combate em pé.", "Praticantes que desejam evoluir em distância, ritmo, clinch e combinações.", "Alunos interessados no lado esportivo da modalidade, conforme a orientação da equipe."],
+    benefits: [["Fundamentos próprios", "O Muay Thai trabalha recursos de mãos, pernas, joelhos e cotovelos de forma técnica."], ["Leitura de distância", "Movimentação, guarda e combinações ajudam a entender o espaço de combate."], ["Consistência", "A prática incentiva disciplina, atenção à técnica e evolução gradual."]],
+    scheduleSlugs: ["muay-thai-joao-pessoa"],
+    method: "A ECVO oferece treino de Muay Thai com acompanhamento dos professores e atenção ao desenvolvimento técnico. Fale com a equipe sobre o formato da turma e seus objetivos.",
+    related: ["kickboxing-joao-pessoa", "boxe-joao-pessoa", "mma-joao-pessoa"],
+    faq: [["Posso começar Muay Thai sem experiência?", "Sim. Entre em contato para receber orientação sobre a turma e o primeiro treino."], ["Preciso ter equipamentos próprios?", "A equipe informa o que levar e quando faz sentido adquirir equipamentos para a modalidade."], ["Muay Thai e Kickboxing são iguais?", "Não. Ambas são modalidades de combate em pé, mas cada uma tem fundamentos e recursos técnicos próprios."], ["Como funciona o treino para iniciantes?", "A progressão e as atividades são conduzidas pelo professor. Confirme os detalhes da turma pelo WhatsApp."]],
+  },
+  {
+    slug: "boxe-joao-pessoa", name: "Boxe", title: "Boxe em João Pessoa | ECVO",
+    description: "Treine Boxe no Valentina, em João Pessoa, com acompanhamento técnico em golpes com as mãos, defesa e movimentação. Consulte horários na ECVO.",
+    hero: "Treine Boxe no Valentina, em João Pessoa, com foco em guarda, golpes com as mãos, defesa, distância, coordenação e trabalho de pés.",
+    audiences: ["Pessoas sem experiência que querem começar pelo trabalho técnico de mãos.", "Quem busca uma prática que una coordenação, ritmo e condicionamento.", "Praticantes que desejam aprimorar defesa, distância e movimentação.", "Alunos interessados na evolução esportiva, sem obrigação de competir."],
+    benefits: [["Trabalho de mãos", "Jab, direto, cruzado, upper e combinações são desenvolvidos com atenção à precisão."], ["Defesa e distância", "Guarda, esquiva e deslocamento ajudam a construir leitura de combate em pé."], ["Ritmo e coordenação", "O trabalho de pés e as sequências criam oportunidades para evoluir de forma consistente."]],
+    scheduleSlugs: ["boxe-joao-pessoa"],
+    method: "O Boxe na ECVO trabalha técnica, movimentação e acompanhamento dos professores. A prática pode fazer parte de uma rotina recreativa ou esportiva, de acordo com o objetivo do aluno.",
+    related: ["kickboxing-joao-pessoa", "muay-thai-joao-pessoa", "mma-joao-pessoa"],
+    faq: [["Posso começar Boxe sem experiência?", "Sim. Fale com a ECVO para receber orientação sobre a turma e o que levar no primeiro treino."], ["Boxe ajuda no condicionamento físico?", "O treino combina técnica e movimento, podendo fazer parte de uma rotina de condicionamento. A experiência varia de pessoa para pessoa."], ["É necessário participar de sparring?", "A organização das atividades é definida pelos professores. Confirme pelo WhatsApp como a turma funciona no seu nível."], ["Quais equipamentos são utilizados?", "A equipe orienta sobre roupas, luvas e demais equipamentos antes de você começar."]],
+  },
+  {
+    slug: "mma-joao-pessoa", name: "MMA", title: "MMA em João Pessoa | ECVO",
+    description: "Treine MMA no Valentina, em João Pessoa, integrando fundamentos de luta em pé, luta agarrada e transições. Consulte horários na ECVO.",
+    hero: "Treine MMA no Valentina, em João Pessoa, e conheça uma modalidade que integra fundamentos de luta em pé, luta agarrada e transições entre diferentes distâncias.",
+    audiences: ["Praticantes com interesse em combinar diferentes fundamentos de artes marciais.", "Pessoas que já treinam uma modalidade e querem ampliar o repertório técnico.", "Alunos interessados em estudar transições entre luta em pé e luta agarrada.", "Quem busca uma prática orientada, sem promessa de formação profissional."],
+    benefits: [["Integração de fundamentos", "O MMA aproxima técnicas de combate em pé, quedas, chão e transições."], ["Leitura de situações", "A prática desenvolve atenção às distâncias e aos momentos de cada fundamento."], ["Evolução esportiva", "O treino cria espaço para estudar a modalidade com orientação e consistência."]],
+    scheduleSlugs: ["mma-joao-pessoa"],
+    method: "O MMA na ECVO integra fundamentos de diferentes lutas. A equipe pode orientar se o horário atual é adequado à sua experiência e ao seu objetivo de treino.",
+    related: ["jiu-jitsu-joao-pessoa", "nogi-joao-pessoa", "boxe-joao-pessoa", "kickboxing-joao-pessoa", "muay-thai-joao-pessoa"],
+    faq: [["Preciso ter experiência em outras lutas para treinar MMA?", "Fale com a equipe sobre sua experiência. Ela pode orientar o melhor caminho para participar da turma."], ["O que se treina em uma aula de MMA?", "A modalidade combina fundamentos de luta em pé, luta agarrada e transições. O conteúdo é organizado pelo professor."], ["MMA é apenas para quem quer competir?", "Não é preciso buscar competição para conhecer a modalidade. Converse com a equipe sobre seus objetivos."], ["Quais equipamentos preciso levar?", "Antes do primeiro treino, a ECVO orienta sobre roupas e equipamentos adequados."]],
+  },
+  {
+    slug: "kickboxing-infantil-joao-pessoa", name: "Kickboxing - Turma Kids", title: "Kickboxing - Turma Kids em João Pessoa | ECVO",
+    description: "Kickboxing - Turma Kids no Valentina, em João Pessoa, com acompanhamento, técnica, coordenação, disciplina e convivência. Consulte horários na ECVO.",
+    hero: "No Valentina, em João Pessoa, a turma Kids de Kickboxing apresenta fundamentos de forma orientada, com atenção à técnica, à coordenação, à convivência e à segurança.",
+    audiences: ["Crianças que querem conhecer uma atividade de artes marciais com acompanhamento.", "Responsáveis que buscam uma prática de movimento, disciplina e convivência.", "Crianças iniciantes, respeitando o ritmo e a orientação da turma.", "Famílias que desejam confirmar a faixa etária e a disponibilidade diretamente com a equipe."],
+    benefits: [["Desenvolvimento motor", "Movimentos, deslocamentos e fundamentos adaptados estimulam coordenação e consciência corporal."], ["Disciplina e convivência", "A turma trabalha escuta, respeito ao professor, aos colegas e aos combinados do treino."], ["Técnica com acompanhamento", "Os fundamentos são apresentados de forma gradual e apropriada para o contexto da turma."]],
+    scheduleSlugs: ["kickboxing-infantil-joao-pessoa"],
+    method: "A Turma Kids é voltada para o aprendizado orientado de movimentos e fundamentos do Kickboxing. Fale com a equipe para confirmar idade, disponibilidade e como participar.",
+    related: ["kickboxing-joao-pessoa", "karate-turma-kids-joao-pessoa"],
+    faq: [["Para qual idade é a turma Kids de Kickboxing?", "Confirme diretamente com a ECVO a faixa etária atendida e a disponibilidade atual da turma."], ["A criança precisa ter experiência?", "Não. A equipe pode orientar responsáveis sobre como a criança pode começar."], ["A aula ensina a criança a brigar?", "Não. A proposta trabalha técnica, movimento, disciplina, respeito e convivência dentro de uma prática orientada."], ["Quando é a Turma Kids?", "A grade atual indica aulas às segundas, quartas e sextas, às 18h. Confirme a disponibilidade antes de ir."], ["O que a criança deve levar?", "A equipe informa os itens adequados, roupas e equipamentos antes da primeira aula."]],
+  },
+  {
+    slug: "karate-joao-pessoa", name: "Karatê", title: "Karatê em João Pessoa | ECVO",
+    description: "Conheça o Karatê na ECVO, no Valentina, em João Pessoa, com prática orientada de fundamentos, técnica, coordenação e disciplina.",
+    hero: "Conheça o Karatê na ECVO, no Valentina, em João Pessoa, com uma prática orientada de fundamentos, técnica, coordenação, disciplina e respeito.",
+    audiences: ["Pessoas que querem conhecer os fundamentos do Karatê com orientação.", "Quem busca uma arte marcial baseada em técnica, postura e disciplina.", "Praticantes interessados em desenvolver coordenação, equilíbrio e consciência corporal.", "Alunos que desejam incluir uma prática marcial consistente na rotina."],
+    benefits: [["Fundamentos técnicos", "Bases, deslocamentos e técnicas são desenvolvidos com atenção à execução."], ["Coordenação e equilíbrio", "A prática organiza postura, movimento e consciência corporal."], ["Disciplina", "O treino valoriza atenção, respeito e constância no aprendizado."]],
+    scheduleSlugs: ["karate-joao-pessoa"],
+    method: "O Karatê na ECVO é apresentado por meio de fundamentos técnicos e evolução gradual. Fale com a equipe para saber quando a turma estará disponível.",
+    related: ["karate-turma-kids-joao-pessoa", "kickboxing-joao-pessoa", "muay-thai-joao-pessoa"],
+    faq: [["Posso começar Karatê sem experiência?", "Sim. Fale com a equipe para receber orientação sobre como começar quando a turma estiver disponível."], ["Quais fundamentos são trabalhados?", "O Karatê trabalha bases, deslocamentos e técnicas próprias da modalidade, organizados de acordo com a turma."], ["Preciso comprar equipamentos antes de começar?", "A equipe informa previamente quais roupas e equipamentos serão necessários."], ["Quando serão divulgados os horários?", "Os horários serão publicados no site assim que estiverem disponíveis."]],
+  },
+  {
+    slug: "karate-turma-kids-joao-pessoa", name: "Karatê - Turma Kids", title: "Karatê - Turma Kids em João Pessoa | ECVO",
+    description: "Conheça o Karatê - Turma Kids na ECVO, no Valentina, em João Pessoa, com fundamentos, movimento, disciplina e convivência.",
+    hero: "A Turma Kids de Karatê da ECVO apresenta fundamentos da modalidade com atenção ao movimento, à coordenação, à disciplina, ao respeito e à convivência.",
+    audiences: ["Crianças que querem conhecer uma arte marcial com acompanhamento.", "Responsáveis que buscam uma prática de movimento, disciplina e convivência.", "Crianças iniciantes, respeitando o ritmo e a orientação da turma.", "Famílias que desejam confirmar a faixa etária e a disponibilidade diretamente com a equipe."],
+    benefits: [["Coordenação", "Movimentos e fundamentos da modalidade estimulam consciência corporal e equilíbrio."], ["Disciplina e respeito", "A prática valoriza escuta, atenção ao professor e convivência com a turma."], ["Aprendizado gradual", "Os fundamentos são apresentados de forma progressiva e orientada."]],
+    scheduleSlugs: ["karate-turma-kids-joao-pessoa"],
+    method: "A Turma Kids de Karatê é voltada ao aprendizado orientado dos fundamentos da modalidade. Fale com a equipe para saber quando a turma estará disponível e confirmar a faixa etária atendida.",
+    related: ["karate-joao-pessoa", "kickboxing-infantil-joao-pessoa", "judo-turma-kids-joao-pessoa"],
+    faq: [["Para qual idade é a Turma Kids de Karatê?", "A faixa etária atendida será informada pela ECVO quando a turma estiver disponível."], ["A criança precisa ter experiência?", "Não. A proposta permite começar pelos fundamentos, com orientação."], ["Quais aspectos a prática desenvolve?", "A turma trabalha fundamentos do Karatê, movimento, coordenação, disciplina, respeito e convivência."], ["Quando serão divulgados os horários?", "Os horários serão publicados no site assim que estiverem disponíveis."]],
+  },
+  {
+    slug: "judo-turma-kids-joao-pessoa", name: "Judô - Turma Kids", title: "Judô - Turma Kids em João Pessoa | ECVO",
+    description: "Conheça o Judô - Turma Kids na ECVO, no Valentina, em João Pessoa, com fundamentos, movimento, equilíbrio, disciplina e convivência.",
+    hero: "A Turma Kids de Judô da ECVO apresenta fundamentos da modalidade com atenção ao movimento, ao equilíbrio, à disciplina, ao respeito e à convivência.",
+    audiences: ["Crianças que querem conhecer o Judô com acompanhamento.", "Responsáveis que buscam uma prática de movimento, disciplina e convivência.", "Crianças iniciantes, respeitando o ritmo e a orientação da turma.", "Famílias que desejam confirmar a faixa etária e a disponibilidade diretamente com a equipe."],
+    benefits: [["Equilíbrio e movimento", "Os fundamentos da modalidade trabalham postura, deslocamento e consciência corporal."], ["Disciplina e respeito", "A prática valoriza escuta, atenção ao professor e convivência com a turma."], ["Aprendizado gradual", "Os movimentos são apresentados de forma progressiva e orientada."]],
+    scheduleSlugs: ["judo-turma-kids-joao-pessoa"],
+    method: "A Turma Kids de Judô é voltada ao aprendizado orientado dos fundamentos da modalidade. Fale com a equipe para saber quando a turma estará disponível e confirmar a faixa etária atendida.",
+    related: ["karate-turma-kids-joao-pessoa", "jiu-jitsu-joao-pessoa"],
+    faq: [["Para qual idade é a Turma Kids de Judô?", "A faixa etária atendida será informada pela ECVO quando a turma estiver disponível."], ["A criança precisa ter experiência?", "Não. A proposta permite começar pelos fundamentos, com orientação."], ["É preciso ter uniforme antes de começar?", "A equipe informará previamente quais roupas e equipamentos serão necessários."], ["Quando serão divulgados os horários?", "Os horários serão publicados no site assim que estiverem disponíveis."]],
+  },
+].map((modality) => ({ ...modality, firstTraining }));

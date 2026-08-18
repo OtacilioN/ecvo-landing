@@ -15,177 +15,6 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ---------- Pausa de aquisição ---------- */
-.pause-page {
-  min-height: 100vh;
-}
-
-.pause-page .pause-header {
-  max-width: 1240px;
-}
-
-.pause-page .pause-header::before {
-  background: rgba(15, 14, 12, 0.7);
-}
-
-.pause-main {
-  min-height: calc(100vh - 112px);
-}
-
-.pause-hero {
-  align-items: center;
-  display: grid;
-  min-height: 100vh;
-  overflow: hidden;
-  padding: 150px clamp(22px, 7vw, 96px) 90px;
-  position: relative;
-}
-
-.pause-atmosphere {
-  inset: 0;
-  pointer-events: none;
-  position: absolute;
-}
-
-.pause-atmosphere::after {
-  background: linear-gradient(180deg, transparent 55%, var(--bg));
-  content: "";
-  inset: 0;
-  position: absolute;
-}
-
-.pause-atmosphere .ring-grid {
-  inset: -18%;
-  mask-image: radial-gradient(circle at 76% 46%, black, transparent 64%);
-  opacity: 0.45;
-}
-
-.pause-glow {
-  background:
-    radial-gradient(circle at 78% 32%, rgba(224, 64, 47, 0.34), transparent 34%),
-    radial-gradient(circle at 22% 74%, rgba(212, 173, 88, 0.16), transparent 38%);
-  filter: blur(6px);
-  inset: 0;
-  position: absolute;
-}
-
-.pause-strike {
-  background: linear-gradient(90deg, transparent, rgba(224, 64, 47, 0.95), transparent);
-  box-shadow: 0 0 30px rgba(224, 64, 47, 0.48);
-  height: 2px;
-  position: absolute;
-  width: min(72vw, 920px);
-}
-
-.pause-strike-a {
-  right: -12vw;
-  top: 34%;
-  transform: rotate(-13deg);
-}
-
-.pause-strike-b {
-  bottom: 22%;
-  left: -22vw;
-  opacity: 0.45;
-  transform: rotate(8deg);
-}
-
-.pause-copy {
-  margin: 0 auto;
-  max-width: 1180px;
-  position: relative;
-  width: 100%;
-  z-index: 2;
-}
-
-.pause-copy .eyebrow {
-  align-items: center;
-  display: flex;
-  gap: 10px;
-  margin: 0 0 28px;
-}
-
-.pause-copy h1 {
-  color: var(--white);
-  font-family: "Anton", sans-serif;
-  font-size: clamp(3.4rem, 8.3vw, 8.6rem);
-  font-weight: 400;
-  letter-spacing: -0.025em;
-  line-height: 0.94;
-  margin: 0;
-  max-width: 1100px;
-  text-wrap: balance;
-  text-transform: uppercase;
-}
-
-.pause-instagram.button.primary {
-  background: var(--red-deep);
-  border-color: var(--red-deep);
-  gap: 12px;
-  margin-top: clamp(38px, 6vw, 64px);
-  min-height: 58px;
-  padding-inline: 24px;
-  width: fit-content;
-}
-
-.pause-instagram.button.primary:hover {
-  background: #8f2219;
-  border-color: #8f2219;
-}
-
-.pause-instagram svg {
-  flex: 0 0 auto;
-}
-
-.pause-handle {
-  color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  margin: 14px 0 0 5px;
-  text-transform: uppercase;
-}
-
-.pause-footer {
-  position: relative;
-  z-index: 3;
-}
-
-@media (max-width: 720px) {
-  .pause-page .pause-header {
-    padding-inline: 12px;
-  }
-
-  .pause-page .brand-copy {
-    display: none;
-  }
-
-  .pause-hero {
-    min-height: 100svh;
-    padding: 126px 20px 64px;
-  }
-
-  .pause-copy h1 {
-    font-size: clamp(3rem, 14.6vw, 5.4rem);
-    line-height: 0.96;
-  }
-
-  .pause-instagram {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .pause-footer {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  .pause-footer .footer-brand span:last-child {
-    display: none;
-  }
-}
-
 * {
   box-sizing: border-box;
 }
@@ -199,7 +28,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Archivo", system-ui, -apple-system, Segoe UI, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
   font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -503,7 +332,7 @@ h1 span {
 h1 strong {
   color: var(--gold);
   display: block;
-  font-family: "Archivo", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: clamp(1rem, 2.5vw, 1.55rem);
   font-weight: 800;
   letter-spacing: 0.14em;
@@ -541,7 +370,7 @@ h2 {
 
 h3 {
   color: var(--white);
-  font-family: "Archivo", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: -0.01em;
@@ -958,6 +787,50 @@ h3 {
   max-width: 62ch;
 }
 
+/* Estrutura pronta para os professores (foto + mini bio) — sem placeholders visíveis. */
+.modalidade-professores {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.professor-card {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+}
+
+.professor-foto {
+  border-radius: 50%;
+  flex-shrink: 0;
+  height: 64px;
+  object-fit: cover;
+  width: 64px;
+}
+
+.professor-nome {
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.professor-cargo {
+  color: var(--gold);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 2px 0 0;
+  text-transform: uppercase;
+}
+
+.professor-bio {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin: 8px 0 0;
+}
+
 @media (max-width: 800px) {
   .modalidade-detalhes-head,
   .modalidade {
@@ -969,12 +842,12 @@ h3 {
   }
 }
 
-/* ---------- Professor ---------- */
-.professor-section {
+/* ---------- Professores ---------- */
+.professores {
   border-top: 1px solid var(--line);
 }
 
-.professor-grid {
+.professores-grid {
   display: grid;
   gap: 18px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1052,8 +925,28 @@ h3 {
   transform: scale(1.035);
 }
 
+.professor-retrato-rodrigo {
+  object-position: 50% 24%;
+}
+
 .professor-retrato-vinicius {
   object-position: 45% 18%;
+}
+
+.professor-retrato-sauro {
+  object-position: 52% 24%;
+}
+
+.professor-retrato-oyama {
+  object-position: 50% 19%;
+}
+
+.professor-retrato-dimitri {
+  object-position: 50% 16%;
+}
+
+.professor-retrato-anderson {
+  object-position: 50% 42%;
 }
 
 .professor-body {
@@ -1093,9 +986,24 @@ h3 {
 }
 
 /* ---------- Horários ---------- */
-/* O dourado identifica todas as turmas de Kickboxing. */
+/* Cada modalidade tem uma cor de acento, aplicada via data-mod. */
+[data-mod="muaythai"] {
+  --mod: var(--red);
+}
 [data-mod="kickboxing"] {
   --mod: var(--gold);
+}
+[data-mod="karate"] {
+  --mod: var(--red-deep);
+}
+[data-mod="boxe"] {
+  --mod: var(--ink);
+}
+[data-mod="nogi"] {
+  --mod: var(--steel);
+}
+[data-mod="mma"] {
+  --mod: var(--red-deep);
 }
 
 .horarios-legenda {
@@ -2035,6 +1943,31 @@ footer {
   text-transform: uppercase;
 }
 
+/* ---------- WhatsApp float ---------- */
+.whatsapp-float {
+  align-items: center;
+  background: #25d366;
+  border-radius: 50%;
+  bottom: 24px;
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+  color: #0a3d20;
+  display: flex;
+  height: 58px;
+  justify-content: center;
+  position: fixed;
+  right: 24px;
+  transition:
+    transform 240ms var(--ease),
+    box-shadow 240ms var(--ease);
+  width: 58px;
+  z-index: 60;
+}
+
+.whatsapp-float:hover {
+  box-shadow: 0 16px 40px rgba(37, 211, 102, 0.6);
+  transform: scale(1.08) translateY(-2px);
+}
+
 /* ---------- Reveal animations (progressive enhancement) ---------- */
 .js [data-reveal] {
   opacity: 0;
@@ -2060,7 +1993,7 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .professor-grid {
+  .professores-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2392,7 +2325,7 @@ footer {
 .testimonials-hero h1 span {
   color: var(--gold);
   display: block;
-  font-family: "Archivo", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -2635,124 +2568,13 @@ footer > a:hover { color: var(--gold); }
 .origin-hero h1 span {
   color: var(--gold);
   display: block;
-  font-family: "Archivo", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.16em;
   line-height: 1.4;
   margin-bottom: 20px;
   text-shadow: none;
-}
-
-/* ---------- Novo posicionamento: escola exclusiva de Kickboxing ---------- */
-.platform-note {
-  color: var(--muted);
-  font-size: 0.86rem;
-  margin: 22px 0 0;
-}
-
-.platform-note a {
-  color: var(--gold);
-  font-weight: 800;
-  text-decoration: underline;
-  text-decoration-color: rgba(212, 173, 88, 0.45);
-  text-underline-offset: 4px;
-}
-
-.focus-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.training-paths {
-  border-top: 1px solid var(--line);
-  display: grid;
-  gap: 1px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-top: clamp(56px, 8vw, 96px);
-  background: var(--line);
-}
-
-.training-paths article {
-  background:
-    linear-gradient(145deg, rgba(212, 173, 88, 0.09), transparent 42%),
-    var(--bg);
-  padding: clamp(28px, 5vw, 54px);
-}
-
-.training-paths h3 {
-  font-family: "Anton", sans-serif;
-  font-size: clamp(2.4rem, 5vw, 4.5rem);
-  font-weight: 400;
-  line-height: 0.95;
-  margin-bottom: 18px;
-  text-transform: uppercase;
-}
-
-.training-paths article > p:not(.eyebrow) {
-  color: var(--muted);
-  max-width: 46ch;
-}
-
-.exclusivity-section {
-  align-items: start;
-  display: grid;
-  gap: clamp(42px, 8vw, 120px);
-  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
-}
-
-.exclusivity-copy {
-  border-left: 2px solid var(--red);
-  padding-left: clamp(24px, 4vw, 44px);
-}
-
-.exclusivity-copy p {
-  color: var(--muted);
-  font-size: clamp(1.05rem, 1.7vw, 1.25rem);
-  line-height: 1.75;
-  margin: 0;
-}
-
-.exclusivity-copy p + p {
-  margin-top: 22px;
-}
-
-.single-professor-grid {
-  grid-template-columns: 1fr;
-}
-
-.single-professor-grid .professor-profile {
-  grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
-  min-height: 580px;
-}
-
-.single-professor-grid .professor-retrato {
-  min-height: 580px;
-}
-
-.single-professor-grid .professor-body {
-  align-content: center;
-  padding: clamp(32px, 6vw, 72px);
-}
-
-@media (max-width: 800px) {
-  .focus-grid,
-  .training-paths,
-  .exclusivity-section {
-    grid-template-columns: 1fr;
-  }
-
-  .single-professor-grid .professor-profile {
-    grid-template-columns: 1fr;
-    min-height: 0;
-  }
-
-  .single-professor-grid .professor-media {
-    aspect-ratio: 5 / 4;
-  }
-
-  .single-professor-grid .professor-retrato {
-    min-height: 0;
-  }
 }
 
 .origin-hero-copy > p:last-child {

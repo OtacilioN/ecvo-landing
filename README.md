@@ -1,6 +1,6 @@
-# ECVO — Landing temporária
+# ECVO Landing Page
 
-Landing page estática da Escola de Combate Vinícius Oliveira, preparada para GitHub Pages. No estado atual, o site comunica que as turmas estão completas e direciona visitantes exclusivamente ao Instagram oficial.
+Landing page estática da ECVO, preparada para GitHub Pages.
 
 ## Publicação
 
@@ -13,8 +13,6 @@ Landing page estática da Escola de Combate Vinícius Oliveira, preparada para G
 - Google Analytics: `G-381LW2ZL4V`
 - Google Search Console: propriedade de domínio `ecvo.com.br`
 - Sitemap: `https://ecvo.com.br/sitemap.xml`
-
-Durante a pausa de aquisição, somente a home permanece indexável. As rotas históricas exibem o mesmo aviso, usam `noindex` e apontam o canonical para a home.
 
 ## DNS esperado
 

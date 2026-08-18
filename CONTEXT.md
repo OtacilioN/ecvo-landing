@@ -1,13 +1,19 @@
 # ECVO Landing
 
-Glossário da landing pública da Escola de Combate Vinícius Oliveira.
+Glossário da landing pública da ECVO. Mantém consistente a linguagem usada para apresentar a oferta da escola de combate e lutas.
 
-## Estado temporário
+## Posicionamento
 
-As turmas da ECVO estão completas. Enquanto não houver disponibilidade, todas as rotas públicas devem exibir exclusivamente a mensagem aprovada em `data/ecvo-content.mjs` e direcionar para o perfil oficial no Instagram.
+Nas páginas generalistas, apresente a ECVO como **escola de lutas e artes marciais em João Pessoa**. Não use Jiu-Jitsu, NoGi ou qualquer outra modalidade isolada como definição principal da escola.
 
-Não publicar grade, oferta, benefícios, formulário, outro canal de contato ou dado de localização durante essa pausa. As páginas históricas permanecem no repositório apenas para preservar as fontes editoriais e facilitar uma retomada futura.
+Títulos e descrições centrados em uma modalidade são reservados às páginas específicas dessa modalidade. Ao listar a oferta completa, preserve o equilíbrio entre Kickboxing, Kickboxing - Turma Kids, Karatê, Karatê - Turma Kids, Judô - Turma Kids, Jiu-Jitsu, NoGi, MMA, Muay Thai e Boxe.
 
-## Nome institucional
+## Language
 
-Use o nome completo exatamente como **Escola de Combate Vinícius Oliveira**. Preserve o acento em “Vinícius” e não acrescente “de” ao nome institucional.
+**Modalidade**:
+A linha de treino de artes marciais oferecida pela ECVO ao público.
+_Avoid_: Categoria, produto
+
+**MMA**:
+Artes marciais mistas: modalidade avançada que combina técnicas em pé, técnicas de chão e transições para alunos que querem seguir carreira de lutador ou ingressar no mundo da luta.
+_Avoid_: Combate genérico, luta livre

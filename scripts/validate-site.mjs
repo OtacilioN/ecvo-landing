@@ -1,51 +1,22 @@
 import { access, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { modalities, site } from "../data/ecvo-content.mjs";
+import { modalities, schedule, site, teachers } from "../data/ecvo-content.mjs";
 import { originStory } from "../data/origin-story.mjs";
 import { testimonials } from "../data/testimonials.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const failures = [];
-const activePages = [
-  "index.html",
-  "modalidades/index.html",
-  ...modalities.map(({ slug }) => `${slug}/index.html`),
-  "wellhub-joao-pessoa/index.html",
-  "totalpass-joao-pessoa/index.html",
-  "depoimentos-alunos/index.html",
-  "historia-ecvo/index.html",
-  "404.html",
-];
-const generatedSources = [
-  "data/ecvo-content.mjs",
-  "scripts/render-paused-page.mjs",
-  "scripts/generate-paused-pages.mjs",
-  "scripts/generate-modality-pages.mjs",
-  "scripts/generate-testimonials.mjs",
-  "scripts/generate-origin-story.mjs",
-  "script.js",
-  "CONTEXT.md",
-  "README.md",
-  "docs/instrucoes-google-perfil-empresa-ecvo.md",
-];
-const retiredRoutes = [
+const retiredReferencePattern = new RegExp("d[ií]namos?\\s+suplementos", "i");
+const activeTeacherNames = ["Prof. Vinicius", "Prof. Oyama"];
+const teachersOnHold = ["Prof. Anderson", "Prof. Dimitri", "Prof. Rodrigo", "Prof. Sauro"];
+const modalitiesWithoutPublishedSchedule = [
   "jiu-jitsu-joao-pessoa",
   "nogi-joao-pessoa",
-  "mma-joao-pessoa",
-  "muay-thai-joao-pessoa",
   "boxe-joao-pessoa",
+  "karate-joao-pessoa",
+  "karate-turma-kids-joao-pessoa",
+  "judo-turma-kids-joao-pessoa",
 ];
-const retiredAssets = [
-  "profAnderson.jpeg",
-  "profBarbosa.jpeg",
-  "profDimitri.jpeg",
-  "profOyama.jpeg",
-  "profRodrigo.jpeg",
-  "profSauro.jpeg",
-  "file.enc",
-];
-const forbiddenContactOrLocation = /(?:whats?app|wa\.me|api\.whatsapp|83994212431|99421-2431|inspetora|emília mendonça|valentina|58064-360|maps\.app|google\.com\/maps|streetAddress|postalCode|addressLocality|addressRegion|areaServed|latitude|longitude|SportsActivityLocation|LocalBusiness|João Pessoa)/i;
-const forbiddenAcquisitionCopy = /(?:agendar|quero começar|primeiro treino|consultar horários|ver horários|como chegar|falar com a equipe|confirmar meu plano|chamar no)/i;
 
 function expect(condition, message) {
   if (!condition) failures.push(message);
@@ -55,76 +26,207 @@ async function read(relativePath) {
   return readFile(resolve(root, relativePath), "utf8");
 }
 
-function normalizedText(html) {
-  return html
-    .replace(/<script[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style[\s\S]*?<\/style>/gi, " ")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+function schemaBlocks(html) {
+  return [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+    .map(([, contents]) => JSON.parse(contents.trim()));
 }
 
-for (const relativePath of activePages) {
+const home = await read("index.html");
+const homeHead = home.match(/<head>([\s\S]*?)<\/head>/)?.[1] ?? "";
+const homeSchemas = schemaBlocks(home).flat();
+const homeBusiness = homeSchemas.find((schema) => (
+  Array.isArray(schema["@type"])
+    ? schema["@type"].includes("LocalBusiness")
+    : schema["@type"] === "LocalBusiness"
+));
+
+expect(home.includes(`<title>${site.homeTitle}</title>`), "index.html: title deve usar o posicionamento geral da ECVO");
+expect(home.includes(`<meta property="og:title" content="${site.homeTitle}" />`), "index.html: OG title deve ser igual ao title geral");
+expect(home.includes(`<meta name="twitter:title" content="${site.homeTitle}" />`), "index.html: Twitter title deve ser igual ao title geral");
+expect(home.includes(`<h1 id="hero-title" data-reveal>${site.positioning}</h1>`), "index.html: H1 deve apresentar a ECVO como escola de lutas e artes marciais");
+expect(homeBusiness?.description?.startsWith(site.positioning), "index.html: LocalBusiness deve começar pelo posicionamento geral da ECVO");
+expect(homeBusiness?.address?.streetAddress === site.address, "index.html: streetAddress deve usar o endereço canônico");
+expect(homeBusiness?.address?.postalCode === site.postalCode, "index.html: postalCode deve usar o CEP canônico");
+expect(homeBusiness?.hasMap === site.mapUrl, "index.html: hasMap deve usar a localização canônica");
+expect(modalities.length === 10, "data/ecvo-content.mjs: o catálogo deve manter dez modalidades");
+expect(home.includes("<dt>10</dt>"), "index.html: contador público deve informar dez modalidades");
+const offeredServiceNames = (homeBusiness?.makesOffer ?? []).map((offer) => offer?.itemOffered?.name);
+expect(offeredServiceNames.length === modalities.length, "index.html: makesOffer deve representar as dez modalidades");
+for (const modality of modalities) {
+  expect(offeredServiceNames.includes(`Aulas de ${modality.name} em João Pessoa`), `index.html: makesOffer de ${modality.name} ausente`);
+}
+expect(home.includes(site.reference), "index.html: ponto de referência ausente");
+expect(!/Academia de Jiu-Jitsu/i.test(homeHead), "index.html: metadados gerais não podem definir a ECVO como academia de Jiu-Jitsu");
+
+const publicTeacherSection = home.match(/<section class="section professores"[\s\S]*?<\/section>/)?.[0] ?? "";
+const publicHomeSchedule = home.match(/<!-- schedule:start -->([\s\S]*?)<!-- schedule:end -->/)?.[1] ?? "";
+const publishedClasses = schedule.flatMap(({ classes }) => classes);
+
+expect(Object.keys(teachers).length === 2, "data/ecvo-content.mjs: somente dois professores devem permanecer ativos");
+expect((publicTeacherSection.match(/class="professor-profile(?:\s|\")/g) || []).length === 2, "index.html: deve exibir exatamente dois professores");
+for (const teacherName of activeTeacherNames) {
+  expect(publicTeacherSection.includes(teacherName), `index.html: ${teacherName} deve permanecer na seção de professores`);
+}
+for (const teacherName of teachersOnHold) {
+  expect(!home.includes(teacherName), `index.html: ${teacherName} não deve aparecer publicamente`);
+}
+expect(publishedClasses.length === 18, "data/ecvo-content.mjs: a grade confirmada deve conter 18 aulas");
+expect(publishedClasses.every((entry) => entry.length === 3), "data/ecvo-content.mjs: horários públicos não devem armazenar nome de professor");
+expect((publicHomeSchedule.match(/class="aula"/g) || []).length === publishedClasses.length, "index.html: grade pública fora de sincronia com a fonte");
+expect((publicHomeSchedule.match(/class="dia"/g) || []).length === schedule.length, "index.html: quantidade de dias da grade fora de sincronia");
+expect(!publicHomeSchedule.includes("aula-prof"), "index.html: grade não deve exibir nome de professor");
+expect(!modalitiesWithoutPublishedSchedule.some((slug) => publishedClasses.some(([, slugs]) => slugs.split(" ").includes(slug))), "data/ecvo-content.mjs: modalidade sem professor definido não pode ter horário publicado");
+
+const generalistPages = [
+  "index.html",
+  "modalidades/index.html",
+  "depoimentos-alunos/index.html",
+  "historia-ecvo/index.html",
+  "wellhub-joao-pessoa/index.html",
+  "totalpass-joao-pessoa/index.html",
+];
+
+for (const relativePath of generalistPages) {
+  const html = relativePath === "index.html" ? home : await read(relativePath);
+  const head = html.match(/<head>([\s\S]*?)<\/head>/)?.[1] ?? "";
+  const titleSignals = [
+    head.match(/<title>([^<]+)<\/title>/)?.[1],
+    head.match(/<meta property="og:title" content="([^"]+)"\s*\/?>/)?.[1],
+    head.match(/<meta name="twitter:title" content="([^"]+)"\s*\/?>/)?.[1],
+  ];
+
+  expect(titleSignals.every(Boolean), `${relativePath}: title, OG title e Twitter title devem estar completos`);
+  expect(new Set(titleSignals).size === 1, `${relativePath}: title, OG title e Twitter title devem ser iguais`);
+  expect(
+    titleSignals.every((title) => !/(?:Jiu-Jitsu|NoGi)/i.test(title ?? "")),
+    `${relativePath}: títulos generalistas não podem posicionar a ECVO como Jiu-Jitsu ou NoGi`,
+  );
+}
+
+for (const modality of modalities) {
+  const relativePath = `${modality.slug}/index.html`;
   const html = await read(relativePath);
-  const text = normalizedText(html);
-  const instagramLinks = [...html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/g)]
-    .map(([, href]) => href)
-    .filter((href) => href.includes("instagram.com"));
+  const url = `${site.url}/${modality.slug}/`;
+  const whatsappLinks = [...html.matchAll(/href="(https:\/\/wa\.me\/[^\"]+)"/g)].map(([, link]) => link);
+  const schemas = schemaBlocks(html).flat();
 
   expect((html.match(/<h1[ >]/g) || []).length === 1, `${relativePath}: deve ter exatamente um H1`);
-  expect(text.includes(site.description), `${relativePath}: aviso temporário exato ausente do conteúdo visível`);
-  expect(html.includes(`<title>${site.title}</title>`), `${relativePath}: title temporário incorreto`);
-  expect(html.includes(`<meta name="description" content="${site.description}" />`), `${relativePath}: descrição temporária incorreta`);
-  expect(html.includes(`<meta property="og:title" content="${site.title}" />`), `${relativePath}: OG title temporário incorreto`);
-  expect(html.includes(`<meta property="og:description" content="${site.description}" />`), `${relativePath}: OG description temporária incorreta`);
-  expect(html.includes(`<meta name="twitter:title" content="${site.title}" />`), `${relativePath}: Twitter title temporário incorreto`);
-  expect(html.includes(`<meta name="twitter:description" content="${site.description}" />`), `${relativePath}: Twitter description temporária incorreta`);
-  expect(html.includes(`<link rel="canonical" href="${site.url}/" />`), `${relativePath}: canonical deve apontar para a home temporária`);
-  expect(html.includes(`<meta property="og:url" content="${site.url}/" />`), `${relativePath}: OG URL deve apontar para a home temporária`);
-  expect(html.includes(site.fullName), `${relativePath}: nome institucional completo ausente`);
-  expect(instagramLinks.length === 1 && instagramLinks[0] === site.instagram, `${relativePath}: deve existir somente o CTA oficial do Instagram`);
-  expect(!html.includes('type="application/ld+json"'), `${relativePath}: JSON-LD deve permanecer removido durante a pausa`);
-  expect(!forbiddenContactOrLocation.test(html), `${relativePath}: contém dado de contato ou localização retirado`);
-  expect(!forbiddenAcquisitionCopy.test(text), `${relativePath}: contém chamada de aquisição incompatível com a lotação`);
+  expect(html.includes(`<title>${modality.title}</title>`), `${relativePath}: title incorreto`);
+  expect(html.includes(`<link rel="canonical" href="${url}" />`), `${relativePath}: canonical incorreto`);
+  expect(html.includes(`<meta property="og:url" content="${url}" />`), `${relativePath}: OG URL incorreta`);
+  expect(html.includes('meta name="twitter:card"'), `${relativePath}: Twitter metadata ausente`);
+  expect(!html.includes("noindex"), `${relativePath}: não pode ter noindex`);
+  expect(html.includes('aria-label="Caminho de navegação"'), `${relativePath}: breadcrumb visível ausente`);
+  expect((html.match(/<details>/g) || []).length === modality.faq.length, `${relativePath}: FAQ visível fora de sincronia`);
+  expect(html.includes('data-track="whatsapp_click"'), `${relativePath}: evento de WhatsApp ausente`);
+  expect(html.includes('data-track="schedule_view"'), `${relativePath}: evento de horários ausente`);
+  expect(html.includes('data-track="map_click"'), `${relativePath}: evento de mapa ausente`);
+  expect(/class="whatsapp-float"[^>]*><svg/.test(html), `${relativePath}: botão flutuante deve usar o ícone do WhatsApp`);
+  expect(html.includes(site.address), `${relativePath}: endereço canônico ausente`);
+  expect(html.includes(site.postalCode), `${relativePath}: CEP canônico ausente`);
+  expect(html.includes(site.reference), `${relativePath}: ponto de referência ausente`);
+  expect(whatsappLinks.length >= 3, `${relativePath}: CTAs de WhatsApp insuficientes`);
+  expect(whatsappLinks.every((link) => decodeURIComponent(link).includes(`página de ${modality.name}`)), `${relativePath}: mensagem de WhatsApp não é específica`);
+  expect(schemas.some((schema) => schema['@type'] === 'Service'), `${relativePath}: Service JSON-LD ausente`);
+  expect(schemas.some((schema) => schema['@type'] === 'BreadcrumbList'), `${relativePath}: BreadcrumbList JSON-LD ausente`);
+  const faqSchema = schemas.find((schema) => schema['@type'] === 'FAQPage');
+  expect(faqSchema?.mainEntity?.length === modality.faq.length, `${relativePath}: FAQPage JSON-LD fora de sincronia`);
+  expect(home.includes(`href="/${modality.slug}/"`), `index.html: link para ${modality.slug} ausente`);
+  expect(!html.includes("modality-teachers"), `${relativePath}: página da modalidade não deve associar professor`);
+  expect(!/Prof\.\s+[A-ZÁÉÍÓÚÂÊÔÃÕÇ]/u.test(html), `${relativePath}: grade ou conteúdo não deve exibir nome de professor`);
 
-  const robots = relativePath === "index.html" ? "index, follow" : "noindex, follow";
-  expect(html.includes(`<meta name="robots" content="${robots}" />`), `${relativePath}: diretiva robots incorreta`);
-}
-
-for (const relativePath of generatedSources) {
-  const contents = await read(relativePath);
-  expect(!forbiddenContactOrLocation.test(contents), `${relativePath}: fonte ainda contém dado de contato ou localização retirado`);
-}
-
-expect(modalities.length === 2, "data/ecvo-content.mjs: rotas históricas de Kickboxing devem permanecer cobertas pelo aviso");
-expect(testimonials.filter(({ featured }) => featured).length <= 3, "data/testimonials.mjs: a curadoria preservada deve manter no máximo três destaques");
-expect(originStory.mentor.achievements.length === 5, "data/origin-story.mjs: a história preservada perdeu conquistas confirmadas");
-for (const testimonial of testimonials) {
-  await access(resolve(root, testimonial.image.slice(1))).catch(() => failures.push(`foto de ${testimonial.name} não encontrada: ${testimonial.image}`));
+  if (modalitiesWithoutPublishedSchedule.includes(modality.slug)) {
+    expect(html.includes("Horários ainda não disponíveis."), `${relativePath}: deve informar objetivamente que não há horários disponíveis`);
+  }
 }
 
 const sitemap = await read("sitemap.xml");
-const sitemapLocations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, location]) => location);
-expect(sitemapLocations.length === 1 && sitemapLocations[0] === `${site.url}/`, "sitemap.xml: durante a pausa somente a home deve ser promovida");
-expect(!forbiddenContactOrLocation.test(sitemap), "sitemap.xml: contém dado de localização retirado");
+for (const modality of modalities) {
+  expect(sitemap.includes(`${site.url}/${modality.slug}/`), `sitemap.xml: ${modality.slug} ausente`);
+}
+expect(sitemap.includes(`${site.url}/modalidades/`), "sitemap.xml: página agregadora ausente");
 
-for (const route of retiredRoutes) {
-  await access(resolve(root, route, "index.html")).then(
-    () => failures.push(`${route}/index.html: rota retirada ainda existe`),
-    () => {},
-  );
+const modalitiesDirectory = await read("modalidades/index.html");
+expect((modalitiesDirectory.match(/<a href="\/[^"]+-joao-pessoa\/">/g) || []).length === modalities.length, "modalidades/index.html: deve manter todas as modalidades no hall");
+expect(!home.replaceAll("kickboxing-infantil-joao-pessoa", "").includes("Kickboxing Infantil"), "index.html: o nome anterior do Kickboxing Kids não deve aparecer publicamente");
+
+const archivedTeachers = await read("_internal/professores-em-reestruturacao.md");
+for (const teacherName of teachersOnHold) {
+  expect(archivedTeachers.includes(teacherName), `_internal/professores-em-reestruturacao.md: informações de ${teacherName} ausentes`);
 }
 
-for (const asset of retiredAssets) {
-  await access(resolve(root, "assets", asset)).then(
-    () => failures.push(`assets/${asset}: ativo retirado ainda existe`),
-    () => {},
-  );
+const publicHtmlPaths = [
+  ...generalistPages,
+  ...modalities.map((modality) => `${modality.slug}/index.html`),
+];
+
+for (const relativePath of publicHtmlPaths) {
+  const html = relativePath === "index.html" ? home : await read(relativePath);
+  expect(!html.includes("Kickboxing Infantil"), `${relativePath}: o nome anterior do Kickboxing Kids não deve aparecer publicamente`);
+  for (const teacherName of teachersOnHold) {
+    expect(!html.includes(teacherName), `${relativePath}: ${teacherName} não deve aparecer no HTML público`);
+  }
 }
+
+const locationSurfaces = [
+  "index.html",
+  ...modalities.map((modality) => `${modality.slug}/index.html`),
+  "wellhub-joao-pessoa/index.html",
+  "totalpass-joao-pessoa/index.html",
+  "docs/instrucoes-google-perfil-empresa-ecvo.md",
+];
+
+for (const relativePath of locationSurfaces) {
+  const contents = relativePath === "index.html" ? home : await read(relativePath);
+  expect(contents.includes(site.address), `${relativePath}: endereço canônico ausente`);
+  expect(contents.includes(site.postalCode), `${relativePath}: CEP canônico ausente`);
+  expect(contents.includes(site.reference), `${relativePath}: ponto de referência ausente`);
+  expect(!retiredReferencePattern.test(contents), `${relativePath}: referência comercial anterior deve ser removida`);
+}
+
+const testimonialsPage = await read("depoimentos-alunos/index.html");
+const testimonialSchemas = schemaBlocks(testimonialsPage).flat();
+const featuredTestimonials = testimonials.filter((testimonial) => testimonial.featured);
+
+expect((testimonialsPage.match(/<h1[ >]/g) || []).length === 1, "depoimentos-alunos/index.html: deve ter exatamente um H1");
+expect(testimonialsPage.includes('<link rel="canonical" href="https://ecvo.com.br/depoimentos-alunos/" />'), "depoimentos-alunos/index.html: canonical incorreto");
+expect(testimonialsPage.includes('<meta property="og:url" content="https://ecvo.com.br/depoimentos-alunos/" />'), "depoimentos-alunos/index.html: OG URL incorreta");
+expect(testimonialSchemas.some((schema) => schema['@type'] === 'WebPage'), "depoimentos-alunos/index.html: WebPage JSON-LD ausente");
+expect(testimonialSchemas.some((schema) => schema['@type'] === 'BreadcrumbList'), "depoimentos-alunos/index.html: BreadcrumbList JSON-LD ausente");
+expect(sitemap.includes(`${site.url}/depoimentos-alunos/`), "sitemap.xml: página de depoimentos ausente");
+expect(home.includes('href="/depoimentos-alunos/"'), "index.html: link para a página de depoimentos ausente");
+expect(featuredTestimonials.length > 0 && featuredTestimonials.length <= 3, "data/testimonials.mjs: selecione entre um e três destaques para a homepage");
+expect((home.match(/class="testimonial-home-card/g) || []).length === featuredTestimonials.length, "index.html: destaques de depoimentos fora de sincronia");
+
+for (const testimonial of testimonials) {
+  expect(testimonialsPage.includes(`id="${testimonial.slug}"`), `depoimentos-alunos/index.html: relato de ${testimonial.name} ausente`);
+  expect(testimonialsPage.includes(`src="..${testimonial.image}"`), `depoimentos-alunos/index.html: foto de ${testimonial.name} ausente`);
+  await access(resolve(root, testimonial.image.slice(1))).catch(() => {
+    failures.push(`foto de ${testimonial.name} não encontrada: ${testimonial.image}`);
+  });
+}
+
+const originPage = await read("historia-ecvo/index.html");
+const originSchemas = schemaBlocks(originPage).flat();
+
+expect((originPage.match(/<h1[ >]/g) || []).length === 1, "historia-ecvo/index.html: deve ter exatamente um H1");
+expect(originPage.includes('<link rel="canonical" href="https://ecvo.com.br/historia-ecvo/" />'), "historia-ecvo/index.html: canonical incorreto");
+expect(originPage.includes('<meta property="og:url" content="https://ecvo.com.br/historia-ecvo/" />'), "historia-ecvo/index.html: OG URL incorreta");
+expect(originPage.includes('aria-label="Caminho de navegação"'), "historia-ecvo/index.html: breadcrumb visível ausente");
+expect(originPage.includes('data-track="whatsapp_click"'), "historia-ecvo/index.html: evento de WhatsApp ausente");
+expect(originPage.includes(originStory.mentor.name), "historia-ecvo/index.html: Marcelo Petino ausente");
+expect(originPage.includes(originStory.vinicius.name), "historia-ecvo/index.html: Vinicius de Oliveira ausente");
+expect((originPage.match(/<article>/g) || []).length === originStory.mentor.achievements.length, "historia-ecvo/index.html: conquistas fora de sincronia");
+expect(originSchemas.some((schema) => schema['@type'] === 'AboutPage'), "historia-ecvo/index.html: AboutPage JSON-LD ausente");
+expect(originSchemas.some((schema) => schema['@type'] === 'BreadcrumbList'), "historia-ecvo/index.html: BreadcrumbList JSON-LD ausente");
+expect(sitemap.includes(`${site.url}/historia-ecvo/`), "sitemap.xml: página da história da ECVO ausente");
+expect(home.includes('href="/historia-ecvo/"'), "index.html: link para a história da ECVO ausente");
+expect((home.match(/<!-- origin:home:start -->/g) || []).length === 1, "index.html: início da chamada de origem deve ser único");
+expect((home.match(/<!-- origin:home:end -->/g) || []).length === 1, "index.html: fim da chamada de origem deve ser único");
 
 if (failures.length) {
   console.error(failures.map((failure) => `- ${failure}`).join("\n"));
   process.exitCode = 1;
 } else {
-  console.log(`Validação concluída: ${activePages.length} páginas focadas no aviso de lotação, sem contato, localização ou JSON-LD local.`);
+  console.log(`Validação concluída: ${modalities.length} páginas de modalidades, ${testimonials.length} depoimentos, história da ECVO, schemas, CTAs e sitemap consistentes.`);
 }
