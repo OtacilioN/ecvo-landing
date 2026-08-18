@@ -83,26 +83,26 @@ ${generatedNote}
     <meta property="og:description" content="${escapeHtml(originStory.description)}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${url}" />
-    <meta property="og:image" content="https://ecvo.com.br/assets/ecvo-logo.png" />
+    <meta property="og:image" content="https://ecvo.com.br/assets/logo-ecvo-principal.png" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="${escapeHtml(originStory.pageTitle)}" />
     <meta name="twitter:description" content="${escapeHtml(originStory.description)}" />
-    <meta name="twitter:image" content="https://ecvo.com.br/assets/ecvo-logo.png" />
-    <meta name="theme-color" content="#11110f" />
-    <link rel="icon" type="image/png" href="../assets/ecvo-logo.png" />
-    <link rel="apple-touch-icon" href="../assets/ecvo-logo.png" />
+    <meta name="twitter:image" content="https://ecvo.com.br/assets/logo-ecvo-principal.png" />
+    <meta name="theme-color" content="#141414" />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link rel="apple-touch-icon" href="../assets/logo-ecvo-negativo.png" />
     <script type="application/ld+json">${JSON.stringify(schemas).replaceAll("<", "\\u003c")}</script>
 ${analytics()}
     <script>document.documentElement.classList.add("js");</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../styles.css?v=11" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css?v=16" />
   </head>
   <body class="origin-page">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <header class="site-header" aria-label="Topo">
-      <a class="brand" href="/" aria-label="ECVO início"><img class="brand-logo" src="../assets/ecvo-logo.png" alt="" width="40" height="40" /><span class="brand-mark">ECVO</span><span class="brand-copy">Escola de Combate</span></a>
+      <a class="brand" href="/" aria-label="ECVO início"><img class="brand-logo" src="../assets/ecvo-simbolo-escuro.png" alt="" width="56" height="56" /><span class="brand-name"><strong>Escola de Combate</strong><span>Vinicius Oliveira</span></span></a>
       <nav aria-label="Navegação principal"><a href="/#professores">Professores</a><a href="/depoimentos-alunos/">Histórias de alunos</a><a href="/#horarios">Horários</a><a class="nav-app-link" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="header">Quero começar</a></nav>
     </header>
     <main id="conteudo">
@@ -133,7 +133,7 @@ ${analytics()}
         <div class="contact-actions"><a class="button primary" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="final">Falar no WhatsApp <span class="button-arrow" aria-hidden="true">→</span></a><a class="button secondary" href="/#horarios" data-track="schedule_view" data-cta-position="final">Consultar horários</a></div>
       </section>
     </main>
-    <footer><div class="footer-brand"><img class="brand-logo" src="../assets/ecvo-logo.png" alt="" width="44" height="44" /><span class="brand-mark">ECVO</span><span>Escola de Combate</span></div><a href="/">Voltar para o início</a><span class="footer-meta">João Pessoa · PB · © ECVO</span></footer>
+    <footer><div class="footer-brand"><img class="brand-logo" src="../assets/ecvo-simbolo-escuro.png" alt="" width="64" height="64" /><span class="brand-name"><strong>Escola de Combate</strong><span>Vinicius Oliveira</span></span></div><a href="/">Voltar para o início</a><span class="footer-meta">João Pessoa · PB · © ECVO</span></footer>
     <a class="whatsapp-float" href="${whatsapp}" aria-label="Falar com a ECVO no WhatsApp" data-track="whatsapp_click" data-cta-position="floating">${whatsappIcon()}</a>
     <script src="../script.js?v=3"></script>
   </body>

@@ -4,7 +4,7 @@
  */
 export const site = {
   name: "ECVO",
-  fullName: "Escola de Combate Vinicius de Oliveira",
+  fullName: "Escola de Combate Vinicius Oliveira",
   positioning: "Escola de lutas e artes marciais em João Pessoa",
   homeTitle: "Escola de Lutas e Artes Marciais em João Pessoa | ECVO",
   modalitiesTitle: "Modalidades de Lutas e Artes Marciais em João Pessoa | ECVO",
@@ -19,7 +19,7 @@ export const site = {
   reference: "Ao lado do Instituto Educacional Sucesso",
   mapUrl: "https://www.google.com/maps/search/?api=1&query=Rua+Funcion%C3%A1rio+Publico+Paulo+Ant%C3%B4nio+Bastos+Portela%2C+144%2C+Valentina%2C+Jo%C3%A3o+Pessoa+-+PB%2C+58.067-242",
   instagram: "https://www.instagram.com/ecvo.jp/",
-  logo: "/assets/ecvo-logo.png",
+  logo: "/assets/logo-ecvo-principal.png",
 };
 
 export const teachers = {

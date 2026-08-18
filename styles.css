@@ -1,18 +1,23 @@
 :root {
   color-scheme: dark;
-  --ink: #f4efe6;
-  --muted: #b3a896;
-  --bg: #0f0e0c;
-  --panel: #181612;
-  --panel-2: #1f1c16;
-  --line: #38332b;
-  --red: #e0402f;
-  --red-deep: #b32d20;
-  --gold: #d4ad58;
-  --steel: #7fa6cf;
-  --white: #fffaf1;
+  --ink: #ffffff;
+  --muted: #ede7dc;
+  --bg: #141414;
+  --panel: #141414;
+  --panel-2: #141414;
+  --line: #6f7378;
+  --red: #f11a1f;
+  --red-deep: #a81116;
+  --bone: #ede7dc;
+  --steel: #6f7378;
+  --white: #ffffff;
+  /* Compatibilidade com componentes antigos; o sistema atual não usa dourado. */
+  --gold: var(--bone);
   --max: 1160px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --font-display: "Archivo Black", Arial, sans-serif;
+  --font-body: "Archivo", Helvetica, Arial, sans-serif;
+  --font-data: "JetBrains Mono", monospace;
 }
 
 * {
@@ -28,7 +33,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
+  font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -107,7 +112,7 @@ section[id] {
 
 .brand-mark {
   color: var(--white);
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: 1.5rem;
   letter-spacing: 1px;
 }
@@ -314,7 +319,7 @@ h3 {
 
 h1 {
   color: var(--white);
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-weight: 400;
   letter-spacing: 0.02em;
   line-height: 0.9;
@@ -332,7 +337,7 @@ h1 span {
 h1 strong {
   color: var(--gold);
   display: block;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body);
   font-size: clamp(1rem, 2.5vw, 1.55rem);
   font-weight: 800;
   letter-spacing: 0.14em;
@@ -359,7 +364,7 @@ h1 strong {
 
 h2 {
   color: var(--white);
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(2.3rem, 5.2vw, 5rem);
   font-weight: 400;
   letter-spacing: 0.01em;
@@ -370,7 +375,7 @@ h2 {
 
 h3 {
   color: var(--white);
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body);
   font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: -0.01em;
@@ -472,7 +477,7 @@ h3 {
 
 .hero-stats dt {
   color: var(--white);
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: 2.1rem;
   letter-spacing: 0.02em;
   line-height: 1;
@@ -544,7 +549,7 @@ h3 {
   align-items: center;
   color: transparent;
   display: flex;
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.8rem, 4vw, 3rem);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -639,7 +644,7 @@ h3 {
 
 .card-index {
   color: transparent;
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: 3.4rem;
   line-height: 1;
   -webkit-text-stroke: 1.5px var(--line);
@@ -653,7 +658,7 @@ h3 {
 .modalidades-grid h3 {
   margin-top: 24px;
   text-transform: uppercase;
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-weight: 400;
   letter-spacing: 0.02em;
   font-size: 1.7rem;
@@ -738,7 +743,7 @@ h3 {
 .modalidade-num {
   color: transparent;
   display: block;
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(3.4rem, 7vw, 6rem);
   line-height: 0.9;
   -webkit-text-stroke: 1.5px var(--line);
@@ -746,7 +751,7 @@ h3 {
 
 .modalidade-aside h3 {
   color: var(--white);
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(2rem, 3.4vw, 3rem);
   font-weight: 400;
   letter-spacing: 0.02em;
@@ -965,7 +970,7 @@ h3 {
 }
 
 .professor-body h3 {
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.9rem, 3vw, 2.7rem);
   font-weight: 400;
   letter-spacing: 0.02em;
@@ -1070,7 +1075,7 @@ h3 {
 }
 
 .dia-head h3 {
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: 1.6rem;
   font-weight: 400;
   letter-spacing: 0.02em;
@@ -1126,7 +1131,7 @@ h3 {
 .aula-hora {
   color: var(--white);
   flex-shrink: 0;
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: 1.18rem;
   letter-spacing: 0.02em;
   min-width: 58px;
@@ -1205,7 +1210,7 @@ h3 {
 }
 
 .route-card h3 {
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.8rem, 3.2vw, 2.8rem);
   font-weight: 400;
   letter-spacing: 0.02em;
@@ -1278,7 +1283,7 @@ h3 {
 
 .step-num {
   color: var(--red);
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: 1.5rem;
   line-height: 1.1;
   min-width: 46px;
@@ -1350,7 +1355,7 @@ h3 {
 .faq-list summary::after {
   color: var(--gold);
   content: "+";
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: 1.5rem;
   line-height: 1;
   position: absolute;
@@ -1584,7 +1589,7 @@ h3 {
 .first-training li::before {
   color: var(--gold);
   content: "0" counter(training-step);
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: 1.55rem;
   left: 22px;
   line-height: 1;
@@ -1688,7 +1693,7 @@ h3 {
 
 .modality-day time {
   color: var(--white);
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: 1.08rem;
 }
 
@@ -1744,7 +1749,7 @@ h3 {
 .related-modalities-grid strong,
 .modalities-directory h2 {
   color: var(--white);
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: 1.8rem;
   font-weight: 400;
   letter-spacing: 0.02em;
@@ -1849,7 +1854,7 @@ h3 {
 
 .benefit-card h3 {
   color: var(--white);
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.65rem, 2.5vw, 2.3rem);
   font-weight: 400;
   letter-spacing: 0.02em;
@@ -2228,7 +2233,7 @@ footer {
 .student-story-photo > span {
   bottom: 18px;
   color: var(--gold);
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: 2.4rem;
   left: 20px;
   line-height: 1;
@@ -2253,7 +2258,7 @@ footer {
 }
 
 .testimonial-home-card h3 {
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.55rem, 2.5vw, 2.6rem);
   font-weight: 400;
   letter-spacing: 0.01em;
@@ -2325,7 +2330,7 @@ footer {
 .testimonials-hero h1 span {
   color: var(--gold);
   display: block;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body);
   font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -2353,7 +2358,7 @@ footer {
 
 .testimonials-hero-copy dt {
   color: var(--gold);
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: 2.3rem;
   line-height: 1;
 }
@@ -2568,7 +2573,7 @@ footer > a:hover { color: var(--gold); }
 .origin-hero h1 span {
   color: var(--gold);
   display: block;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body);
   font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -2653,7 +2658,7 @@ footer > a:hover { color: var(--gold); }
 
 .origin-milestones dt {
   color: var(--gold);
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(4rem, 8vw, 7.5rem);
   line-height: 0.9;
 }
@@ -2687,7 +2692,7 @@ footer > a:hover { color: var(--gold); }
 
 .origin-achievements strong {
   color: var(--white);
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(2.7rem, 4vw, 4.2rem);
   font-weight: 400;
   line-height: 1;
@@ -2747,7 +2752,7 @@ footer > a:hover { color: var(--gold); }
 .origin-quote::before {
   color: rgba(212, 173, 88, 0.22);
   content: "“";
-  font-family: Georgia, serif;
+  font-family: var(--font-display);
   font-size: 12rem;
   left: -0.18em;
   line-height: 0.6;
@@ -2823,5 +2828,479 @@ footer > a:hover { color: var(--gold); }
 
   .origin-achievements article {
     min-height: 130px;
+  }
+}
+
+/* ---------- Sistema de marca ECVO · v1.0 ---------- */
+/*
+ * Baseado no Manual de Identidade Visual (agosto de 2026).
+ * A camada abaixo consolida paleta, tipografia, hierarquia e grafismo sem
+ * alterar os componentes ou o conteúdo canônico das páginas geradas.
+ */
+
+*,
+*::before,
+*::after {
+  background-image: none !important;
+}
+
+body {
+  background: var(--bg);
+}
+
+p,
+li,
+dd {
+  max-width: 64ch;
+}
+
+.brand {
+  gap: 14px;
+}
+
+.brand-logo {
+  background: var(--bg);
+  height: 56px;
+  object-fit: contain;
+  width: 56px;
+}
+
+.brand-name {
+  display: grid;
+  font-family: Arial, sans-serif;
+  gap: 1px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.brand-name strong {
+  color: var(--white);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+}
+
+.brand-name span {
+  color: var(--muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.brand-mark {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+}
+
+.brand-copy,
+nav a,
+.eyebrow,
+.card-tag,
+.modalidade-tags li,
+.professor-area,
+.testimonial-theme,
+.footer-meta,
+.dia-count,
+.modality-kicker,
+.modality-audience-list span,
+.breadcrumb,
+.schedule-note,
+.origin-achievements span {
+  font-family: var(--font-data);
+}
+
+.site-header {
+  max-width: 1240px;
+}
+
+.site-header::before {
+  backdrop-filter: blur(18px);
+  background: rgba(20, 20, 20, 0.9);
+  border-color: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+
+nav a::after {
+  background: var(--red);
+}
+
+.nav-app-link {
+  background: var(--red-deep);
+  border-color: var(--red-deep);
+  border-radius: 2px;
+  color: var(--white);
+}
+
+.nav-app-link:hover {
+  background: var(--red);
+  border-color: var(--red);
+  box-shadow: none;
+  color: var(--white);
+}
+
+.hero {
+  min-height: min(980px, 100vh);
+}
+
+.hero-media > * {
+  display: none;
+}
+
+.hero-media::before {
+  background-image: repeating-linear-gradient(
+    46deg,
+    transparent 0 34px,
+    rgba(241, 26, 31, 0.22) 34px 40px
+  ) !important;
+  clip-path: polygon(54% 0, 100% 0, 100% 100%, 22% 100%);
+  content: "";
+  inset: 0;
+  opacity: 0.82;
+  position: absolute;
+}
+
+.hero::after {
+  background: var(--bg);
+  clip-path: polygon(0 65%, 55% 100%, 0 100%);
+  height: 180px;
+}
+
+h1,
+h2,
+.modalidade-aside h3,
+.professor-body h3,
+.testimonial-home-card h3,
+.student-story-copy h2 {
+  font-family: var(--font-display);
+}
+
+h1 {
+  letter-spacing: -0.03em;
+  text-shadow: none;
+}
+
+h2,
+.benefits-intro h2,
+.section-heading h2,
+.split h2,
+.contact h2,
+.origin-choice h2,
+.origin-lineage-heading h2,
+.student-story-copy h2,
+.modality-content h2,
+.modality-method h2,
+.first-training h2,
+.location-section h2 {
+  font-size: clamp(2rem, 4vw, 2.875rem) !important;
+  letter-spacing: -0.02em;
+}
+
+h3,
+.benefit-card h3,
+.modalidades-grid h3,
+.professor-body h3,
+.testimonial-home-card h3,
+.origin-achievements h3,
+.modality-points h3 {
+  font-family: var(--font-body);
+  font-size: 1.75rem !important;
+}
+
+.hero-copy h1,
+.modality-hero h1,
+.testimonials-hero h1,
+.origin-hero h1 {
+  font-size: clamp(3rem, 6vw, 4.75rem);
+  max-width: 980px;
+}
+
+.modalidade-aside h3,
+.professor-body h3,
+.testimonial-home-card h3,
+.student-story-copy h2,
+.origin-home-copy h2 {
+  font-size: clamp(1.75rem, 3vw, 2.875rem);
+}
+
+.hero-modalities {
+  color: var(--bone);
+  letter-spacing: 0;
+}
+
+.lede {
+  max-width: 62ch;
+}
+
+.eyebrow {
+  color: var(--bone);
+  font-size: 0.75rem;
+}
+
+.button {
+  border-radius: 2px;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  min-height: 52px;
+  padding-inline: 26px;
+  text-transform: uppercase;
+}
+
+.button.primary {
+  background: var(--red-deep);
+  border-color: var(--red-deep);
+  box-shadow: none;
+}
+
+.button.primary:hover {
+  background: var(--red);
+  border-color: var(--red);
+  box-shadow: none;
+}
+
+.button.secondary,
+.button.ghost {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--white);
+}
+
+.button.secondary:hover,
+.button.ghost:hover {
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--bg);
+}
+
+.hero-utility-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  margin-top: 18px;
+}
+
+.hero-utility-links a {
+  border-bottom: 1px solid var(--red);
+  color: var(--bone);
+  font-family: var(--font-data);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.hero-utility-links a:hover {
+  color: var(--white);
+}
+
+.marquee {
+  background: var(--red);
+  border: 0;
+  padding: 16px 0;
+}
+
+.marquee-track span {
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  letter-spacing: -0.02em;
+  -webkit-text-stroke: 0;
+}
+
+.marquee-track i {
+  color: var(--bg);
+}
+
+.section-heading {
+  border-top: 3px solid var(--red);
+  padding-top: 24px;
+}
+
+.benefits-section {
+  background: var(--bone);
+  box-shadow: 0 0 0 100vmax var(--bone);
+  clip-path: inset(0 -100vmax);
+  color: var(--bg);
+}
+
+.benefits-section h2,
+.benefits-section h3,
+.benefits-section p,
+.benefits-section .eyebrow,
+.benefits-section .card-link,
+.benefits-section .benefit-card-kicker {
+  color: var(--bg);
+}
+
+.benefits-section .benefits-intro > p:not(.eyebrow),
+.benefits-section .benefit-card p {
+  color: var(--bg);
+}
+
+.benefit-card {
+  background: var(--white);
+  border-color: rgba(20, 20, 20, 0.22);
+}
+
+.modalidades-grid article,
+.professor-profile,
+.dia,
+.route-card,
+.method-step,
+.testimonial-home-card,
+.student-story--lead,
+.origin-home,
+.origin-achievements article,
+.modality-benefit,
+.modality-method,
+.first-training,
+.location-section,
+.faq-section details,
+.modality-faq details {
+  background-color: var(--panel);
+  border-radius: 2px;
+}
+
+.modalidades-grid article::before,
+.professor-profile::before,
+.origin-home::after {
+  background: var(--red);
+}
+
+.modalidades-grid article:hover,
+.professor-profile:hover,
+.testimonial-home-card:hover {
+  border-color: var(--red);
+  box-shadow: none;
+  transform: translateY(-4px);
+}
+
+.card-tag,
+.modalidade-tags li {
+  border-radius: 2px;
+  color: var(--bone);
+}
+
+.card-link {
+  text-decoration-color: var(--red);
+}
+
+.card-link:hover,
+.professor-area,
+.testimonial-theme,
+.student-story-copy blockquote,
+.origin-prose {
+  color: var(--bone);
+}
+
+.professor-profile::before {
+  width: 4px;
+}
+
+.professor-media::after,
+.testimonial-home-photo::after,
+.student-story-photo::after,
+.contact::before,
+.home-testimonials::before,
+.origin-hero::before {
+  display: none;
+}
+
+.professor-retrato {
+  filter: saturate(0.82) contrast(1.08);
+}
+
+.horarios-grid time,
+.hero-stats dt,
+.testimonials-hero-copy dt,
+.origin-milestones dt {
+  font-family: var(--font-data);
+}
+
+.route-map-link,
+.schedule-note,
+.platform-note a {
+  text-decoration-color: var(--red);
+}
+
+.whatsapp-float {
+  background: var(--red-deep);
+  border: 1px solid var(--red);
+  border-radius: 2px;
+  box-shadow: none;
+  color: var(--white);
+}
+
+.whatsapp-float:hover {
+  background: var(--red);
+  box-shadow: none;
+}
+
+footer {
+  border-top-color: var(--red);
+}
+
+.footer-brand .brand-logo {
+  height: 64px;
+  width: 64px;
+}
+
+@media (max-width: 800px) {
+  .site-header {
+    gap: 10px;
+  }
+
+  .home-page .site-header nav a:nth-child(2),
+  .home-page .site-header nav a:nth-child(4),
+  .home-page .site-header nav a:nth-child(5),
+  .home-page .site-header nav a:nth-child(6) {
+    display: none;
+  }
+
+  .home-page .site-header nav {
+    gap: 8px 24px;
+  }
+
+  .home-page .site-header nav a {
+    min-height: 40px;
+    padding-block: 10px;
+  }
+
+  .brand-logo {
+    height: 48px;
+    width: 48px;
+  }
+
+  .brand-name strong {
+    font-size: 0.7rem;
+  }
+
+  .hero {
+    padding-top: 178px;
+  }
+
+  .hero-media::before {
+    clip-path: polygon(62% 0, 100% 0, 100% 100%, 32% 100%);
+    opacity: 0.55;
+  }
+}
+
+@media (max-width: 540px) {
+  .brand-name span {
+    display: none;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(3rem, 15vw, 4.75rem);
+  }
+
+  .whatsapp-float {
+    bottom: 14px;
+    height: 48px;
+    right: 14px;
+    width: 48px;
   }
 }
