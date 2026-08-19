@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { modalities, schedule, site } from "../data/ecvo-content.mjs";
+import { modalities, schedule, site, teachers } from "../data/ecvo-content.mjs";
 import { renderFontHead } from "./render-performance-head.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -16,7 +16,7 @@ const escapeHtml = (value) => String(value)
 const jsonLd = (value) => JSON.stringify(value).replaceAll("<", "\\u003c");
 
 const pageUrl = (slug) => `${site.url}/${slug}/`;
-const whatsappUrl = (modality) => `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Olá! Encontrei a ECVO pela página de ${modality.name} e gostaria de saber como participar do primeiro treino.`)}`;
+const whatsappUrl = (modality) => `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(modality.cta?.message ?? `Olá! Encontrei a ECVO pela página de ${modality.name} e gostaria de saber como participar do primeiro treino.`)}`;
 const whatsappIcon = `<svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M16 3C9.4 3 4 8.4 4 15c0 2.1.5 4.1 1.6 5.9L4 29l8.3-1.5c1.7.9 3.6 1.4 5.7 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.9.9.9-4.8-.2-.4c-1-1.6-1.5-3.4-1.5-5.3 0-5.6 4.6-10.2 10.2-10.2S26.2 9.4 26.2 15 21.6 24.8 16 24.8zm5.6-7.6c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.5.3-.7.3-1.4.2-1.5-.1-.1-.3-.2-.6-.4z" /></svg>`;
 
 function renderHeader(modality, whatsapp) {
@@ -30,7 +30,7 @@ function renderHeader(modality, whatsapp) {
         <a href="/modalidades/">Modalidades</a>
         <a href="#horarios">Horários</a>
         <a href="#localizacao">Como chegar</a>
-        <a class="nav-app-link" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="header">Quero ${escapeHtml(modality.name)}</a>
+        <a class="nav-app-link" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="header">${escapeHtml(modality.cta?.shortLabel ?? `Quero ${modality.name}`)}</a>
       </nav>
     </header>`;
 }
@@ -46,8 +46,8 @@ function renderSchedule(modality) {
   return `      <section class="section modality-schedule" id="horarios" aria-labelledby="horarios-title">
         <div class="section-heading">
           <p class="eyebrow">Horários de ${escapeHtml(modality.name)}</p>
-          <h2 id="horarios-title">${hasPublishedSchedule ? "Encontre seu espaço na semana." : "Horários ainda não disponíveis."}</h2>
-${hasPublishedSchedule ? `          <p class="method-intro">Confira a grade atual da modalidade. Para confirmar disponibilidade, fale com a equipe.</p>` : ""}
+          <h2 id="horarios-title">${hasPublishedSchedule ? "Encontre seu espaço na semana." : escapeHtml(modality.scheduleTitle ?? "Horários ainda não disponíveis.")}</h2>
+${hasPublishedSchedule ? `          <p class="method-intro">Confira a grade atual da modalidade. Para confirmar disponibilidade, fale com a equipe.</p>` : modality.scheduleCopy ? `          <p class="method-intro">${escapeHtml(modality.scheduleCopy)}</p>` : ""}
         </div>
 ${hasPublishedSchedule ? `
         <div class="modality-schedule-grid">
@@ -60,6 +60,27 @@ ${classes.map(([time, , className]) => `              <li><time>${time}</time><s
         </div>
 ` : ""}
       </section>`;
+}
+
+function renderTeachers(modality) {
+  if (!modality.teacherIds?.length) return "";
+
+  return `      <section class="section modality-teachers" aria-labelledby="professores-title">
+        <div class="section-heading">
+          <p class="eyebrow">Quem acompanha seu treino</p>
+          <h2 id="professores-title">Orientação presente em cada etapa.</h2>
+        </div>
+        <div class="modality-teachers-grid">
+${modality.teacherIds.map((id) => {
+  const teacher = teachers[id];
+  if (!teacher) throw new Error(`Professor não encontrado: ${id}`);
+  return `          <article class="modality-teacher-card">
+            <img src="..${teacher.image}" alt="${escapeHtml(teacher.alt)}" width="160" height="160" loading="lazy" decoding="async" />
+            <div><p>${escapeHtml(teacher.area)}</p><h3>${escapeHtml(teacher.name)}</h3><p>${escapeHtml(teacher.summary)}</p></div>
+          </article>`;
+}).join("\n")}
+        </div>
+      </section>\n\n`;
 }
 
 function homeScheduleClass(slugs) {
@@ -164,8 +185,8 @@ ${renderHeader(modality, whatsapp)}
         <h1 id="page-title">${escapeHtml(modality.name)} em João Pessoa</h1>
         <p>${escapeHtml(modality.hero)}</p>
         <div class="hero-actions">
-          <a class="button primary" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="hero">Agendar primeira aula <span class="button-arrow" aria-hidden="true">→</span></a>
-          <a class="button secondary" href="#horarios" data-track="schedule_view" data-cta-position="hero">Consultar horários</a>
+          <a class="button primary" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="hero">${escapeHtml(modality.cta?.label ?? "Agendar primeira aula")} <span class="button-arrow" aria-hidden="true">→</span></a>
+          <a class="button secondary" href="#horarios" data-track="schedule_view" data-cta-position="hero">${escapeHtml(modality.scheduleCtaLabel ?? "Consultar horários")}</a>
         </div>
       </section>
 
@@ -180,7 +201,7 @@ ${renderHeader(modality, whatsapp)}
       </section>
 
       <section class="section first-training" aria-labelledby="primeiro-title">
-        <div><p class="eyebrow">Como funciona o primeiro treino</p><h2 id="primeiro-title">Comece com clareza.</h2><p class="method-intro">Fale com a equipe para entender como participar do primeiro treino.</p></div>
+        <div><p class="eyebrow">${escapeHtml(modality.firstTrainingEyebrow ?? "Como funciona o primeiro treino")}</p><h2 id="primeiro-title">${escapeHtml(modality.firstTrainingTitle ?? "Comece com clareza.")}</h2><p class="method-intro">${escapeHtml(modality.firstTrainingIntro ?? "Fale com a equipe para entender como participar do primeiro treino.")}</p></div>
         <ol>${modality.firstTraining.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol>
       </section>
 
@@ -190,7 +211,7 @@ ${renderSchedule(modality)}
         <p class="method-intro">${escapeHtml(modality.method)}</p>
       </section>
 
-      <section class="section location-section" id="localizacao" aria-labelledby="localizacao-title">
+${renderTeachers(modality)}      <section class="section location-section" id="localizacao" aria-labelledby="localizacao-title">
         <div><p class="eyebrow">Onde treinar</p><h2 id="localizacao-title">ECVO no Valentina, João Pessoa.</h2></div>
         <div><p class="method-intro">${escapeHtml(site.fullName)}<br />${escapeHtml(site.address)}<br />${escapeHtml(site.neighborhood)} · ${escapeHtml(site.locality)}, ${escapeHtml(site.region)} · CEP ${escapeHtml(site.postalCode)}<br />Ponto de referência: ${escapeHtml(site.reference)}</p><a class="button secondary" href="${site.mapUrl}" target="_blank" rel="noopener" data-track="map_click" data-cta-position="location">Abrir localização no mapa <span class="sr-only">(abre em nova aba)</span></a></div>
       </section>
@@ -202,8 +223,8 @@ ${renderSchedule(modality)}
 
 ${renderRelated(modality)}
       <section class="section contact modality-final-cta" aria-labelledby="contato-title">
-        <div><p class="eyebrow">${escapeHtml(modality.name)} na ECVO</p><h2 id="contato-title">Quer realizar seu primeiro treino?</h2><p class="method-intro">Chame a equipe, confirme o horário e comece com orientação.</p></div>
-        <div class="contact-actions"><a class="button primary" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="final">Agendar primeira aula</a><a class="button secondary" href="#horarios" data-track="schedule_view" data-cta-position="final">Consultar horários</a></div>
+        <div><p class="eyebrow">${escapeHtml(modality.name)} na ECVO</p><h2 id="contato-title">${escapeHtml(modality.cta?.finalTitle ?? "Quer realizar seu primeiro treino?")}</h2><p class="method-intro">${escapeHtml(modality.cta?.finalCopy ?? "Chame a equipe, confirme o horário e comece com orientação.")}</p></div>
+        <div class="contact-actions"><a class="button primary" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="final">${escapeHtml(modality.cta?.label ?? "Agendar primeira aula")}</a><a class="button secondary" href="#horarios" data-track="schedule_view" data-cta-position="final">${escapeHtml(modality.scheduleCtaLabel ?? "Consultar horários")}</a></div>
       </section>
     </main>
     <footer><div class="footer-brand"><img class="brand-logo" src="../assets/ecvo-simbolo-escuro.png" alt="" width="64" height="64" /><span class="brand-name"><strong>Escola de Combate</strong><span>Vinicius Oliveira</span></span></div><span class="footer-meta">João Pessoa · PB · © ECVO</span></footer>
@@ -216,7 +237,7 @@ ${renderRelated(modality)}
 
 function renderModalitiesIndex() {
   const title = site.modalitiesTitle;
-  const description = "Conheça as modalidades da ECVO, escola de lutas e artes marciais no Valentina, em João Pessoa: Kickboxing, Karatê, Judô, Jiu-Jitsu, NoGi, MMA, Muay Thai e Boxe.";
+  const description = "Conheça as modalidades da ECVO, escola de lutas e artes marciais no Valentina, em João Pessoa: Kickboxing, Kickboxing Funcional e AeroBoxe, Karatê, Judô, Jiu-Jitsu, NoGi, MMA, Muay Thai e Boxe.";
   const socialDescription = "Conheça as modalidades da ECVO, escola de lutas e artes marciais no Valentina, em João Pessoa.";
   const cards = modalities.map((modality) => `          <a href="/${modality.slug}/"><span>Modalidade</span><h2>${escapeHtml(modality.name)}</h2><p>${escapeHtml(modality.hero)}</p><strong>Conhecer ${escapeHtml(modality.name)} <span aria-hidden="true">→</span></strong></a>`).join("\n");
   return `<!doctype html>

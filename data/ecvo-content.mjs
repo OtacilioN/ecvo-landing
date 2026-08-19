@@ -25,10 +25,10 @@ export const site = {
 export const teachers = {
   vinicius: {
     name: "Prof. Vinicius",
-    area: "Head Coach · Kickboxing · Boxe",
+    area: "Head Coach · Kickboxing · Boxe · AeroBoxe",
     image: "/assets/profVinicius.jpeg",
     alt: "Professor Vinicius, head coach da ECVO",
-    summary: "Professor de Kickboxing e técnico de Boxe, Vinicius de Oliveira conduz o treino com disciplina, respeito, coragem e superação.",
+    summary: "Professor de Kickboxing, Kickboxing Funcional e AeroBoxe, além de técnico de Boxe, Vinicius de Oliveira conduz o treino com disciplina, respeito e orientação próxima.",
   },
   oyama: {
     name: "Prof. Oyama",
@@ -101,8 +101,34 @@ export const modalities = [
     benefits: [["Socos e chutes", "Combinações são desenvolvidas com foco em base, postura e técnica."], ["Coordenação", "Deslocamentos e sequências ajudam a organizar ritmo, distância e tempo de reação."], ["Condicionamento", "O treino pode desafiar o corpo com consistência, sem prometer resultados específicos."]],
     scheduleSlugs: ["kickboxing-joao-pessoa"],
     method: "O Kickboxing na ECVO combina trabalho técnico, acompanhamento do professor e turmas para diferentes níveis. A equipe pode orientar sobre a prática recreativa e sobre objetivos esportivos.",
-    related: ["muay-thai-joao-pessoa", "boxe-joao-pessoa", "kickboxing-infantil-joao-pessoa"],
+    related: ["kickboxing-funcional-aeroboxe-joao-pessoa", "muay-thai-joao-pessoa", "boxe-joao-pessoa", "kickboxing-infantil-joao-pessoa"],
     faq: [["Preciso ter luvas no primeiro treino?", "Fale com a equipe antes de ir. Ela orienta sobre roupas e equipamentos para o primeiro treino."], ["Kickboxing é indicado para iniciantes?", "A ECVO recebe alunos em diferentes níveis. Confirme pelo WhatsApp qual horário é mais adequado para começar."], ["Qual é a diferença entre Kickboxing e Muay Thai?", "As duas modalidades trabalham combate em pé, mas têm técnicas e regras próprias. A equipe pode explicar como cada turma aborda seus fundamentos."], ["O treino envolve contato desde a primeira aula?", "A organização do treino é orientada pelo professor. Confirme com a equipe como funciona a aula para iniciantes."]],
+  },
+  {
+    slug: "kickboxing-funcional-aeroboxe-joao-pessoa", name: "Kickboxing Funcional e AeroBoxe", title: "Kickboxing Funcional e AeroBoxe em João Pessoa | ECVO",
+    description: "Kickboxing Funcional e AeroBoxe no Valentina, em João Pessoa: treino dinâmico, sem contato, com exercícios funcionais e orientação do professor Vinicius Oliveira.",
+    hero: "Movimento, ritmo e energia em uma aula que combina exercícios funcionais, Kickboxing e AeroBoxe — sem combate ou troca de golpes.",
+    audiences: ["Quem quer incluir uma atividade física dinâmica e envolvente na rotina.", "Pessoas que preferem treinar sem combate ou contato com outros participantes.", "Quem busca trabalhar coordenação, mobilidade, força e condicionamento em uma mesma aula.", "Iniciantes e praticantes que valorizam orientação e uma progressão compatível com o próprio ritmo."],
+    benefits: [["Movimento sem contato", "Pratique socos, chutes e sequências no ar, sem combate ou troca de golpes."], ["Corpo inteiro em ação", "Exercícios funcionais combinam coordenação, mobilidade, força e condicionamento em uma aula dinâmica."], ["Ritmo para começar", "A proposta acolhe diferentes níveis de experiência, com orientação em cada etapa do treino."]],
+    teacherIds: ["vinicius"],
+    scheduleSlugs: ["kickboxing-funcional-aeroboxe-joao-pessoa"],
+    scheduleTitle: "Horários em definição.",
+    scheduleCopy: "A grade desta nova turma ainda está sendo organizada. Fale com a equipe para registrar seu interesse e receber novidades.",
+    scheduleCtaLabel: "Ver disponibilidade",
+    firstTrainingEyebrow: "Como começar",
+    firstTrainingTitle: "Demonstre seu interesse com clareza.",
+    firstTrainingIntro: "A turma ainda não tem uma grade definida. Você pode falar com a equipe e acompanhar os próximos passos.",
+    firstTraining: ["Conheça a proposta da modalidade e veja se ela combina com o que você procura.", "Fale com a equipe no WhatsApp e conte seus objetivos com a atividade física.", "Registre seu interesse para receber a grade assim que os horários forem definidos.", "Quando a turma começar, treine com a orientação do professor Vinicius Oliveira."],
+    cta: {
+      shortLabel: "Tenho interesse",
+      label: "Quero saber quando a turma começa",
+      message: "Olá! Encontrei a ECVO pela página de Kickboxing Funcional e AeroBoxe e gostaria de saber quando a turma começa.",
+      finalTitle: "Quer saber quando a turma começa?",
+      finalCopy: "Registre seu interesse e fale com a equipe quando quiser. Os horários serão informados assim que a grade estiver definida.",
+    },
+    method: "Com orientação do professor Vinicius Oliveira, a aula combina exercícios funcionais, deslocamentos e sequências inspiradas no Kickboxing e no AeroBoxe. A prática acontece sem sparring, sem combate e sem contato entre participantes.",
+    related: ["kickboxing-joao-pessoa", "boxe-joao-pessoa"],
+    faq: [["O treino tem contato físico?", "Não. A proposta não inclui combate, sparring ou troca de golpes entre participantes. Os movimentos são realizados no ar e em exercícios orientados."], ["Preciso ter experiência com Kickboxing?", "Não. A modalidade foi pensada para acolher diferentes níveis, com orientação do professor em cada etapa."], ["Quem conduz a turma?", "A turma será conduzida pelo professor Vinicius Oliveira."], ["Quais são os horários?", "A grade ainda está sendo definida. Fale com a equipe para registrar seu interesse e receber novidades sobre a turma."], ["Qual é a proposta da aula?", "Combinar movimentos do Kickboxing, sequências de AeroBoxe e exercícios funcionais em uma atividade física dinâmica e sem contato."]],
   },
   {
     slug: "muay-thai-joao-pessoa", name: "Muay Thai", title: "Muay Thai em João Pessoa | ECVO",
@@ -181,4 +207,4 @@ export const modalities = [
     related: ["karate-turma-kids-joao-pessoa", "jiu-jitsu-joao-pessoa"],
     faq: [["Para qual idade é a Turma Kids de Judô?", "A faixa etária atendida será informada pela ECVO quando a turma estiver disponível."], ["A criança precisa ter experiência?", "Não. A proposta permite começar pelos fundamentos, com orientação."], ["É preciso ter uniforme antes de começar?", "A equipe informará previamente quais roupas e equipamentos serão necessários."], ["Quando serão divulgados os horários?", "Os horários serão publicados no site assim que estiverem disponíveis."]],
   },
-].map((modality) => ({ ...modality, firstTraining }));
+].map((modality) => ({ firstTraining, ...modality }));

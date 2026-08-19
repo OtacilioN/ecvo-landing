@@ -1,6 +1,6 @@
 # Instruções para o Perfil da Empresa no Google da ECVO
 
-Objetivo: posicionar a ECVO como escola de lutas e artes marciais em João Pessoa e ajudar a escola a aparecer em buscas locais amplas e específicas, como "artes marciais no Valentina", "Kickboxing em João Pessoa", "Karatê em João Pessoa", "Judô em João Pessoa", "Jiu-Jitsu em João Pessoa", "NoGi em João Pessoa", "MMA em João Pessoa", "Muay Thai em João Pessoa" e "Boxe em João Pessoa".
+Objetivo: posicionar a ECVO como escola de lutas e artes marciais em João Pessoa e ajudar a escola a aparecer em buscas locais amplas e específicas, como "artes marciais no Valentina", "Kickboxing em João Pessoa", "Kickboxing Funcional em João Pessoa", "AeroBoxe em João Pessoa", "Karatê em João Pessoa", "Judô em João Pessoa", "Jiu-Jitsu em João Pessoa", "NoGi em João Pessoa", "MMA em João Pessoa", "Muay Thai em João Pessoa" e "Boxe em João Pessoa".
 
 ## 1. Acesso
 
@@ -29,6 +29,7 @@ No Perfil da Empresa, escolha a categoria mais próxima de escola de artes marci
 Cadastre serviços individuais:
 
 - Kickboxing
+- Kickboxing Funcional e AeroBoxe
 - Kickboxing - Turma Kids
 - Karatê
 - Karatê - Turma Kids
@@ -72,6 +73,7 @@ Exemplos de palavras que podem aparecer naturalmente nas avaliações:
 - escola de lutas e artes marciais em João Pessoa;
 - artes marciais no Valentina;
 - Kickboxing em João Pessoa;
+- Kickboxing Funcional e AeroBoxe em João Pessoa;
 - Jiu-Jitsu em João Pessoa;
 - NoGi em João Pessoa;
 - MMA em João Pessoa;

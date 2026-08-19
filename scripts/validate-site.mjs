@@ -13,6 +13,7 @@ const modalitiesWithoutPublishedSchedule = [
   "jiu-jitsu-joao-pessoa",
   "nogi-joao-pessoa",
   "boxe-joao-pessoa",
+  "kickboxing-funcional-aeroboxe-joao-pessoa",
   "karate-joao-pessoa",
   "karate-turma-kids-joao-pessoa",
   "judo-turma-kids-joao-pessoa",
@@ -51,10 +52,10 @@ expect(homeBusiness?.description?.startsWith(site.positioning), "index.html: Loc
 expect(homeBusiness?.address?.streetAddress === site.address, "index.html: streetAddress deve usar o endereço canônico");
 expect(homeBusiness?.address?.postalCode === site.postalCode, "index.html: postalCode deve usar o CEP canônico");
 expect(homeBusiness?.hasMap === site.mapUrl, "index.html: hasMap deve usar a localização canônica");
-expect(modalities.length === 10, "data/ecvo-content.mjs: o catálogo deve manter dez modalidades");
-expect(home.includes("<dt>10</dt>"), "index.html: contador público deve informar dez modalidades");
+expect(modalities.length === 11, "data/ecvo-content.mjs: o catálogo deve manter onze modalidades");
+expect(home.includes("<dt>11</dt>"), "index.html: contador público deve informar onze modalidades");
 const offeredServiceNames = (homeBusiness?.makesOffer ?? []).map((offer) => offer?.itemOffered?.name);
-expect(offeredServiceNames.length === modalities.length, "index.html: makesOffer deve representar as dez modalidades");
+expect(offeredServiceNames.length === modalities.length, "index.html: makesOffer deve representar as onze modalidades");
 for (const modality of modalities) {
   expect(offeredServiceNames.includes(`Aulas de ${modality.name} em João Pessoa`), `index.html: makesOffer de ${modality.name} ausente`);
 }
@@ -135,11 +136,20 @@ for (const modality of modalities) {
   const faqSchema = schemas.find((schema) => schema['@type'] === 'FAQPage');
   expect(faqSchema?.mainEntity?.length === modality.faq.length, `${relativePath}: FAQPage JSON-LD fora de sincronia`);
   expect(home.includes(`href="/${modality.slug}/"`), `index.html: link para ${modality.slug} ausente`);
-  expect(!html.includes("modality-teachers"), `${relativePath}: página da modalidade não deve associar professor`);
-  expect(!/Prof\.\s+[A-ZÁÉÍÓÚÂÊÔÃÕÇ]/u.test(html), `${relativePath}: grade ou conteúdo não deve exibir nome de professor`);
+  const teacherIds = modality.teacherIds ?? [];
+  if (teacherIds.length) {
+    expect(html.includes("modality-teachers"), `${relativePath}: professor da modalidade deve ser apresentado`);
+    for (const teacherId of teacherIds) {
+      expect(Boolean(teachers[teacherId]), `${relativePath}: professor ${teacherId} não existe na fonte canônica`);
+      expect(html.includes(teachers[teacherId]?.name ?? ""), `${relativePath}: professor ${teacherId} ausente`);
+    }
+  } else {
+    expect(!html.includes("modality-teachers"), `${relativePath}: não deve associar professor sem confirmação na fonte canônica`);
+    expect(!/Prof\.\s+[A-ZÁÉÍÓÚÂÊÔÃÕÇ]/u.test(html), `${relativePath}: conteúdo não deve exibir professor sem associação canônica`);
+  }
 
   if (modalitiesWithoutPublishedSchedule.includes(modality.slug)) {
-    expect(html.includes("Horários ainda não disponíveis."), `${relativePath}: deve informar objetivamente que não há horários disponíveis`);
+    expect(html.includes(modality.scheduleTitle ?? "Horários ainda não disponíveis."), `${relativePath}: deve informar objetivamente que não há horários publicados`);
   }
 }
 
