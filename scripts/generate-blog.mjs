@@ -238,7 +238,7 @@ ${renderHeader("../../", whatsappMessage)}
         <div class="article-layout">
           <aside class="article-toc" aria-label="Neste conteúdo"><p>Neste conteúdo</p><ol>${toc}<li><a href="#referencias">Referências científicas</a></li></ol></aside>
           <div class="article-body">
-            <div class="article-answer"><p><strong>Resposta curta:</strong> não é isso que a evidência disponível sugere. Em programas estruturados, a prática pode favorecer autocontrole e autorregulação — capacidades importantes para reduzir respostas impulsivas e agressivas.</p></div>
+            <div class="article-answer"><p><strong>Resposta curta:</strong> não é isso que a evidência disponível sugere. Em programas estruturados, a prática pode favorecer autocontrole e autorregulação. Essas capacidades são importantes para reduzir respostas impulsivas e agressivas.</p></div>
             <div class="article-lead">${post.lead.map((paragraph) => `<p>${paragraph}</p>`).join("")}</div>
             ${sections}
             <section id="referencias" class="article-references" aria-labelledby="referencias-title"><p class="eyebrow">Fontes consultadas</p><h2 id="referencias-title">Referências científicas</h2><ol>${references}</ol><p class="article-source-note">Este conteúdo é informativo e resume resultados de estudos específicos. Ele não substitui avaliação individual de saúde, educação ou comportamento.</p></section>

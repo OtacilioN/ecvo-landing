@@ -40,7 +40,7 @@ export const blogPosts = [
         title: "O que a ciência já descobriu?",
         blocks: [
           { type: "p", html: "Um estudo publicado em 2025 na revista científica <strong>BMC Psychology</strong> analisou 847 adolescentes praticantes de diferentes modalidades de artes marciais." },
-          { type: "p", html: "Os pesquisadores investigaram a relação entre nível de prática, autocontrole e agressividade. Observaram que um maior nível de prática estava associado a <strong>maior autocontrole e menor agressividade</strong>. Como o estudo é observacional, o resultado indica associação — não prova, sozinho, uma relação de causa e efeito." },
+          { type: "p", html: "Os pesquisadores investigaram a relação entre nível de prática, autocontrole e agressividade. Observaram que um maior nível de prática estava associado a <strong>maior autocontrole e menor agressividade</strong>. Como o estudo é observacional, o resultado indica associação. Sozinho, não prova uma relação de causa e efeito." },
           { type: "p", html: "Um dos resultados mais interessantes foi justamente o papel do autocontrole nesse processo. A análise indicou que ele funcionava como um importante mediador entre o nível de prática de artes marciais e a agressividade apresentada pelos adolescentes." },
           { type: "p", html: "Em outras palavras, a arte marcial não parece servir apenas como uma forma de “gastar energia”. Parte dos possíveis benefícios pode estar relacionada ao aprendizado constante de <strong>controlar impulsos, respeitar regras e administrar emoções durante situações de pressão</strong>." },
         ],
