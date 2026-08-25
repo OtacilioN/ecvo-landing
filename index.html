@@ -309,13 +309,14 @@
       }
     </style>
     <link rel="preload" href="assets/archivo-black-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" as="image" href="assets/turmas/kickboxing-ecvo.webp" imagesrcset="assets/turmas/kickboxing-ecvo-800.webp 800w, assets/turmas/kickboxing-ecvo.webp 1600w" imagesizes="100vw" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-    <link rel="preload" as="style" href="styles.css?v=18" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="preload" as="style" href="styles.css?v=19" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" />
-      <link rel="stylesheet" href="styles.css?v=18" />
+      <link rel="stylesheet" href="styles.css?v=19" />
     </noscript>
   </head>
   <body class="home-page">
@@ -339,11 +340,9 @@
     <main id="inicio">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-media" aria-hidden="true">
-          <div class="ring-grid"></div>
-          <div class="hero-glow"></div>
-          <div class="strike-line strike-line-a"></div>
-          <div class="strike-line strike-line-b"></div>
-          <div class="grain"></div>
+          <picture class="hero-team-photo">
+            <img src="assets/turmas/kickboxing-ecvo.webp" srcset="assets/turmas/kickboxing-ecvo-800.webp 800w, assets/turmas/kickboxing-ecvo.webp 1600w" sizes="100vw" alt="" width="1600" height="1200" fetchpriority="high" decoding="async" />
+          </picture>
         </div>
         <div class="hero-copy">
           <p class="eyebrow">

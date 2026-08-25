@@ -1430,6 +1430,36 @@ h3 {
   margin: 0;
 }
 
+.modality-hero.has-photo {
+  isolation: isolate;
+}
+
+.modality-hero > .modality-hero-photo {
+  inset: 0;
+  max-width: none;
+  overflow: hidden;
+  position: absolute;
+  z-index: -2;
+}
+
+.modality-hero-photo img {
+  filter: saturate(0.76) contrast(1.08);
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--photo-position, 50% 50%);
+  width: 100%;
+}
+
+.modality-hero.has-photo::after {
+  background-image:
+    linear-gradient(90deg, rgba(20, 20, 20, 0.97) 0%, rgba(20, 20, 20, 0.88) 42%, rgba(20, 20, 20, 0.62) 72%, rgba(20, 20, 20, 0.78) 100%),
+    linear-gradient(0deg, rgba(20, 20, 20, 0.88), transparent 46%) !important;
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: -1;
+}
+
 .modality-content {
   border-top: 0;
   display: grid;
@@ -1779,6 +1809,39 @@ h3 {
   color: var(--gold);
   font-size: 0.82rem;
   margin-top: auto;
+}
+
+.modalities-directory a.has-photo {
+  isolation: isolate;
+  min-height: 360px;
+  overflow: hidden;
+  position: relative;
+}
+
+.modalities-directory a.has-photo::after {
+  background-image: linear-gradient(180deg, rgba(20, 20, 20, 0.14) 0%, rgba(20, 20, 20, 0.78) 52%, rgba(20, 20, 20, 0.97) 100%) !important;
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.modality-card-photo {
+  filter: saturate(0.78) contrast(1.08);
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  object-position: var(--photo-position, 50% 50%);
+  position: absolute;
+  width: 100%;
+  z-index: -2;
+}
+
+.modalities-directory a.has-photo > span,
+.modalities-directory a.has-photo > h2,
+.modalities-directory a.has-photo > p,
+.modalities-directory a.has-photo > strong {
+  position: relative;
 }
 
 /* ---------- Wellhub e TotalPass ---------- */
@@ -3710,6 +3773,29 @@ nav a::after {
 
 .hero-media > * {
   display: none;
+}
+
+.hero-media > .hero-team-photo {
+  display: block;
+  inset: 0;
+  position: absolute;
+}
+
+.hero-team-photo img {
+  filter: saturate(0.72) contrast(1.08);
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 52%;
+  width: 100%;
+}
+
+.hero-media::after {
+  background-image:
+    linear-gradient(90deg, rgba(20, 20, 20, 0.97) 0%, rgba(20, 20, 20, 0.89) 42%, rgba(20, 20, 20, 0.58) 76%, rgba(20, 20, 20, 0.78) 100%),
+    linear-gradient(0deg, rgba(20, 20, 20, 0.9), transparent 48%) !important;
+  content: "";
+  inset: 0;
+  position: absolute;
 }
 
 .hero-media::before {

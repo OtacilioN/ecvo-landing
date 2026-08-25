@@ -48,7 +48,7 @@ expect(home.includes(`<meta property="og:title" content="${site.homeTitle}" />`)
 expect(home.includes(`<meta name="twitter:title" content="${site.homeTitle}" />`), "index.html: Twitter title deve ser igual ao title geral");
 expect(home.includes(`<h1 id="hero-title">${site.positioning}</h1>`), "index.html: H1 deve apresentar a ECVO como escola de lutas e artes marciais sem animação que atrase o LCP");
 expect(!home.match(/<section class="hero"[\s\S]*?<\/section>/)?.[0].includes("data-reveal"), "index.html: conteúdo inicial do hero não pode ficar oculto por animação");
-expect(homeHead.includes('rel="preload" as="style" href="styles.css?v=18"'), "index.html: CSS principal deve ser carregado sem bloquear a renderização");
+expect(homeHead.includes('rel="preload" as="style" href="styles.css?v=19"'), "index.html: CSS principal deve ser carregado sem bloquear a renderização");
 expect(homeBusiness?.description?.startsWith(site.positioning), "index.html: LocalBusiness deve começar pelo posicionamento geral da ECVO");
 expect(homeBusiness?.address?.streetAddress === site.address, "index.html: streetAddress deve usar o endereço canônico");
 expect(homeBusiness?.address?.postalCode === site.postalCode, "index.html: postalCode deve usar o CEP canônico");
@@ -138,6 +138,20 @@ for (const modality of modalities) {
   const faqSchema = schemas.find((schema) => schema['@type'] === 'FAQPage');
   expect(faqSchema?.mainEntity?.length === modality.faq.length, `${relativePath}: FAQPage JSON-LD fora de sincronia`);
   expect(home.includes(`href="/${modality.slug}/"`), `index.html: link para ${modality.slug} ausente`);
+  if (modality.heroImage) {
+    expect(html.includes('class="modality-hero has-photo"'), `${relativePath}: hero deve apresentar a foto canônica da turma`);
+    expect(html.includes(`<meta property="og:image" content="${site.url}${modality.heroImage.src}" />`), `${relativePath}: OG image deve usar a foto canônica da turma`);
+    expect(html.includes('<meta name="twitter:card" content="summary_large_image" />'), `${relativePath}: Twitter card deve destacar a foto da turma`);
+    await access(resolve(root, modality.heroImage.src.slice(1))).catch(() => {
+      failures.push(`${relativePath}: foto canônica não encontrada: ${modality.heroImage.src}`);
+    });
+    for (const source of modality.heroImage.srcSet.split(", ")) {
+      const imagePath = source.replace(/\s+\d+w$/, "");
+      await access(resolve(root, imagePath.slice(1))).catch(() => {
+        failures.push(`${relativePath}: variação responsiva não encontrada: ${imagePath}`);
+      });
+    }
+  }
   const teacherIds = modality.teacherIds ?? [];
   if (teacherIds.length) {
     expect(html.includes("modality-teachers"), `${relativePath}: professor da modalidade deve ser apresentado`);
@@ -162,7 +176,10 @@ for (const modality of modalities) {
 expect(sitemap.includes(`${site.url}/modalidades/`), "sitemap.xml: página agregadora ausente");
 
 const modalitiesDirectory = await read("modalidades/index.html");
-expect((modalitiesDirectory.match(/<a href="\/[^"]+-joao-pessoa\/">/g) || []).length === modalities.length, "modalidades/index.html: deve manter todas as modalidades no hall");
+expect((modalitiesDirectory.match(/<a(?=[^>]*href="\/[^"]+-joao-pessoa\/")[^>]*>/g) || []).length === modalities.length, "modalidades/index.html: deve manter todas as modalidades no hall");
+for (const modality of modalities.filter((item) => item.heroImage)) {
+  expect(modalitiesDirectory.includes(`alt="${modality.heroImage.alt}"`), `modalidades/index.html: foto de ${modality.name} deve ter texto alternativo`);
+}
 expect(!home.replaceAll("kickboxing-infantil-joao-pessoa", "").includes("Kickboxing Infantil"), "index.html: o nome anterior do Kickboxing Kids não deve aparecer publicamente");
 
 const archivedTeachers = await read("_internal/professores-em-reestruturacao.md");

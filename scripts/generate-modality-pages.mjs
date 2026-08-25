@@ -116,9 +116,18 @@ ${modality.related.map((slug) => {
       </section>`;
 }
 
+function renderHeroImage(modality) {
+  if (!modality.heroImage) return "";
+
+  return `        <picture class="modality-hero-photo" aria-hidden="true">
+          <img src="..${modality.heroImage.src}" srcset="${modality.heroImage.srcSet.split(", ").map((source) => `..${source}`).join(", ")}" sizes="100vw" alt="" width="${modality.heroImage.width}" height="${modality.heroImage.height}" fetchpriority="high" decoding="async" style="--photo-position: ${modality.heroImage.position};" />
+        </picture>\n`;
+}
+
 function renderPage(modality) {
   const url = pageUrl(modality.slug);
   const whatsapp = whatsappUrl(modality);
+  const socialImage = modality.heroImage?.src ?? site.logo;
   const schemas = [
     {
       "@context": "https://schema.org",
@@ -163,25 +172,25 @@ ${generatedNote}
     <meta property="og:description" content="${escapeHtml(modality.description)}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${url}" />
-    <meta property="og:image" content="${site.url}${site.logo}" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="${site.url}${socialImage}" />
+    <meta name="twitter:card" content="${modality.heroImage ? "summary_large_image" : "summary"}" />
     <meta name="twitter:title" content="${escapeHtml(modality.title)}" />
     <meta name="twitter:description" content="${escapeHtml(modality.description)}" />
-    <meta name="twitter:image" content="${site.url}${site.logo}" />
+    <meta name="twitter:image" content="${site.url}${socialImage}" />
     <meta name="theme-color" content="#141414" />
     <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
     <link rel="apple-touch-icon" href="../assets/logo-ecvo-negativo.png" />
     <script type="application/ld+json">${jsonLd(schemas)}</script>
     <script>document.documentElement.classList.add("js");</script>
 ${renderFontHead("../")}
-    <link rel="stylesheet" href="../styles.css?v=17" />
+    <link rel="stylesheet" href="../styles.css?v=${modality.heroImage ? "19" : "17"}" />
   </head>
   <body class="modality-page" data-modality="${escapeHtml(modality.name)}">
 ${renderHeader(modality, whatsapp)}
     <main id="conteudo">
       <nav class="breadcrumb" aria-label="Caminho de navegação"><ol><li><a href="/">Início</a></li><li><a href="/modalidades/">Modalidades</a></li><li aria-current="page">${escapeHtml(modality.name)}</li></ol></nav>
-      <section class="modality-hero" aria-labelledby="page-title">
-        <p class="eyebrow"><span class="pulse"></span>${escapeHtml(modality.name)} no Valentina, João Pessoa</p>
+      <section class="modality-hero${modality.heroImage ? " has-photo" : ""}" aria-labelledby="page-title">
+${renderHeroImage(modality)}        <p class="eyebrow"><span class="pulse"></span>${escapeHtml(modality.name)} no Valentina, João Pessoa</p>
         <h1 id="page-title">${escapeHtml(modality.name)} em João Pessoa</h1>
         <p>${escapeHtml(modality.hero)}</p>
         <div class="hero-actions">
@@ -239,10 +248,10 @@ function renderModalitiesIndex() {
   const title = site.modalitiesTitle;
   const description = "Conheça as modalidades da ECVO, escola de lutas e artes marciais no Valentina, em João Pessoa: Kickboxing, Kickboxing Funcional e AeroBoxe, Karatê, Judô, Jiu-Jitsu, NoGi, MMA, Muay Thai e Boxe.";
   const socialDescription = "Conheça as modalidades da ECVO, escola de lutas e artes marciais no Valentina, em João Pessoa.";
-  const cards = modalities.map((modality) => `          <a href="/${modality.slug}/"><span>Modalidade</span><h2>${escapeHtml(modality.name)}</h2><p>${escapeHtml(modality.hero)}</p><strong>Conhecer ${escapeHtml(modality.name)} <span aria-hidden="true">→</span></strong></a>`).join("\n");
+  const cards = modalities.map((modality) => `          <a${modality.heroImage ? ' class="has-photo"' : ""} href="/${modality.slug}/">${modality.heroImage ? `<img class="modality-card-photo" src="..${modality.heroImage.src}" srcset="${modality.heroImage.srcSet.split(", ").map((source) => `..${source}`).join(", ")}" sizes="(max-width: 560px) 100vw, 50vw" alt="${escapeHtml(modality.heroImage.alt)}" width="${modality.heroImage.width}" height="${modality.heroImage.height}" loading="lazy" decoding="async" style="--photo-position: ${modality.heroImage.position};" />` : ""}<span>Modalidade</span><h2>${escapeHtml(modality.name)}</h2><p>${escapeHtml(modality.hero)}</p><strong>Conhecer ${escapeHtml(modality.name)} <span aria-hidden="true">→</span></strong></a>`).join("\n");
   return `<!doctype html>
 ${generatedNote}
-<html lang="pt-BR"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>${escapeHtml(title)}</title><meta name="description" content="${escapeHtml(description)}" /><link rel="canonical" href="${site.url}/modalidades/" /><meta property="og:title" content="${escapeHtml(title)}" /><meta property="og:description" content="${escapeHtml(socialDescription)}" /><meta property="og:type" content="website" /><meta property="og:url" content="${site.url}/modalidades/" /><meta property="og:image" content="${site.url}${site.logo}" /><meta name="twitter:card" content="summary" /><meta name="twitter:title" content="${escapeHtml(title)}" /><meta name="twitter:description" content="${escapeHtml(socialDescription)}" /><meta name="twitter:image" content="${site.url}${site.logo}" /><meta name="theme-color" content="#141414" /><link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" /><link rel="apple-touch-icon" href="../assets/logo-ecvo-negativo.png" /><script>document.documentElement.classList.add("js");</script>${renderFontHead("../")}<link rel="stylesheet" href="../styles.css?v=17" /><script type="application/ld+json">${jsonLd({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Início", item: `${site.url}/` }, { "@type": "ListItem", position: 2, name: "Modalidades", item: `${site.url}/modalidades/` }] })}</script></head><body class="modality-page" data-modality="Modalidades"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header" aria-label="Topo"><a class="brand" href="/" aria-label="ECVO início"><img class="brand-logo" src="../assets/ecvo-simbolo-escuro.png" alt="" width="56" height="56" /><span class="brand-name"><strong>Escola de Combate</strong><span>Vinicius Oliveira</span></span></a><nav aria-label="Navegação principal"><a href="/#horarios">Horários</a><a href="/#como-chegar">Como chegar</a></nav></header><main id="conteudo"><nav class="breadcrumb" aria-label="Caminho de navegação"><ol><li><a href="/">Início</a></li><li aria-current="page">Modalidades</li></ol></nav><section class="modality-hero"><p class="eyebrow"><span class="pulse"></span>Artes marciais no Valentina, João Pessoa</p><h1>Modalidades na ECVO</h1><p>Conheça as práticas oferecidas pela ECVO e encontre uma forma de começar com orientação.</p><div class="hero-actions"><a class="button primary" href="/#horarios" data-track="schedule_view" data-cta-position="hero">Consultar horários</a></div></section><section class="section" aria-labelledby="modalidades-title"><div class="section-heading"><p class="eyebrow">Escolha sua modalidade</p><h2 id="modalidades-title">Cada treino tem seu caminho.</h2></div><div class="modalities-directory">${cards}</div></section></main><footer><div class="footer-brand"><img class="brand-logo" src="../assets/ecvo-simbolo-escuro.png" alt="" width="64" height="64" /><span class="brand-name"><strong>Escola de Combate</strong><span>Vinicius Oliveira</span></span></div><span class="footer-meta">João Pessoa · PB · © ECVO</span></footer><script src="../script.js?v=4"></script></body></html>\n`;
+<html lang="pt-BR"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>${escapeHtml(title)}</title><meta name="description" content="${escapeHtml(description)}" /><link rel="canonical" href="${site.url}/modalidades/" /><meta property="og:title" content="${escapeHtml(title)}" /><meta property="og:description" content="${escapeHtml(socialDescription)}" /><meta property="og:type" content="website" /><meta property="og:url" content="${site.url}/modalidades/" /><meta property="og:image" content="${site.url}${site.logo}" /><meta name="twitter:card" content="summary" /><meta name="twitter:title" content="${escapeHtml(title)}" /><meta name="twitter:description" content="${escapeHtml(socialDescription)}" /><meta name="twitter:image" content="${site.url}${site.logo}" /><meta name="theme-color" content="#141414" /><link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" /><link rel="apple-touch-icon" href="../assets/logo-ecvo-negativo.png" /><script>document.documentElement.classList.add("js");</script>${renderFontHead("../")}<link rel="stylesheet" href="../styles.css?v=19" /><script type="application/ld+json">${jsonLd({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Início", item: `${site.url}/` }, { "@type": "ListItem", position: 2, name: "Modalidades", item: `${site.url}/modalidades/` }] })}</script></head><body class="modality-page" data-modality="Modalidades"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header" aria-label="Topo"><a class="brand" href="/" aria-label="ECVO início"><img class="brand-logo" src="../assets/ecvo-simbolo-escuro.png" alt="" width="56" height="56" /><span class="brand-name"><strong>Escola de Combate</strong><span>Vinicius Oliveira</span></span></a><nav aria-label="Navegação principal"><a href="/#horarios">Horários</a><a href="/#como-chegar">Como chegar</a></nav></header><main id="conteudo"><nav class="breadcrumb" aria-label="Caminho de navegação"><ol><li><a href="/">Início</a></li><li aria-current="page">Modalidades</li></ol></nav><section class="modality-hero"><p class="eyebrow"><span class="pulse"></span>Artes marciais no Valentina, João Pessoa</p><h1>Modalidades na ECVO</h1><p>Conheça as práticas oferecidas pela ECVO e encontre uma forma de começar com orientação.</p><div class="hero-actions"><a class="button primary" href="/#horarios" data-track="schedule_view" data-cta-position="hero">Consultar horários</a></div></section><section class="section" aria-labelledby="modalidades-title"><div class="section-heading"><p class="eyebrow">Escolha sua modalidade</p><h2 id="modalidades-title">Cada treino tem seu caminho.</h2></div><div class="modalities-directory">${cards}</div></section></main><footer><div class="footer-brand"><img class="brand-logo" src="../assets/ecvo-simbolo-escuro.png" alt="" width="64" height="64" /><span class="brand-name"><strong>Escola de Combate</strong><span>Vinicius Oliveira</span></span></div><span class="footer-meta">João Pessoa · PB · © ECVO</span></footer><script src="../script.js?v=4"></script></body></html>\n`;
 }
 
 async function main() {
