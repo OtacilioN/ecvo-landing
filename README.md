@@ -14,6 +14,12 @@ Landing page estática da ECVO, preparada para GitHub Pages.
 - Google Search Console: propriedade de domínio `ecvo.com.br`
 - Sitemap: `https://ecvo.com.br/sitemap.xml`
 
+## Conteúdos editoriais
+
+- Fonte canônica dos posts: `data/blog-posts.mjs`
+- Gerar índice, posts e chamada da homepage: `node scripts/generate-blog.mjs`
+- Conferir sincronização sem alterar arquivos: `node scripts/generate-blog.mjs --check`
+
 ## DNS esperado
 
 Registros `A` do domínio raiz:

@@ -1,5 +1,6 @@
 import { access, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { blogPosts, featuredBlogPost } from "../data/blog-posts.mjs";
 import { modalities, schedule, site, teachers } from "../data/ecvo-content.mjs";
 import { originStory } from "../data/origin-story.mjs";
 import { testimonials } from "../data/testimonials.mjs";
@@ -47,7 +48,7 @@ expect(home.includes(`<meta property="og:title" content="${site.homeTitle}" />`)
 expect(home.includes(`<meta name="twitter:title" content="${site.homeTitle}" />`), "index.html: Twitter title deve ser igual ao title geral");
 expect(home.includes(`<h1 id="hero-title">${site.positioning}</h1>`), "index.html: H1 deve apresentar a ECVO como escola de lutas e artes marciais sem animação que atrase o LCP");
 expect(!home.match(/<section class="hero"[\s\S]*?<\/section>/)?.[0].includes("data-reveal"), "index.html: conteúdo inicial do hero não pode ficar oculto por animação");
-expect(homeHead.includes('rel="preload" as="style" href="styles.css?v=17"'), "index.html: CSS principal deve ser carregado sem bloquear a renderização");
+expect(homeHead.includes('rel="preload" as="style" href="styles.css?v=18"'), "index.html: CSS principal deve ser carregado sem bloquear a renderização");
 expect(homeBusiness?.description?.startsWith(site.positioning), "index.html: LocalBusiness deve começar pelo posicionamento geral da ECVO");
 expect(homeBusiness?.address?.streetAddress === site.address, "index.html: streetAddress deve usar o endereço canônico");
 expect(homeBusiness?.address?.postalCode === site.postalCode, "index.html: postalCode deve usar o CEP canônico");
@@ -88,6 +89,7 @@ const generalistPages = [
   "historia-ecvo/index.html",
   "wellhub-joao-pessoa/index.html",
   "totalpass-joao-pessoa/index.html",
+  "blog/index.html",
 ];
 
 for (const relativePath of generalistPages) {
@@ -171,6 +173,7 @@ for (const teacherName of teachersOnHold) {
 const publicHtmlPaths = [
   ...generalistPages,
   ...modalities.map((modality) => `${modality.slug}/index.html`),
+  ...blogPosts.map((post) => `blog/${post.slug}/index.html`),
 ];
 
 for (const relativePath of publicHtmlPaths) {
@@ -241,9 +244,37 @@ expect(home.includes('href="/historia-ecvo/"'), "index.html: link para a histór
 expect((home.match(/<!-- origin:home:start -->/g) || []).length === 1, "index.html: início da chamada de origem deve ser único");
 expect((home.match(/<!-- origin:home:end -->/g) || []).length === 1, "index.html: fim da chamada de origem deve ser único");
 
+const blogIndex = await read("blog/index.html");
+expect((blogIndex.match(/<h1[ >]/g) || []).length === 1, "blog/index.html: deve ter exatamente um H1");
+expect(blogIndex.includes('<link rel="canonical" href="https://ecvo.com.br/blog/" />'), "blog/index.html: canonical incorreto");
+expect(blogIndex.includes('"@type":"CollectionPage"'), "blog/index.html: CollectionPage JSON-LD ausente");
+expect(sitemap.includes(`${site.url}/blog/`), "sitemap.xml: índice do blog ausente");
+expect((home.match(/<!-- blog:home:start -->/g) || []).length === 1, "index.html: início da chamada do blog deve ser único");
+expect((home.match(/<!-- blog:home:end -->/g) || []).length === 1, "index.html: fim da chamada do blog deve ser único");
+expect(home.includes(`href="/blog/${featuredBlogPost.slug}/"`), "index.html: conteúdo em destaque do blog ausente");
+
+for (const post of blogPosts) {
+  const relativePath = `blog/${post.slug}/index.html`;
+  const html = await read(relativePath);
+  const url = `${site.url}/blog/${post.slug}/`;
+  const schemas = schemaBlocks(html).flat();
+
+  expect((html.match(/<h1[ >]/g) || []).length === 1, `${relativePath}: deve ter exatamente um H1`);
+  expect(html.includes(`<title>${post.title} | ECVO</title>`), `${relativePath}: title incorreto`);
+  expect(html.includes(`<link rel="canonical" href="${url}" />`), `${relativePath}: canonical incorreto`);
+  expect(html.includes('<meta property="og:type" content="article" />'), `${relativePath}: OG type deve ser article`);
+  expect(schemas.some((schema) => schema['@type'] === 'BlogPosting'), `${relativePath}: BlogPosting JSON-LD ausente`);
+  expect(schemas.some((schema) => schema['@type'] === 'BreadcrumbList'), `${relativePath}: BreadcrumbList JSON-LD ausente`);
+  expect(post.references.every((reference) => html.includes(reference.url)), `${relativePath}: referências científicas incompletas`);
+  expect(blogIndex.includes(`href="/blog/${post.slug}/"`), `blog/index.html: link para ${post.slug} ausente`);
+  expect(sitemap.includes(url), `sitemap.xml: ${post.slug} ausente`);
+  await access(resolve(root, post.image.webp.slice(1))).catch(() => failures.push(`${relativePath}: imagem WebP ausente`));
+  await access(resolve(root, post.image.social.slice(1))).catch(() => failures.push(`${relativePath}: imagem social ausente`));
+}
+
 if (failures.length) {
   console.error(failures.map((failure) => `- ${failure}`).join("\n"));
   process.exitCode = 1;
 } else {
-  console.log(`Validação concluída: ${modalities.length} páginas de modalidades, ${testimonials.length} depoimentos, história da ECVO, schemas, CTAs e sitemap consistentes.`);
+  console.log(`Validação concluída: ${modalities.length} páginas de modalidades, ${testimonials.length} depoimentos, ${blogPosts.length} conteúdo de blog, história da ECVO, schemas, CTAs e sitemap consistentes.`);
 }
