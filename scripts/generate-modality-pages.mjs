@@ -86,6 +86,7 @@ ${modality.teacherIds.map((id) => {
 function homeScheduleClass(slugs) {
   if (slugs.includes("muay-thai")) return "muaythai";
   if (slugs.includes("kickboxing")) return "kickboxing";
+  if (slugs.includes("krav-maga")) return "karate";
   if (slugs.includes("karate")) return "karate";
   if (slugs.includes("boxe")) return "boxe";
   if (slugs.includes("mma")) return "mma";

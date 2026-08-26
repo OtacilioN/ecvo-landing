@@ -57,6 +57,7 @@ export const schedule = [
   { day: "Terça", classes: [
     ["10:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
     ["15:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
+    ["21:00", "krav-maga-joao-pessoa", "Krav Maga"],
   ] },
   { day: "Quarta", classes: [
     ["07:00", "muay-thai-joao-pessoa", "Muay Thai"],
@@ -68,6 +69,7 @@ export const schedule = [
   { day: "Quinta", classes: [
     ["10:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
     ["15:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
+    ["21:00", "krav-maga-joao-pessoa", "Krav Maga"],
   ] },
   { day: "Sexta", classes: [
     ["07:00", "muay-thai-joao-pessoa", "Muay Thai"],
@@ -246,23 +248,9 @@ export const modalities = [
     benefits: [["Autodefesa", "Os fundamentos são apresentados com atenção à técnica, à segurança e à aplicação responsável."], ["Atenção e equilíbrio", "A prática trabalha presença, leitura do ambiente e controle das próprias ações."], ["Disciplina", "O treino valoriza constância, respeito e evolução gradual."]],
     teacherIds: ["adriano"],
     scheduleSlugs: ["krav-maga-joao-pessoa"],
-    scheduleTitle: "Horários ainda não disponíveis.",
-    scheduleCopy: "O Krav Maga já faz parte do catálogo da ECVO, mas a grade da modalidade ainda não foi publicada. Fale com a equipe para registrar seu interesse.",
-    scheduleCtaLabel: "Ver disponibilidade",
-    firstTrainingEyebrow: "Como começar",
-    firstTrainingTitle: "Registre seu interesse.",
-    firstTrainingIntro: "A modalidade ainda não tem horários publicados. Você pode conhecer a proposta e acompanhar a abertura da turma.",
-    firstTraining: ["Conheça a proposta do Krav Maga e veja se ela combina com seus objetivos.", "Fale com a equipe no WhatsApp e conte o que você busca na prática.", "Registre seu interesse para receber a grade assim que os horários forem definidos.", "Quando a turma começar, treine com a orientação do Sensei Adriano."],
     method: "Com orientação do Sensei Adriano, marrom G5 de Krav Maga, a prática valoriza equilíbrio, segurança, disciplina e autodefesa, integrando atenção à mente, ao corpo e ao espírito.",
     related: ["karate-joao-pessoa", "kickboxing-joao-pessoa", "mma-joao-pessoa"],
-    cta: {
-      shortLabel: "Tenho interesse",
-      label: "Tenho interesse em Krav Maga",
-      message: "Olá! Encontrei a ECVO pela página de Krav Maga e gostaria de saber quando os horários serão publicados.",
-      finalTitle: "Quer acompanhar a abertura da turma?",
-      finalCopy: "Fale com a equipe para registrar seu interesse. Os horários serão informados assim que a grade estiver definida.",
-    },
-    faq: [["Posso começar Krav Maga sem experiência?", "Sim. Fale com a equipe para receber orientação sobre como começar quando a turma estiver disponível."], ["Quem conduz o Krav Maga na ECVO?", "A modalidade é conduzida pelo Sensei Adriano, marrom G5 de Krav Maga e praticante de artes marciais há quase 40 anos."], ["Qual é a proposta da modalidade?", "A prática trabalha fundamentos de autodefesa com atenção à segurança, à disciplina e à aplicação responsável."], ["Quais são os horários?", "A grade ainda não foi publicada. Fale com a equipe para registrar seu interesse e receber novidades."]],
+    faq: [["Posso começar Krav Maga sem experiência?", "Sim. Fale com a equipe para receber orientação sobre como participar do primeiro treino."], ["Quem conduz o Krav Maga na ECVO?", "A modalidade é conduzida pelo Sensei Adriano, marrom G5 de Krav Maga e praticante de artes marciais há quase 40 anos."], ["Qual é a proposta da modalidade?", "A prática trabalha fundamentos de autodefesa com atenção à segurança, à disciplina e à aplicação responsável."], ["Quais são os horários?", "A grade atual indica aulas às terças e quintas, às 21h. Confirme a disponibilidade antes de ir."]],
   },
   {
     slug: "judo-turma-kids-joao-pessoa", name: "Judô - Turma Kids", title: "Judô - Turma Kids em João Pessoa | ECVO",
