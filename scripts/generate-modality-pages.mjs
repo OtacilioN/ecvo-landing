@@ -246,7 +246,7 @@ ${renderRelated(modality)}
 
 function renderModalitiesIndex() {
   const title = site.modalitiesTitle;
-  const description = "Conheça as modalidades da ECVO, escola de lutas e artes marciais no Valentina, em João Pessoa: Kickboxing, Kickboxing Funcional e AeroBoxe, Karatê, Judô, Jiu-Jitsu, NoGi, MMA, Muay Thai e Boxe.";
+  const description = "Conheça as modalidades da ECVO, escola de lutas e artes marciais no Valentina, em João Pessoa: Kickboxing, Kickboxing Funcional e AeroBoxe, Karatê, Krav Maga, Judô, Jiu-Jitsu, NoGi, MMA, Muay Thai e Boxe.";
   const socialDescription = "Conheça as modalidades da ECVO, escola de lutas e artes marciais no Valentina, em João Pessoa.";
   const cards = modalities.map((modality) => `          <a${modality.heroImage ? ' class="has-photo"' : ""} href="/${modality.slug}/">${modality.heroImage ? `<img class="modality-card-photo" src="..${modality.heroImage.src}" srcset="${modality.heroImage.srcSet.split(", ").map((source) => `..${source}`).join(", ")}" sizes="(max-width: 560px) 100vw, 50vw" alt="${escapeHtml(modality.heroImage.alt)}" width="${modality.heroImage.width}" height="${modality.heroImage.height}" loading="lazy" decoding="async" style="--photo-position: ${modality.heroImage.position};" />` : ""}<span>Modalidade</span><h2>${escapeHtml(modality.name)}</h2><p>${escapeHtml(modality.hero)}</p><strong>Conhecer ${escapeHtml(modality.name)} <span aria-hidden="true">→</span></strong></a>`).join("\n");
   return `<!doctype html>

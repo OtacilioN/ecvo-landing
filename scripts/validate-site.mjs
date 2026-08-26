@@ -8,7 +8,7 @@ import { testimonials } from "../data/testimonials.mjs";
 const root = resolve(import.meta.dirname, "..");
 const failures = [];
 const retiredReferencePattern = new RegExp("d[ií]namos?\\s+suplementos", "i");
-const activeTeacherNames = ["Prof. Vinicius", "Prof. Oyama"];
+const activeTeacherNames = ["Prof. Vinicius", "Prof. Oyama", "Sensei Adriano"];
 const teachersOnHold = ["Prof. Anderson", "Prof. Dimitri", "Prof. Rodrigo", "Prof. Sauro"];
 const modalitiesWithoutPublishedSchedule = [
   "jiu-jitsu-joao-pessoa",
@@ -16,7 +16,7 @@ const modalitiesWithoutPublishedSchedule = [
   "boxe-joao-pessoa",
   "kickboxing-funcional-aeroboxe-joao-pessoa",
   "karate-joao-pessoa",
-  "karate-turma-kids-joao-pessoa",
+  "krav-maga-joao-pessoa",
   "judo-turma-kids-joao-pessoa",
   "mma-joao-pessoa",
 ];
@@ -53,10 +53,10 @@ expect(homeBusiness?.description?.startsWith(site.positioning), "index.html: Loc
 expect(homeBusiness?.address?.streetAddress === site.address, "index.html: streetAddress deve usar o endereço canônico");
 expect(homeBusiness?.address?.postalCode === site.postalCode, "index.html: postalCode deve usar o CEP canônico");
 expect(homeBusiness?.hasMap === site.mapUrl, "index.html: hasMap deve usar a localização canônica");
-expect(modalities.length === 11, "data/ecvo-content.mjs: o catálogo deve manter onze modalidades");
-expect(home.includes("<dt>11</dt>"), "index.html: contador público deve informar onze modalidades");
+expect(modalities.length === 12, "data/ecvo-content.mjs: o catálogo deve manter doze modalidades");
+expect(home.includes("<dt>12</dt>"), "index.html: contador público deve informar doze modalidades");
 const offeredServiceNames = (homeBusiness?.makesOffer ?? []).map((offer) => offer?.itemOffered?.name);
-expect(offeredServiceNames.length === modalities.length, "index.html: makesOffer deve representar as onze modalidades");
+expect(offeredServiceNames.length === modalities.length, "index.html: makesOffer deve representar as doze modalidades");
 for (const modality of modalities) {
   expect(offeredServiceNames.includes(`Aulas de ${modality.name} em João Pessoa`), `index.html: makesOffer de ${modality.name} ausente`);
 }
@@ -67,20 +67,38 @@ const publicTeacherSection = home.match(/<section class="section professores"[\s
 const publicHomeSchedule = home.match(/<!-- schedule:start -->([\s\S]*?)<!-- schedule:end -->/)?.[1] ?? "";
 const publishedClasses = schedule.flatMap(({ classes }) => classes);
 
-expect(Object.keys(teachers).length === 2, "data/ecvo-content.mjs: somente dois professores devem permanecer ativos");
-expect((publicTeacherSection.match(/class="professor-profile(?:\s|\")/g) || []).length === 2, "index.html: deve exibir exatamente dois professores");
+expect(Object.keys(teachers).length === 3, "data/ecvo-content.mjs: deve manter três professores ativos");
+expect((publicTeacherSection.match(/class="professor-profile(?:\s|\")/g) || []).length === 3, "index.html: deve exibir exatamente três professores");
 for (const teacherName of activeTeacherNames) {
   expect(publicTeacherSection.includes(teacherName), `index.html: ${teacherName} deve permanecer na seção de professores`);
+}
+for (const teacher of Object.values(teachers)) {
+  await access(resolve(root, teacher.image.slice(1))).catch(() => {
+    failures.push(`data/ecvo-content.mjs: foto de ${teacher.name} não encontrada: ${teacher.image}`);
+  });
 }
 for (const teacherName of teachersOnHold) {
   expect(!home.includes(teacherName), `index.html: ${teacherName} não deve aparecer publicamente`);
 }
-expect(publishedClasses.length === 15, "data/ecvo-content.mjs: a grade confirmada deve conter 15 aulas");
+expect(publishedClasses.length === 19, "data/ecvo-content.mjs: a grade confirmada deve conter 19 aulas");
 expect(publishedClasses.every((entry) => entry.length === 3), "data/ecvo-content.mjs: horários públicos não devem armazenar nome de professor");
 expect((publicHomeSchedule.match(/class="aula"/g) || []).length === publishedClasses.length, "index.html: grade pública fora de sincronia com a fonte");
 expect((publicHomeSchedule.match(/class="dia"/g) || []).length === schedule.length, "index.html: quantidade de dias da grade fora de sincronia");
 expect(!publicHomeSchedule.includes("aula-prof"), "index.html: grade não deve exibir nome de professor");
-expect(!modalitiesWithoutPublishedSchedule.some((slug) => publishedClasses.some(([, slugs]) => slugs.split(" ").includes(slug))), "data/ecvo-content.mjs: modalidade sem professor definido não pode ter horário publicado");
+expect(!modalitiesWithoutPublishedSchedule.some((slug) => publishedClasses.some(([, slugs]) => slugs.split(" ").includes(slug))), "data/ecvo-content.mjs: modalidade sem grade confirmada não pode ter horário publicado");
+const karateKidsClasses = publishedClasses.filter(([, slugs]) => slugs.split(" ").includes("karate-turma-kids-joao-pessoa"));
+expect(karateKidsClasses.length === 4, "data/ecvo-content.mjs: Karatê - Turma Kids deve ter quatro aulas publicadas");
+expect(karateKidsClasses.filter(([time]) => time === "10:00").length === 2, "data/ecvo-content.mjs: Karatê - Turma Kids deve ter duas aulas às 10:00");
+expect(karateKidsClasses.filter(([time]) => time === "15:00").length === 2, "data/ecvo-content.mjs: Karatê - Turma Kids deve ter duas aulas às 15:00");
+for (const day of ["Terça", "Quinta"]) {
+  const dayClasses = schedule.find((item) => item.day === day)?.classes ?? [];
+  expect(dayClasses.some(([time, slug]) => time === "10:00" && slug === "karate-turma-kids-joao-pessoa"), `data/ecvo-content.mjs: Karatê - Turma Kids deve ter aula na ${day} às 10:00`);
+  expect(dayClasses.some(([time, slug]) => time === "15:00" && slug === "karate-turma-kids-joao-pessoa"), `data/ecvo-content.mjs: Karatê - Turma Kids deve ter aula na ${day} às 15:00`);
+}
+for (const slug of ["karate-joao-pessoa", "karate-turma-kids-joao-pessoa", "krav-maga-joao-pessoa"]) {
+  const modality = modalities.find((item) => item.slug === slug);
+  expect(JSON.stringify(modality?.teacherIds) === JSON.stringify(["adriano"]), `data/ecvo-content.mjs: ${slug} deve estar associado somente ao Sensei Adriano`);
+}
 
 const generalistPages = [
   "index.html",

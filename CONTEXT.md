@@ -6,7 +6,10 @@ Glossário da landing pública da ECVO. Mantém consistente a linguagem usada pa
 
 Nas páginas generalistas, apresente a ECVO como **escola de lutas e artes marciais em João Pessoa**. Não use Jiu-Jitsu, NoGi ou qualquer outra modalidade isolada como definição principal da escola.
 
-Títulos e descrições centrados em uma modalidade são reservados às páginas específicas dessa modalidade. Ao listar a oferta completa, preserve o equilíbrio entre Kickboxing, Kickboxing Funcional e AeroBoxe, Kickboxing - Turma Kids, Karatê, Karatê - Turma Kids, Judô - Turma Kids, Jiu-Jitsu, NoGi, MMA, Muay Thai e Boxe.
+Títulos e descrições centrados em uma modalidade são reservados às páginas específicas dessa modalidade. Ao listar a oferta completa, preserve o equilíbrio entre Kickboxing, Kickboxing Funcional e AeroBoxe, Kickboxing - Turma Kids, Karatê, Karatê - Turma Kids, Krav Maga, Judô - Turma Kids, Jiu-Jitsu, NoGi, MMA, Muay Thai e Boxe.
+
+**Krav Maga**:
+Modalidade de autodefesa conduzida pelo Sensei Adriano, marrom G5 de Krav Maga e faixa-preta de Karatê. A comunicação deve enfatizar segurança, disciplina, equilíbrio e aplicação responsável, sem prometer invulnerabilidade ou resultados garantidos. Enquanto não houver grade definida, convide a pessoa a registrar interesse em vez de agendar uma aula.
 
 **Kickboxing Funcional e AeroBoxe**:
 Atividade física sem contato, conduzida pelo professor Vinicius Oliveira, que combina movimentos inspirados no Kickboxing, sequências de AeroBoxe e exercícios funcionais. A comunicação deve enfatizar movimento, ritmo, acolhimento e diferentes níveis, sem restringir o público por gênero e sem prometer emagrecimento ou resultados garantidos. Enquanto não houver grade definida, convide a pessoa a registrar interesse em vez de agendar uma aula.
