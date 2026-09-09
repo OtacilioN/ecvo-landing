@@ -4157,3 +4157,466 @@ footer {
     width: 48px;
   }
 }
+
+/* ---------- Alunos graduados ---------- */
+[hidden] {
+  display: none !important;
+}
+
+.graduates-page main {
+  overflow: clip;
+}
+
+.graduates-page .breadcrumb {
+  position: relative;
+  z-index: 2;
+}
+
+.graduates-hero {
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: clamp(42px, 8vw, 112px);
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+  margin: 0 auto;
+  max-width: var(--max);
+  padding: clamp(54px, 7vw, 88px) clamp(18px, 4vw, 32px) clamp(72px, 9vw, 112px);
+  position: relative;
+}
+
+.graduates-hero::before {
+  background-color: var(--red);
+  content: "";
+  height: clamp(72px, 10vw, 126px);
+  position: absolute;
+  right: clamp(18px, 4vw, 32px);
+  top: 0;
+  width: 4px;
+}
+
+.graduates-hero-copy,
+.graduates-hero-note {
+  min-width: 0;
+}
+
+.graduates-hero h1 {
+  font-size: clamp(3rem, 6vw, 4.75rem);
+  line-height: 0.94;
+  margin: 0;
+  max-width: 860px;
+  overflow-wrap: anywhere;
+}
+
+.graduates-kicker-mark {
+  background-color: var(--red);
+  display: inline-block;
+  height: 9px;
+  width: 9px;
+}
+
+.graduates-lede {
+  color: var(--bone);
+  font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+  line-height: 1.65;
+  margin: 28px 0 0;
+  max-width: 62ch;
+}
+
+.graduates-hero-note {
+  align-self: end;
+  border-left: 4px solid var(--red);
+  padding: 0 0 4px clamp(22px, 3vw, 36px);
+}
+
+.graduates-hero-index {
+  color: transparent;
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 6vw, 5.5rem);
+  letter-spacing: -0.05em;
+  line-height: 0.88;
+  margin-bottom: 24px;
+  -webkit-text-stroke: 1px var(--line);
+}
+
+.graduates-hero-note p {
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.graduates-count {
+  border-top: 1px solid var(--line);
+  color: var(--white) !important;
+  font-family: var(--font-data);
+  font-size: 0.7rem !important;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-top: 22px !important;
+  padding-top: 18px;
+  text-transform: uppercase;
+}
+
+.graduates-directory {
+  margin: 0 auto;
+  max-width: var(--max);
+  padding: clamp(72px, 10vw, 120px) clamp(18px, 4vw, 32px);
+}
+
+.graduates-directory-heading {
+  border-top: 3px solid var(--red);
+  display: grid;
+  gap: clamp(28px, 6vw, 72px);
+  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.55fr);
+  margin-bottom: clamp(42px, 7vw, 72px);
+  padding-top: 24px;
+}
+
+.graduates-directory-heading .eyebrow {
+  margin-bottom: 16px;
+}
+
+.graduates-directory-heading h2 {
+  max-width: 680px;
+}
+
+.graduates-directory-heading > p {
+  align-self: end;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.graduates-state {
+  align-items: center;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--red);
+  display: flex;
+  gap: 22px;
+  justify-content: space-between;
+  min-height: 126px;
+  padding: clamp(24px, 4vw, 38px);
+}
+
+.graduates-state strong,
+.graduates-state span {
+  display: block;
+}
+
+.graduates-state strong {
+  color: var(--white);
+  font-size: 1.05rem;
+  margin-bottom: 5px;
+}
+
+.graduates-state span {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.graduates-state--loading {
+  justify-content: flex-start;
+}
+
+.graduates-loading-mark {
+  align-items: end;
+  display: flex !important;
+  flex: 0 0 54px;
+  gap: 5px;
+  height: 42px;
+}
+
+.graduates-loading-mark i {
+  background-color: var(--red);
+  display: block;
+  height: 42px;
+  width: 8px;
+}
+
+.graduates-loading-mark i:nth-child(2) {
+  height: 29px;
+}
+
+.graduates-loading-mark i:nth-child(3) {
+  height: 16px;
+}
+
+.graduates-state--error .button {
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.graduates-state--noscript {
+  margin-top: 18px;
+}
+
+.graduates-grid {
+  display: grid;
+  gap: clamp(16px, 2.4vw, 28px);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+}
+
+.graduate-card {
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--red);
+  min-width: 0;
+  padding: clamp(22px, 3vw, 30px);
+}
+
+.graduate-card-header {
+  align-items: center;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 104px minmax(0, 1fr);
+}
+
+.graduate-photo {
+  aspect-ratio: 1;
+  background-color: #090909;
+  border: 1px solid var(--line);
+  display: grid;
+  overflow: hidden;
+  place-items: center;
+  position: relative;
+  width: 104px;
+}
+
+.graduate-photo-fallback {
+  color: var(--bone);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: -0.04em;
+}
+
+.graduate-photo img {
+  display: block;
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+.graduate-photo:not(.has-photo) img {
+  opacity: 0;
+}
+
+.graduate-identity {
+  min-width: 0;
+}
+
+.graduate-identity h2 {
+  font-family: var(--font-body);
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem) !important;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+  overflow-wrap: anywhere;
+  text-transform: none;
+}
+
+.graduate-athlete-id {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--font-data);
+  gap: 5px 10px;
+  margin: 12px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.graduate-athlete-id span {
+  color: var(--muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.graduate-athlete-id strong {
+  color: var(--white);
+  font-size: 0.78rem;
+}
+
+.graduation-groups {
+  display: grid;
+  gap: 26px;
+  margin-top: 28px;
+}
+
+.graduation-group {
+  border-top: 1px solid var(--line);
+  min-width: 0;
+  padding-top: 20px;
+}
+
+.graduation-group h3 {
+  color: var(--bone);
+  font-family: var(--font-data);
+  font-size: 0.72rem !important;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  margin: 0 0 18px;
+  overflow-wrap: anywhere;
+  text-transform: uppercase;
+}
+
+.graduation-history {
+  display: grid;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.graduation-record {
+  display: grid;
+  gap: 13px;
+  grid-template-columns: 12px minmax(0, 1fr);
+  margin: 0;
+  padding: 0 0 20px;
+  position: relative;
+}
+
+.graduation-record::before {
+  background-color: var(--line);
+  content: "";
+  left: 5px;
+  position: absolute;
+  top: 12px;
+  bottom: -2px;
+  width: 1px;
+}
+
+.graduation-record:last-child {
+  padding-bottom: 0;
+}
+
+.graduation-record:last-child::before {
+  display: none;
+}
+
+.graduation-marker {
+  background-color: var(--bg);
+  border: 2px solid var(--line);
+  height: 11px;
+  margin-top: 5px;
+  position: relative;
+  width: 11px;
+  z-index: 1;
+}
+
+.graduation-record--latest .graduation-marker {
+  background-color: var(--red);
+  border-color: var(--red);
+}
+
+.graduation-record strong,
+.graduation-date,
+.graduation-latest-label {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.graduation-record strong {
+  color: var(--white);
+  font-size: 0.98rem;
+  line-height: 1.4;
+}
+
+.graduation-date {
+  color: var(--muted);
+  font-family: var(--font-data);
+  font-size: 0.68rem;
+  line-height: 1.5;
+  margin-top: 5px;
+}
+
+.graduation-date--fallback {
+  font-style: italic;
+}
+
+.graduation-latest-label {
+  color: var(--red);
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+.graduates-final-cta {
+  border-top: 1px solid var(--line);
+}
+
+footer {
+  flex-wrap: wrap;
+  gap: 18px 28px;
+}
+
+@media (max-width: 800px) {
+  .graduates-hero,
+  .graduates-directory-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .graduates-hero-note {
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 540px) {
+  .graduates-page .site-header nav a:nth-child(2),
+  .graduates-page .site-header nav a:nth-child(3) {
+    display: none;
+  }
+
+  .graduates-page .site-header nav {
+    width: auto;
+  }
+
+  .graduates-page .breadcrumb {
+    padding-top: 166px;
+  }
+
+  .graduates-hero {
+    padding-top: 42px;
+  }
+
+  .graduates-hero::before {
+    height: 54px;
+  }
+
+  .graduates-state {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .graduates-state--loading {
+    align-items: flex-start;
+  }
+
+  .graduates-state--error .button,
+  .graduates-final-cta .contact-actions,
+  .graduates-final-cta .button {
+    width: 100%;
+  }
+
+  .graduate-card-header {
+    gap: 16px;
+    grid-template-columns: 84px minmax(0, 1fr);
+  }
+
+  .graduate-photo {
+    width: 84px;
+  }
+}
+
+@media (max-width: 360px) {
+  .graduates-hero h1 {
+    font-size: 2.55rem;
+  }
+}

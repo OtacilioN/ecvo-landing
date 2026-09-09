@@ -112,6 +112,7 @@ const generalistPages = [
   "index.html",
   "modalidades/index.html",
   "depoimentos-alunos/index.html",
+  "alunos-graduados/index.html",
   "historia-ecvo/index.html",
   "wellhub-joao-pessoa/index.html",
   "totalpass-joao-pessoa/index.html",
@@ -267,6 +268,76 @@ for (const testimonial of testimonials) {
   await access(resolve(root, testimonial.image.slice(1))).catch(() => {
     failures.push(`foto de ${testimonial.name} não encontrada: ${testimonial.image}`);
   });
+}
+
+const graduatesPagePath = "alunos-graduados/index.html";
+await access(resolve(root, graduatesPagePath)).catch(() => {
+  failures.push(`${graduatesPagePath}: arquivo ausente`);
+});
+await access(resolve(root, "alunos-graduados.js")).catch(() => {
+  failures.push("alunos-graduados.js: arquivo ausente");
+});
+const graduatesPage = await read(graduatesPagePath);
+const graduatesScript = await read("alunos-graduados.js");
+const graduatesSchemas = schemaBlocks(graduatesPage).flat();
+const graduatesUrl = `${site.url}/alunos-graduados/`;
+const graduatesTitle = "Alunos graduados da ECVO | João Pessoa";
+const graduatesDescription = "Conheça os alunos da ECVO com graduações oficialmente registradas em suas modalidades de luta e artes marciais.";
+
+expect(graduatesPage.includes(`<title>${graduatesTitle}</title>`), `${graduatesPagePath}: title incorreto`);
+expect(graduatesPage.includes(`<meta name="description" content="${graduatesDescription}" />`), `${graduatesPagePath}: description incorreta`);
+expect(graduatesPage.includes(`<link rel="canonical" href="${graduatesUrl}" />`), `${graduatesPagePath}: canonical incorreto`);
+expect(graduatesPage.includes(`<meta property="og:url" content="${graduatesUrl}" />`), `${graduatesPagePath}: OG URL incorreta`);
+expect(graduatesPage.includes('<meta name="twitter:card"'), `${graduatesPagePath}: Twitter Card ausente`);
+expect(!graduatesPage.includes("noindex"), `${graduatesPagePath}: não pode ter noindex`);
+expect((graduatesPage.match(/<h1(?:\s|>)/g) || []).length === 1, `${graduatesPagePath}: deve ter exatamente um H1`);
+expect(graduatesPage.includes('<h1 id="page-title">Alunos graduados da ECVO</h1>'), `${graduatesPagePath}: H1 incorreto`);
+expect(graduatesPage.includes('aria-label="Caminho de navegação"'), `${graduatesPagePath}: breadcrumb visível ausente`);
+expect(graduatesPage.includes('<li aria-current="page">Alunos graduados</li>'), `${graduatesPagePath}: página atual ausente do breadcrumb`);
+expect(graduatesSchemas.some((schema) => schema['@type'] === 'CollectionPage' && schema.url === graduatesUrl), `${graduatesPagePath}: CollectionPage JSON-LD ausente ou incorreta`);
+expect(graduatesSchemas.some((schema) => schema['@type'] === 'BreadcrumbList' && schema.itemListElement?.[1]?.item === graduatesUrl), `${graduatesPagePath}: BreadcrumbList JSON-LD ausente ou incorreta`);
+expect(sitemap.includes(graduatesUrl), "sitemap.xml: página de alunos graduados ausente");
+expect(home.includes('href="/alunos-graduados/"'), "index.html: link para alunos graduados ausente");
+expect((graduatesPage.match(/src="\.\.\/alunos-graduados\.js\?v=1"/g) || []).length === 1, `${graduatesPagePath}: script dedicado ausente ou duplicado`);
+expect(graduatesPage.includes("<noscript>"), `${graduatesPagePath}: orientação sem JavaScript ausente`);
+expect(graduatesPage.includes('aria-live="polite"'), `${graduatesPagePath}: estado de carregamento sem aria-live`);
+expect(graduatesPage.includes('role="alert"'), `${graduatesPagePath}: estado de erro sem role alert`);
+expect(graduatesPage.includes(">Tentar novamente</button>"), `${graduatesPagePath}: retry ausente`);
+expect(graduatesPage.includes('data-track="whatsapp_click"'), `${graduatesPagePath}: evento de WhatsApp ausente`);
+expect(/class="whatsapp-float"[^>]*>[\s\S]*?<svg/.test(graduatesPage), `${graduatesPagePath}: botão flutuante deve usar o ícone do WhatsApp`);
+
+expect(graduatesScript.includes("https://app.ecvo.com.br/api/publico/alunos-graduados"), "alunos-graduados.js: endpoint público incorreto");
+expect(graduatesScript.includes("fetch(API_URL"), "alunos-graduados.js: consulta fetch ausente");
+expect(graduatesScript.includes("AbortController"), "alunos-graduados.js: timeout com AbortController ausente");
+expect(graduatesScript.includes("response.ok"), "alunos-graduados.js: response.ok não é verificado");
+expect(/credentials:\s*["']omit["']/.test(graduatesScript), "alunos-graduados.js: credenciais devem ser omitidas");
+expect(!/mode:\s*["']no-cors["']/.test(graduatesScript), "alunos-graduados.js: no-cors não pode ser usado");
+expect(!/credentials:\s*["']include["']/.test(graduatesScript), "alunos-graduados.js: credentials include não pode ser usado");
+expect(graduatesScript.includes("document.createElement"), "alunos-graduados.js: conteúdo deve usar APIs do DOM");
+expect(graduatesScript.includes("textContent"), "alunos-graduados.js: valores públicos devem usar textContent");
+expect(!graduatesScript.includes("innerHTML"), "alunos-graduados.js: innerHTML não pode ser usado");
+expect(graduatesScript.includes('new Intl.DateTimeFormat("pt-BR"'), "alunos-graduados.js: formatação pt-BR ausente");
+expect(graduatesScript.includes('timeZone: "America/Sao_Paulo"'), "alunos-graduados.js: fuso de exibição incorreto");
+expect(graduatesScript.includes("Number.isNaN(parsedDate.getTime())"), "alunos-graduados.js: data inválida não é tratada");
+expect(graduatesScript.includes('url.protocol === "https:"'), "alunos-graduados.js: fotos devem aceitar somente HTTPS");
+expect(graduatesScript.includes('image.loading = "lazy"'), "alunos-graduados.js: lazy loading de foto ausente");
+expect(graduatesScript.includes('image.decoding = "async"'), "alunos-graduados.js: decoding assíncrono de foto ausente");
+expect(graduatesScript.includes('image.crossOrigin = "anonymous"'), "alunos-graduados.js: foto não deve enviar credenciais cross-origin");
+expect(graduatesScript.includes('image.addEventListener("error"'), "alunos-graduados.js: fallback de foto quebrada ausente");
+expect(graduatesScript.includes('retry.addEventListener("click"'), "alunos-graduados.js: retry funcional ausente");
+
+const privatePublicCopyPattern = /\bCPF\b|e-?mail|telefone|inadimpl|situa[cç][aã]o\s+financeira/i;
+const inventedApiPropertyPattern = /(?:\.|\[\s*["'])(?:cpf|email|telefone|situacaoFinanceira|statusFinanceiro|inadimplente|alunoId|usuarioId|graduacaoId|ranking|classificacao|titulo|professor)(?:\b|["'])/i;
+expect(!privatePublicCopyPattern.test(`${graduatesPage}\n${graduatesScript}`), `${graduatesPagePath}: informação privada não pode aparecer`);
+expect(!inventedApiPropertyPattern.test(graduatesScript), "alunos-graduados.js: propriedade privada ou inventada detectada");
+expect(!graduatesScript.includes("ranking") && !graduatesScript.includes("classificação"), "alunos-graduados.js: página não pode criar ranking ou classificação");
+expect(!graduatesScript.includes("professor") && !graduatesScript.includes("título"), "alunos-graduados.js: não pode inventar professor ou título");
+expect(!graduatesScript.includes("console."), "alunos-graduados.js: detalhes técnicos não devem ser expostos no console");
+expect(!await read("script.js").then((script) => script.includes("api/publico/alunos-graduados")), "script.js: consulta pública não pode ser global");
+
+for (const relativePath of publicHtmlPaths.filter((path) => path !== graduatesPagePath)) {
+  const html = relativePath === "index.html" ? home : await read(relativePath);
+  expect(!html.includes("alunos-graduados.js"), `${relativePath}: não pode carregar o script de alunos graduados`);
 }
 
 const originPage = await read("historia-ecvo/index.html");
