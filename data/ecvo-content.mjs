@@ -22,6 +22,13 @@ export const site = {
   logo: "/assets/logo-ecvo-principal.png",
 };
 
+export const monthlyPromotion = {
+  headline: "Promoção por tempo limitado",
+  basePrice: 120,
+  promotionalPrice: 100,
+  condition: "Condição promocional: mensalidade de R$ 100 para quem mantiver o pagamento em dia.",
+};
+
 export const teachers = {
   vinicius: {
     name: "Prof. Vinicius",

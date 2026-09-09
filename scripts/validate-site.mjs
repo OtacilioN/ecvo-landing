@@ -1,7 +1,7 @@
 import { access, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { blogPosts, featuredBlogPost } from "../data/blog-posts.mjs";
-import { modalities, schedule, site, teachers } from "../data/ecvo-content.mjs";
+import { modalities, monthlyPromotion, schedule, site, teachers } from "../data/ecvo-content.mjs";
 import { originStory } from "../data/origin-story.mjs";
 import { testimonials } from "../data/testimonials.mjs";
 
@@ -47,7 +47,7 @@ expect(home.includes(`<meta property="og:title" content="${site.homeTitle}" />`)
 expect(home.includes(`<meta name="twitter:title" content="${site.homeTitle}" />`), "index.html: Twitter title deve ser igual ao title geral");
 expect(home.includes(`<h1 id="hero-title">${site.positioning}</h1>`), "index.html: H1 deve apresentar a ECVO como escola de lutas e artes marciais sem animação que atrase o LCP");
 expect(!home.match(/<section class="hero"[\s\S]*?<\/section>/)?.[0].includes("data-reveal"), "index.html: conteúdo inicial do hero não pode ficar oculto por animação");
-expect(homeHead.includes('rel="preload" as="style" href="styles.css?v=19"'), "index.html: CSS principal deve ser carregado sem bloquear a renderização");
+expect(homeHead.includes('rel="preload" as="style" href="styles.css?v=20"'), "index.html: CSS principal deve ser carregado sem bloquear a renderização");
 expect(homeBusiness?.description?.startsWith(site.positioning), "index.html: LocalBusiness deve começar pelo posicionamento geral da ECVO");
 expect(homeBusiness?.address?.streetAddress === site.address, "index.html: streetAddress deve usar o endereço canônico");
 expect(homeBusiness?.address?.postalCode === site.postalCode, "index.html: postalCode deve usar o CEP canônico");
@@ -58,6 +58,12 @@ const tuesdayThursdayHours = homeBusiness?.openingHoursSpecification?.find(({ da
 expect(tuesdayThursdayHours?.closes === "22:00", "index.html: JSON-LD deve manter a ECVO aberta até 22:00 às terças e quintas");
 expect(modalities.length === 12, "data/ecvo-content.mjs: o catálogo deve manter doze modalidades");
 expect(home.includes("<dt>12</dt>"), "index.html: contador público deve informar doze modalidades");
+const homePromotion = home.match(/<aside class="hero-offer"[\s\S]*?<\/aside>/)?.[0] ?? "";
+expect(homePromotion.includes(monthlyPromotion.headline), "index.html: chamada da promoção de mensalidade ausente");
+expect(homePromotion.includes(`<s>R$ ${monthlyPromotion.basePrice}</s>`), "index.html: preço-base da promoção ausente");
+expect(homePromotion.includes(`R$ ${monthlyPromotion.promotionalPrice}<small>/mês</small>`), "index.html: preço promocional da mensalidade ausente");
+expect(homePromotion.includes(monthlyPromotion.condition), "index.html: condição de adimplência da promoção ausente");
+expect(home.includes('data-cta-position="hero-promotion"'), "index.html: CTA da promoção deve manter rastreamento próprio");
 const offeredServiceNames = (homeBusiness?.makesOffer ?? []).map((offer) => offer?.itemOffered?.name);
 expect(offeredServiceNames.length === modalities.length, "index.html: makesOffer deve representar as doze modalidades");
 for (const modality of modalities) {
