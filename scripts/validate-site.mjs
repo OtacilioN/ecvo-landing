@@ -277,6 +277,9 @@ await access(resolve(root, graduatesPagePath)).catch(() => {
 await access(resolve(root, "alunos-graduados.js")).catch(() => {
   failures.push("alunos-graduados.js: arquivo ausente");
 });
+await access(resolve(root, "assets/assinatura-digital-marcus-vinicius.png")).catch(() => {
+  failures.push("assets/assinatura-digital-marcus-vinicius.png: assinatura ausente");
+});
 const graduatesPage = await read(graduatesPagePath);
 const graduatesScript = await read("alunos-graduados.js");
 const graduatesSchemas = schemaBlocks(graduatesPage).flat();
@@ -298,7 +301,8 @@ expect(graduatesSchemas.some((schema) => schema['@type'] === 'CollectionPage' &&
 expect(graduatesSchemas.some((schema) => schema['@type'] === 'BreadcrumbList' && schema.itemListElement?.[1]?.item === graduatesUrl), `${graduatesPagePath}: BreadcrumbList JSON-LD ausente ou incorreta`);
 expect(sitemap.includes(graduatesUrl), "sitemap.xml: página de alunos graduados ausente");
 expect(home.includes('href="/alunos-graduados/"'), "index.html: link para alunos graduados ausente");
-expect((graduatesPage.match(/src="\.\.\/alunos-graduados\.js\?v=1"/g) || []).length === 1, `${graduatesPagePath}: script dedicado ausente ou duplicado`);
+expect((graduatesPage.match(/src="\.\.\/alunos-graduados\.js\?v=2"/g) || []).length === 1, `${graduatesPagePath}: script dedicado ausente ou duplicado`);
+expect(graduatesPage.includes('id="certificate-status"') && graduatesPage.includes('aria-live="polite"'), `${graduatesPagePath}: status acessível do certificado ausente`);
 expect(graduatesPage.includes("<noscript>"), `${graduatesPagePath}: orientação sem JavaScript ausente`);
 expect(graduatesPage.includes('aria-live="polite"'), `${graduatesPagePath}: estado de carregamento sem aria-live`);
 expect(graduatesPage.includes('role="alert"'), `${graduatesPagePath}: estado de erro sem role alert`);
@@ -325,6 +329,12 @@ expect(graduatesScript.includes('image.decoding = "async"'), "alunos-graduados.j
 expect(graduatesScript.includes('image.crossOrigin = "anonymous"'), "alunos-graduados.js: foto não deve enviar credenciais cross-origin");
 expect(graduatesScript.includes('image.addEventListener("error"'), "alunos-graduados.js: fallback de foto quebrada ausente");
 expect(graduatesScript.includes('retry.addEventListener("click"'), "alunos-graduados.js: retry funcional ausente");
+expect(graduatesScript.includes('button.textContent = "Baixar certificado"'), "alunos-graduados.js: download de certificado ausente");
+expect(graduatesScript.includes('canvas.toBlob'), "alunos-graduados.js: certificado PNG não é gerado pelo navegador");
+expect(graduatesScript.includes('download.download = certificateFilename'), "alunos-graduados.js: arquivo do certificado não recebe nome seguro");
+expect(graduatesScript.includes('/assets/assinatura-digital-marcus-vinicius.png'), "alunos-graduados.js: assinatura fornecida não está integrada");
+expect(graduatesScript.includes('window.gtag("event", "certificate_download"'), "alunos-graduados.js: evento de download do certificado ausente");
+expect(!/certificate_download[\s\S]{0,240}(?:student\.name|athleteId)/.test(graduatesScript), "alunos-graduados.js: Analytics do certificado não pode receber nome ou ID do aluno");
 
 const privatePublicCopyPattern = /\bCPF\b|e-?mail|telefone|inadimpl|situa[cç][aã]o\s+financeira/i;
 const inventedApiPropertyPattern = /(?:\.|\[\s*["'])(?:cpf|email|telefone|situacaoFinanceira|statusFinanceiro|inadimplente|alunoId|usuarioId|graduacaoId|ranking|classificacao|titulo|professor)(?:\b|["'])/i;
