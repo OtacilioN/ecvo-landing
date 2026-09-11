@@ -68,7 +68,6 @@ export const teachers = {
 
 export const schedule = [
   { day: "Segunda", classes: [
-    ["07:00", "muay-thai-joao-pessoa", "Muay Thai"],
     ["08:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["17:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["18:00", "kickboxing-infantil-joao-pessoa", "Kickboxing - Turma Kids"],
@@ -77,10 +76,10 @@ export const schedule = [
   { day: "Terça", classes: [
     ["10:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
     ["15:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
+    ["19:00", "muay-thai-joao-pessoa", "Muay Thai"],
     ["21:00", "krav-maga-joao-pessoa", "Krav Maga"],
   ] },
   { day: "Quarta", classes: [
-    ["07:00", "muay-thai-joao-pessoa", "Muay Thai"],
     ["08:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["17:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["18:00", "kickboxing-infantil-joao-pessoa", "Kickboxing - Turma Kids"],
@@ -89,10 +88,10 @@ export const schedule = [
   { day: "Quinta", classes: [
     ["10:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
     ["15:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
+    ["19:00", "muay-thai-joao-pessoa", "Muay Thai"],
     ["21:00", "krav-maga-joao-pessoa", "Krav Maga"],
   ] },
   { day: "Sexta", classes: [
-    ["07:00", "muay-thai-joao-pessoa", "Muay Thai"],
     ["08:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["17:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["18:00", "kickboxing-infantil-joao-pessoa", "Kickboxing - Turma Kids"],
