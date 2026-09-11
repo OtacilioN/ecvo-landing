@@ -1,7 +1,7 @@
 import { access, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { blogPosts, featuredBlogPost } from "../data/blog-posts.mjs";
-import { modalities, monthlyPromotion, recruitment, schedule, site, teachers } from "../data/ecvo-content.mjs";
+import { modalities, monthlyPromotion, recruitment, schedule, site, storePromotion, teachers } from "../data/ecvo-content.mjs";
 import { originStory } from "../data/origin-story.mjs";
 import { testimonials } from "../data/testimonials.mjs";
 
@@ -51,7 +51,7 @@ expect(home.includes(`<meta property="og:title" content="${site.homeTitle}" />`)
 expect(home.includes(`<meta name="twitter:title" content="${site.homeTitle}" />`), "index.html: Twitter title deve ser igual ao title geral");
 expect(home.includes(`<h1 id="hero-title">${site.positioning}</h1>`), "index.html: H1 deve apresentar a ECVO como escola de lutas e artes marciais sem animação que atrase o LCP");
 expect(!home.match(/<section class="hero"[\s\S]*?<\/section>/)?.[0].includes("data-reveal"), "index.html: conteúdo inicial do hero não pode ficar oculto por animação");
-expect(homeHead.includes('rel="preload" as="style" href="styles.css?v=22"'), "index.html: CSS principal deve ser carregado sem bloquear a renderização");
+expect(homeHead.includes('rel="preload" as="style" href="styles.css?v=23"'), "index.html: CSS principal deve ser carregado sem bloquear a renderização");
 expect(homeBusiness?.description?.startsWith(site.positioning), "index.html: LocalBusiness deve começar pelo posicionamento geral da ECVO");
 expect(homeBusiness?.address?.streetAddress === site.address, "index.html: streetAddress deve usar o endereço canônico");
 expect(homeBusiness?.address?.postalCode === site.postalCode, "index.html: postalCode deve usar o CEP canônico");
@@ -68,6 +68,15 @@ expect(homePromotion.includes(`<s>R$ ${monthlyPromotion.basePrice}</s>`), "index
 expect(homePromotion.includes(`R$ ${monthlyPromotion.promotionalPrice}<small>/mês</small>`), "index.html: preço promocional da mensalidade ausente");
 expect(homePromotion.includes(monthlyPromotion.condition), "index.html: condição de adimplência da promoção ausente");
 expect(home.includes('data-cta-position="hero-promotion"'), "index.html: CTA da promoção deve manter rastreamento próprio");
+const storeSection = home.match(/<aside class="store-promotion"[\s\S]*?<\/aside>/)?.[0] ?? "";
+expect(storeSection.includes(storePromotion.kicker), "index.html: identificação da Loja de Combate ausente");
+expect(storeSection.includes(storePromotion.headline), "index.html: título da Loja de Combate ausente");
+expect(normalizeWhitespace(storeSection).includes(storePromotion.description), "index.html: descrição da Loja de Combate fora da fonte canônica");
+expect(storeSection.includes(storePromotion.ctaLabel), "index.html: CTA da Loja de Combate ausente");
+expect(storeSection.includes(`href="${storePromotion.url}"`), "index.html: URL da Loja de Combate incorreta");
+expect(storeSection.includes('target="_blank" rel="noopener noreferrer"'), "index.html: link da Loja de Combate deve abrir com segurança em nova aba");
+expect(storeSection.includes('data-track="store_click"'), "index.html: evento da Loja de Combate ausente");
+expect(storeSection.includes('data-cta-position="store-promotion"'), "index.html: CTA da Loja de Combate deve manter rastreamento próprio");
 const careersSection = home.match(/<section class="section careers-section"[\s\S]*?<\/section>/)?.[0] ?? "";
 expect(careersSection.includes(recruitment.headline), "index.html: título da seção Trabalhe conosco ausente");
 for (const role of recruitment.roles) {

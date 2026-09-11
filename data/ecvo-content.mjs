@@ -29,6 +29,14 @@ export const monthlyPromotion = {
   condition: "Condição promocional: mensalidade de R$ 100 para quem mantiver o pagamento em dia.",
 };
 
+export const storePromotion = {
+  kicker: "Loja oficial da ECVO · Online",
+  headline: "Equipe-se para o próximo round.",
+  description: "Luvas de boxe e equipamentos de combate. Compre online e retire na ECVO, no Valentina.",
+  ctaLabel: "Conhecer a Loja de Combate",
+  url: "https://lojadecombate.com.br/",
+};
+
 export const recruitment = {
   headline: "Traga sua técnica para a ECVO.",
   roles: ["Jiu-Jitsu", "NoGi", "Judô", "Boxe", "Wrestling"],

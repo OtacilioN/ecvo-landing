@@ -5028,3 +5028,170 @@ footer {
     font-size: 2.55rem;
   }
 }
+
+/* ---------- Loja de Combate ---------- */
+.store-promotion {
+  background:
+    linear-gradient(118deg, rgba(241, 26, 31, 0.98) 0 36%, rgba(168, 17, 22, 0.96) 36% 100%),
+    var(--red);
+  border-block: 1px solid rgba(255, 255, 255, 0.28);
+  overflow: hidden;
+  padding: clamp(38px, 6vw, 72px) clamp(18px, 5vw, 72px);
+  position: relative;
+}
+
+.store-promotion::before {
+  color: rgba(20, 20, 20, 0.12);
+  content: "///";
+  font-family: var(--font-display);
+  font-size: clamp(12rem, 34vw, 34rem);
+  letter-spacing: -0.12em;
+  line-height: 0.62;
+  pointer-events: none;
+  position: absolute;
+  right: -0.08em;
+  top: -0.06em;
+  transform: skewX(-10deg);
+}
+
+.store-promotion-inner {
+  align-items: center;
+  display: grid;
+  gap: clamp(26px, 4vw, 56px);
+  grid-template-columns: minmax(118px, 0.26fr) minmax(280px, 1fr) auto;
+  margin: 0 auto;
+  max-width: var(--max);
+  position: relative;
+  z-index: 1;
+}
+
+.store-promotion-mark {
+  align-content: center;
+  aspect-ratio: 1;
+  background: var(--bg);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  display: grid;
+  justify-items: center;
+  max-width: 158px;
+  padding: 18px;
+  transform: rotate(-3deg);
+  width: 100%;
+}
+
+.store-promotion-mark span {
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 4.5vw, 4rem);
+  letter-spacing: -0.08em;
+  line-height: 0.84;
+}
+
+.store-promotion-mark i {
+  color: var(--red);
+  font-family: var(--font-data);
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-top: 10px;
+}
+
+.store-promotion-kicker {
+  color: var(--white);
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+}
+
+.store-promotion-copy h2 {
+  color: var(--white);
+  font-size: clamp(2.2rem, 5vw, 4.9rem);
+  line-height: 0.9;
+  max-width: 760px;
+}
+
+.store-promotion-copy > p:last-child {
+  color: var(--white);
+  font-size: clamp(0.96rem, 1.5vw, 1.12rem);
+  font-weight: 700;
+  line-height: 1.55;
+  margin: 20px 0 0;
+  max-width: 58ch;
+}
+
+.store-promotion-link {
+  align-items: center;
+  background: var(--white);
+  border: 2px solid var(--white);
+  color: var(--bg);
+  display: inline-flex;
+  font-family: var(--font-data);
+  font-size: 0.72rem;
+  font-weight: 700;
+  gap: 14px;
+  justify-content: space-between;
+  letter-spacing: 0.08em;
+  min-height: 58px;
+  padding: 16px 20px;
+  text-transform: uppercase;
+  transition:
+    background-color 220ms var(--ease),
+    color 220ms var(--ease),
+    transform 220ms var(--ease);
+}
+
+.store-promotion-link > span[aria-hidden] {
+  color: var(--red);
+  font-size: 1.3rem;
+  transition: transform 220ms var(--ease);
+}
+
+.store-promotion-link:hover {
+  background: var(--bg);
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+.store-promotion-link:hover > span[aria-hidden] {
+  transform: translate(3px, -3px);
+}
+
+@media (max-width: 900px) {
+  .store-promotion-inner {
+    grid-template-columns: 104px minmax(0, 1fr);
+  }
+
+  .store-promotion-link {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+
+@media (max-width: 540px) {
+  .store-promotion-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .store-promotion-mark {
+    max-width: 92px;
+    padding: 13px;
+  }
+
+  .store-promotion-copy h2 {
+    font-size: clamp(2.45rem, 12vw, 4rem);
+  }
+
+  .store-promotion-link {
+    grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .store-promotion-link,
+  .store-promotion-link > span[aria-hidden] {
+    transition: none;
+  }
+}
