@@ -24,6 +24,10 @@ function expect(condition, message) {
   if (!condition) failures.push(message);
 }
 
+function normalizeWhitespace(value) {
+  return value.replace(/\s+/g, " ").trim();
+}
+
 async function read(relativePath) {
   return readFile(resolve(root, relativePath), "utf8");
 }
@@ -47,7 +51,7 @@ expect(home.includes(`<meta property="og:title" content="${site.homeTitle}" />`)
 expect(home.includes(`<meta name="twitter:title" content="${site.homeTitle}" />`), "index.html: Twitter title deve ser igual ao title geral");
 expect(home.includes(`<h1 id="hero-title">${site.positioning}</h1>`), "index.html: H1 deve apresentar a ECVO como escola de lutas e artes marciais sem animação que atrase o LCP");
 expect(!home.match(/<section class="hero"[\s\S]*?<\/section>/)?.[0].includes("data-reveal"), "index.html: conteúdo inicial do hero não pode ficar oculto por animação");
-expect(homeHead.includes('rel="preload" as="style" href="styles.css?v=21"'), "index.html: CSS principal deve ser carregado sem bloquear a renderização");
+expect(homeHead.includes('rel="preload" as="style" href="styles.css?v=22"'), "index.html: CSS principal deve ser carregado sem bloquear a renderização");
 expect(homeBusiness?.description?.startsWith(site.positioning), "index.html: LocalBusiness deve começar pelo posicionamento geral da ECVO");
 expect(homeBusiness?.address?.streetAddress === site.address, "index.html: streetAddress deve usar o endereço canônico");
 expect(homeBusiness?.address?.postalCode === site.postalCode, "index.html: postalCode deve usar o CEP canônico");
@@ -74,6 +78,12 @@ expect(careersSection.includes('data-track="whatsapp_click"'), "index.html: even
 expect(careersSection.includes('data-cta-position="careers"'), "index.html: CTA da seção Trabalhe conosco deve manter rastreamento próprio");
 const careersWhatsapp = careersSection.match(/href="(https:\/\/wa\.me\/[^\"]+)"/)?.[1] ?? "";
 expect(decodeURIComponent(careersWhatsapp).includes(recruitment.whatsappMessage), "index.html: mensagem de WhatsApp da seção Trabalhe conosco fora da fonte canônica");
+expect(careersSection.includes(recruitment.spaceRental.headline), "index.html: título da subseção de locação de espaço ausente");
+expect(normalizeWhitespace(careersSection).includes(recruitment.spaceRental.description), "index.html: explicação da locação de espaço fora da fonte canônica");
+expect(careersSection.includes(recruitment.spaceRental.ctaLabel), "index.html: CTA da locação de espaço ausente");
+expect(careersSection.includes('data-cta-position="space-rental"'), "index.html: CTA da locação de espaço deve manter rastreamento próprio");
+const rentalWhatsapp = careersSection.match(/href="(https:\/\/wa\.me\/[^\"]+)" data-track="whatsapp_click" data-cta-position="space-rental"/)?.[1] ?? "";
+expect(decodeURIComponent(rentalWhatsapp).includes(recruitment.spaceRental.whatsappMessage), "index.html: mensagem de WhatsApp da locação de espaço fora da fonte canônica");
 const offeredServiceNames = (homeBusiness?.makesOffer ?? []).map((offer) => offer?.itemOffered?.name);
 expect(offeredServiceNames.length === modalities.length, "index.html: makesOffer deve representar as doze modalidades");
 for (const modality of modalities) {

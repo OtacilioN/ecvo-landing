@@ -34,6 +34,12 @@ export const recruitment = {
   roles: ["Jiu-Jitsu", "NoGi", "Judô", "Boxe", "Wrestling"],
   whatsappMessage: "Sou professor e gostaria de trabalhar com a Escola de Combate ECVO.",
   ctaLabel: "Quero trabalhar com a ECVO",
+  spaceRental: {
+    headline: "Já tem seus alunos?",
+    description: "Se você é professor, já tem seus alunos e só precisa de um espaço, também trabalhamos com esse modelo: você pode alugar horas de utilização na ECVO. Entre em contato para negociar valores.",
+    whatsappMessage: "Sou professor, já tenho meus alunos e gostaria de alugar horas de utilização na ECVO. Podemos conversar sobre disponibilidade e valores?",
+    ctaLabel: "Quero alugar horários",
+  },
 };
 
 export const teachers = {
