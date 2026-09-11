@@ -29,6 +29,13 @@ export const monthlyPromotion = {
   condition: "Condição promocional: mensalidade de R$ 100 para quem mantiver o pagamento em dia.",
 };
 
+export const recruitment = {
+  headline: "Traga sua técnica para a ECVO.",
+  roles: ["Jiu-Jitsu", "NoGi", "Judô", "Boxe", "Wrestling"],
+  whatsappMessage: "Sou professor e gostaria de trabalhar com a Escola de Combate ECVO.",
+  ctaLabel: "Quero trabalhar com a ECVO",
+};
+
 export const teachers = {
   vinicius: {
     name: "Prof. Vinicius",

@@ -1080,6 +1080,159 @@ h3 {
   margin-top: 16px;
 }
 
+/* ---------- Trabalhe conosco ---------- */
+.careers-section {
+  overflow: clip;
+  position: relative;
+}
+
+.careers-panel {
+  background: var(--bone);
+  color: var(--bg);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(390px, 0.85fr);
+  min-height: 520px;
+  position: relative;
+}
+
+.careers-panel::before {
+  background: var(--red);
+  content: "";
+  inset: 0 auto 0 0;
+  position: absolute;
+  width: 8px;
+  z-index: 1;
+}
+
+.careers-copy {
+  align-content: center;
+  display: grid;
+  padding: clamp(44px, 7vw, 84px);
+}
+
+.careers-copy .eyebrow {
+  color: var(--red-deep);
+  margin-bottom: 18px;
+}
+
+.careers-copy h2 {
+  color: var(--bg);
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  letter-spacing: -0.04em;
+  line-height: 0.94;
+  margin: 0;
+  max-width: 760px;
+  text-transform: uppercase;
+}
+
+.careers-intro {
+  color: var(--bg);
+  font-size: clamp(1rem, 1.7vw, 1.2rem);
+  margin: 26px 0 38px;
+  max-width: 54ch;
+}
+
+.careers-list-label {
+  color: var(--red-deep);
+  font-family: var(--font-data);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+}
+
+.careers-roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.careers-roles li {
+  align-items: baseline;
+  border: 1px solid rgba(20, 20, 20, 0.42);
+  display: inline-flex;
+  font-size: 0.86rem;
+  font-weight: 800;
+  gap: 9px;
+  letter-spacing: 0.05em;
+  padding: 10px 14px;
+  text-transform: uppercase;
+}
+
+.careers-roles span {
+  color: var(--red-deep);
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+}
+
+.careers-action {
+  align-content: end;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 30px, rgba(241, 26, 31, 0.08) 30px 31px),
+    var(--bg);
+  color: var(--white);
+  display: grid;
+  overflow: hidden;
+  padding: clamp(36px, 4vw, 50px);
+  position: relative;
+}
+
+.careers-action::before {
+  color: rgba(255, 255, 255, 0.035);
+  content: "TEAM";
+  font-family: var(--font-display);
+  font-size: clamp(7rem, 16vw, 14rem);
+  left: -0.08em;
+  line-height: 0.8;
+  position: absolute;
+  top: 30px;
+  transform: rotate(-90deg) translateX(-100%);
+  transform-origin: left top;
+  white-space: nowrap;
+}
+
+.careers-code {
+  color: var(--red);
+  font-family: var(--font-data);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin-bottom: 28px;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.careers-action p {
+  color: var(--bone);
+  margin: 0 0 4px;
+  position: relative;
+}
+
+.careers-action strong {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 30px;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.careers-action .button {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  line-height: 1.35;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+
 /* ---------- Horários ---------- */
 /* Cada modalidade tem uma cor de acento, aplicada via data-mod. */
 [data-mod="muaythai"] {
@@ -2155,6 +2308,14 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  .careers-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .careers-action {
+    min-height: 360px;
+  }
+
   .modality-content {
     grid-template-columns: 1fr;
   }
@@ -2234,6 +2395,27 @@ footer {
   .professor-retrato {
     height: 100%;
     min-height: 0;
+  }
+
+  .careers-copy,
+  .careers-action {
+    padding: 36px 24px;
+  }
+
+  .careers-copy h2 {
+    font-size: clamp(2.5rem, 13vw, 4rem);
+  }
+
+  .careers-intro {
+    margin-bottom: 30px;
+  }
+
+  .careers-roles li {
+    flex: 1 1 calc(50% - 8px);
+  }
+
+  .careers-action {
+    min-height: 330px;
   }
 
   .hero-stats {
