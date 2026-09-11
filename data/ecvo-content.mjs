@@ -68,6 +68,7 @@ export const teachers = {
 
 export const schedule = [
   { day: "Segunda", classes: [
+    ["07:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["08:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["17:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["18:00", "kickboxing-infantil-joao-pessoa", "Kickboxing - Turma Kids"],
@@ -80,6 +81,7 @@ export const schedule = [
     ["21:00", "krav-maga-joao-pessoa", "Krav Maga"],
   ] },
   { day: "Quarta", classes: [
+    ["07:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["08:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["17:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["18:00", "kickboxing-infantil-joao-pessoa", "Kickboxing - Turma Kids"],
@@ -92,6 +94,7 @@ export const schedule = [
     ["21:00", "krav-maga-joao-pessoa", "Krav Maga"],
   ] },
   { day: "Sexta", classes: [
+    ["07:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["08:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["17:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["18:00", "kickboxing-infantil-joao-pessoa", "Kickboxing - Turma Kids"],
