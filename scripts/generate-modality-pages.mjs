@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { modalities, schedule, site, teachers } from "../data/ecvo-content.mjs";
+import { modalities, schedule, site, teachers, yogaInterest } from "../data/ecvo-content.mjs";
 import { renderFontHead } from "./render-performance-head.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -322,6 +322,74 @@ ${renderRelated(modality)}
 `;
 }
 
+function renderYogaPage() {
+  const yoga = yogaInterest;
+  const url = pageUrl(yoga.slug);
+  const whatsapp = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(yoga.message)}`;
+  const breadcrumb = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Início", item: `${site.url}/` },
+    { "@type": "ListItem", position: 2, name: "Yoga", item: url },
+  ] };
+
+  return `<!doctype html>
+${generatedNote}
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>${escapeHtml(yoga.title)}</title>
+    <meta name="description" content="${escapeHtml(yoga.description)}" />
+    <link rel="canonical" href="${url}" />
+    <meta property="og:title" content="${escapeHtml(yoga.title)}" />
+    <meta property="og:description" content="${escapeHtml(yoga.description)}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="${url}" />
+    <meta property="og:image" content="${site.url}${site.logo}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="${escapeHtml(yoga.title)}" />
+    <meta name="twitter:description" content="${escapeHtml(yoga.description)}" />
+    <meta name="theme-color" content="#141414" />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <script type="application/ld+json">${jsonLd(breadcrumb)}</script>
+    <script>document.documentElement.classList.add("js");</script>
+${renderFontHead("../")}
+    <link rel="stylesheet" href="../styles.css?v=24" />
+  </head>
+  <body class="modality-page yoga-page" data-modality="Yoga">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header" aria-label="Topo">
+      <a class="brand" href="/" aria-label="ECVO início"><img class="brand-logo" src="../assets/ecvo-simbolo-escuro.png" alt="" width="56" height="56" /><span class="brand-name"><strong>Escola de Combate</strong><span>Vinicius Oliveira</span></span></a>
+      <nav aria-label="Navegação principal"><a href="/modalidades/">Artes marciais</a><a href="#proposta">A proposta</a><a href="#interesse">Tenho interesse</a><a class="nav-app-link" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="header">Conversar com a ECVO</a></nav>
+    </header>
+    <main id="conteudo">
+      <nav class="breadcrumb" aria-label="Caminho de navegação"><ol><li><a href="/">Início</a></li><li aria-current="page">Yoga</li></ol></nav>
+      <section class="yoga-hero" aria-labelledby="page-title">
+        <div class="yoga-hero-copy">
+          <p class="eyebrow"><span class="pulse"></span>${escapeHtml(yoga.eyebrow)}</p>
+          <h1 id="page-title">${escapeHtml(yoga.headline)}</h1>
+          <p class="yoga-intro">${escapeHtml(yoga.introduction)}</p>
+          <div class="hero-actions"><a class="button primary" href="#interesse" data-track="yoga_interest_view" data-cta-position="hero">Quero saber quando começar <span class="button-arrow" aria-hidden="true">→</span></a><a class="button secondary" href="#proposta">Entender a proposta</a></div>
+          <p class="yoga-honesty">Em breve · Ainda sem professor ou horários definidos</p>
+        </div>
+        <div class="yoga-art" aria-hidden="true"><div class="yoga-art-orbit"><span class="yoga-art-core"></span></div><span class="yoga-art-word">PRESENÇA</span><span class="yoga-art-caption">MOVIMENTO / RESPIRAÇÃO / EQUILÍBRIO</span></div>
+      </section>
+      <section class="section yoga-proposal" id="proposta" aria-labelledby="proposta-title">
+        <div class="yoga-proposal-heading"><p class="eyebrow">Um novo caminho na ECVO</p><h2 id="proposta-title">Nossa essência é a luta. Nosso olhar é para o corpo todo.</h2></div>
+        <div class="yoga-proposal-body"><p>O Yoga chega como uma possibilidade de ampliar o cuidado com o movimento e o bem-estar. Você não precisa praticar artes marciais para se interessar — e quem já treina pode encontrar aqui outro ritmo para a sua rotina.</p><p>Estamos ouvindo a comunidade antes de definir os detalhes. Sua mensagem nos ajuda a entender quem quer participar e quais períodos fazem mais sentido.</p></div>
+      </section>
+      <section class="section yoga-steps" aria-labelledby="passos-title"><div class="section-heading"><p class="eyebrow">Por enquanto, é simples</p><h2 id="passos-title">Interesse agora. Detalhes depois.</h2></div><div class="yoga-step-grid"><article><span>01 /</span><h3>Você conta seu interesse.</h3><p>Envie uma mensagem pelo WhatsApp e, se quiser, diga quando poderia participar.</p></article><article><span>02 /</span><h3>A ECVO escuta.</h3><p>Usaremos essas conversas para orientar o planejamento da turma, sem prometer uma vaga ou data de início.</p></article><article><span>03 /</span><h3>Novidades com clareza.</h3><p>Quando professor, formato e horários forem definidos, a equipe poderá compartilhar as informações com quem entrou em contato.</p></article></div></section>
+      <section class="section yoga-interest" id="interesse" aria-labelledby="interesse-title"><div class="yoga-interest-copy"><p class="eyebrow">Yoga no Valentina, João Pessoa</p><h2 id="interesse-title">Quer estar por perto quando a novidade chegar?</h2><p>${escapeHtml(yoga.status)}</p><p class="yoga-interest-note">Não é matrícula nem reserva. O contato só acontece se você enviar a mensagem no WhatsApp.</p></div><div class="yoga-interest-panel"><p class="yoga-panel-index">01 — Seu interesse</p><label for="yoga-period">Qual período costuma funcionar melhor para você?</label><select id="yoga-period" name="period"><option value="">Prefiro conversar depois</option><option value="Manhã">Manhã</option><option value="Tarde">Tarde</option><option value="Noite">Noite</option><option value="Tenho flexibilidade">Tenho flexibilidade</option></select><label for="yoga-experience">Você já praticou Yoga?</label><select id="yoga-experience" name="experience"><option value="">Prefiro conversar depois</option><option value="Estou começando">Estou começando</option><option value="Já pratiquei">Já pratiquei</option></select><a id="yoga-whatsapp" class="button primary" href="${whatsapp}" data-track="whatsapp_click" data-cta-position="yoga-interest" data-base-message="${escapeHtml(yoga.message)}" data-whatsapp="${site.whatsapp}">Enviar meu interesse pelo WhatsApp <span class="button-arrow" aria-hidden="true">→</span></a><small>As escolhas acima entram na mensagem. Confira e envie no WhatsApp para falar com a equipe.</small></div></section>
+      <section class="section yoga-location" aria-labelledby="localizacao-title"><div><p class="eyebrow">Onde será</p><h2 id="localizacao-title">A mesma ECVO. Mais um jeito de se mover.</h2></div><div><p>${escapeHtml(site.address)}<br />${escapeHtml(site.neighborhood)} · ${escapeHtml(site.locality)}, ${escapeHtml(site.region)} · CEP ${escapeHtml(site.postalCode)}<br />${escapeHtml(site.reference)}</p><a class="button secondary" href="${site.mapUrl}" target="_blank" rel="noopener" data-track="map_click" data-cta-position="location">Abrir no mapa <span class="sr-only">(abre em nova aba)</span></a></div></section>
+      <section class="section yoga-questions" aria-labelledby="faq-title"><div class="section-heading"><p class="eyebrow">Dúvidas rápidas</p><h2 id="faq-title">O que já sabemos.</h2></div><div class="faq-list"><details><summary>Já posso me matricular em Yoga?</summary><p>Ainda não. Estamos mapeando interesse e não há turma aberta para matrícula ou aula experimental.</p></details><details><summary>Quem será o professor e quais serão os horários?</summary><p>Ainda estamos definindo professor, formato e horários. Por isso, não anunciamos uma grade neste momento.</p></details><details><summary>Preciso treinar artes marciais na ECVO?</summary><p>Não. O interesse em Yoga é aberto também para quem ainda não conhece nossas aulas de lutas.</p></details><details><summary>Yoga estará no Wellhub ou TotalPass?</summary><p>A disponibilidade em plataformas ainda não foi definida. Consulte a equipe quando a turma for anunciada.</p></details></div></section>
+    </main>
+    <footer><div class="footer-brand"><img class="brand-logo" src="../assets/ecvo-simbolo-escuro.png" alt="" width="64" height="64" /><span class="brand-name"><strong>Escola de Combate</strong><span>Vinicius Oliveira</span></span></div><span class="footer-meta">João Pessoa · PB · © ECVO</span></footer>
+    <a class="whatsapp-float" href="${whatsapp}" aria-label="Falar sobre o futuro Yoga da ECVO no WhatsApp" data-track="whatsapp_click" data-cta-position="floating">${whatsappIcon}</a>
+    <script src="../script.js?v=4"></script><script src="../yoga-interest.js" defer></script>
+  </body>
+</html>
+`;
+}
+
 function renderModalitiesIndex() {
   const title = site.modalitiesTitle;
   const description = "Conheça as modalidades da ECVO, escola de lutas e artes marciais no Valentina, em João Pessoa: Kickboxing, Kickboxing Funcional e AeroBoxe, Karatê Kids, Krav Maga, Judô, Jiu-Jitsu, NoGi, MMA, Muay Thai e Boxe.";
@@ -329,7 +397,7 @@ function renderModalitiesIndex() {
   const cards = modalities.map((modality) => `          <a${modality.heroImage ? ' class="has-photo"' : ""} href="/${modality.slug}/">${modality.heroImage ? `<img class="modality-card-photo" src="..${modality.heroImage.src}" srcset="${modality.heroImage.srcSet.split(", ").map((source) => `..${source}`).join(", ")}" sizes="(max-width: 560px) 100vw, 50vw" alt="${escapeHtml(modality.heroImage.alt)}" width="${modality.heroImage.width}" height="${modality.heroImage.height}" loading="lazy" decoding="async" style="--photo-position: ${modality.heroImage.position};" />` : ""}<span>${modality.independentTeacher ? "Professor independente" : "Modalidade"}</span><h2>${escapeHtml(modality.name)}</h2><p>${escapeHtml(modality.hero)}</p><strong>Conhecer ${escapeHtml(modality.name)} <span aria-hidden="true">→</span></strong></a>`).join("\n");
   return `<!doctype html>
 ${generatedNote}
-<html lang="pt-BR"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>${escapeHtml(title)}</title><meta name="description" content="${escapeHtml(description)}" /><link rel="canonical" href="${site.url}/modalidades/" /><meta property="og:title" content="${escapeHtml(title)}" /><meta property="og:description" content="${escapeHtml(socialDescription)}" /><meta property="og:type" content="website" /><meta property="og:url" content="${site.url}/modalidades/" /><meta property="og:image" content="${site.url}${site.logo}" /><meta name="twitter:card" content="summary" /><meta name="twitter:title" content="${escapeHtml(title)}" /><meta name="twitter:description" content="${escapeHtml(socialDescription)}" /><meta name="twitter:image" content="${site.url}${site.logo}" /><meta name="theme-color" content="#141414" /><link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" /><link rel="apple-touch-icon" href="../assets/logo-ecvo-negativo.png" /><script>document.documentElement.classList.add("js");</script>${renderFontHead("../")}<link rel="stylesheet" href="../styles.css?v=19" /><script type="application/ld+json">${jsonLd({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Início", item: `${site.url}/` }, { "@type": "ListItem", position: 2, name: "Modalidades", item: `${site.url}/modalidades/` }] })}</script></head><body class="modality-page" data-modality="Modalidades"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header" aria-label="Topo"><a class="brand" href="/" aria-label="ECVO início"><img class="brand-logo" src="../assets/ecvo-simbolo-escuro.png" alt="" width="56" height="56" /><span class="brand-name"><strong>Escola de Combate</strong><span>Vinicius Oliveira</span></span></a><nav aria-label="Navegação principal"><a href="/#horarios">Horários</a><a href="/#como-chegar">Como chegar</a></nav></header><main id="conteudo"><nav class="breadcrumb" aria-label="Caminho de navegação"><ol><li><a href="/">Início</a></li><li aria-current="page">Modalidades</li></ol></nav><section class="modality-hero"><p class="eyebrow"><span class="pulse"></span>Artes marciais no Valentina, João Pessoa</p><h1>Modalidades na ECVO</h1><p>Conheça as práticas oferecidas pela ECVO e as informações sobre o Karatê Adulto do professor independente que aluga o espaço.</p><div class="hero-actions"><a class="button primary" href="/#horarios" data-track="schedule_view" data-cta-position="hero">Consultar horários</a></div></section><section class="section" aria-labelledby="modalidades-title"><div class="section-heading"><p class="eyebrow">Escolha sua modalidade</p><h2 id="modalidades-title">Cada treino tem seu caminho.</h2></div><div class="modalities-directory">${cards}</div></section></main><footer><div class="footer-brand"><img class="brand-logo" src="../assets/ecvo-simbolo-escuro.png" alt="" width="64" height="64" /><span class="brand-name"><strong>Escola de Combate</strong><span>Vinicius Oliveira</span></span></div><span class="footer-meta">João Pessoa · PB · © ECVO</span></footer><script src="../script.js?v=4"></script></body></html>\n`;
+<html lang="pt-BR"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>${escapeHtml(title)}</title><meta name="description" content="${escapeHtml(description)}" /><link rel="canonical" href="${site.url}/modalidades/" /><meta property="og:title" content="${escapeHtml(title)}" /><meta property="og:description" content="${escapeHtml(socialDescription)}" /><meta property="og:type" content="website" /><meta property="og:url" content="${site.url}/modalidades/" /><meta property="og:image" content="${site.url}${site.logo}" /><meta name="twitter:card" content="summary" /><meta name="twitter:title" content="${escapeHtml(title)}" /><meta name="twitter:description" content="${escapeHtml(socialDescription)}" /><meta name="twitter:image" content="${site.url}${site.logo}" /><meta name="theme-color" content="#141414" /><link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" /><link rel="apple-touch-icon" href="../assets/logo-ecvo-negativo.png" /><script>document.documentElement.classList.add("js");</script>${renderFontHead("../")}<link rel="stylesheet" href="../styles.css?v=24" /><script type="application/ld+json">${jsonLd({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Início", item: `${site.url}/` }, { "@type": "ListItem", position: 2, name: "Modalidades", item: `${site.url}/modalidades/` }] })}</script></head><body class="modality-page" data-modality="Modalidades"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header" aria-label="Topo"><a class="brand" href="/" aria-label="ECVO início"><img class="brand-logo" src="../assets/ecvo-simbolo-escuro.png" alt="" width="56" height="56" /><span class="brand-name"><strong>Escola de Combate</strong><span>Vinicius Oliveira</span></span></a><nav aria-label="Navegação principal"><a href="/#horarios">Horários</a><a href="/#como-chegar">Como chegar</a></nav></header><main id="conteudo"><nav class="breadcrumb" aria-label="Caminho de navegação"><ol><li><a href="/">Início</a></li><li aria-current="page">Modalidades</li></ol></nav><section class="modality-hero"><p class="eyebrow"><span class="pulse"></span>Artes marciais no Valentina, João Pessoa</p><h1>Modalidades na ECVO</h1><p>Conheça as práticas oferecidas pela ECVO e as informações sobre o Karatê Adulto do professor independente que aluga o espaço.</p><div class="hero-actions"><a class="button primary" href="/#horarios" data-track="schedule_view" data-cta-position="hero">Consultar horários</a></div></section><section class="section" aria-labelledby="modalidades-title"><div class="section-heading"><p class="eyebrow">Escolha sua modalidade</p><h2 id="modalidades-title">Cada treino tem seu caminho.</h2></div><div class="modalities-directory">${cards}</div></section><section class="section yoga-directory-note" aria-labelledby="yoga-directory-title"><div><p class="eyebrow">Bem-estar · Em preparação</p><h2 id="yoga-directory-title">Além do combate, espaço para respirar.</h2><p>${escapeHtml(yogaInterest.teaser)}</p></div><a class="button secondary" href="/${yogaInterest.slug}/">${escapeHtml(yogaInterest.teaserLabel)} <span aria-hidden="true">→</span></a></section></main><footer><div class="footer-brand"><img class="brand-logo" src="../assets/ecvo-simbolo-escuro.png" alt="" width="64" height="64" /><span class="brand-name"><strong>Escola de Combate</strong><span>Vinicius Oliveira</span></span></div><span class="footer-meta">João Pessoa · PB · © ECVO</span></footer><script src="../script.js?v=4"></script></body></html>\n`;
 }
 
 async function main() {
@@ -337,6 +405,7 @@ async function main() {
   const outputs = [
     ...modalities.map((modality) => [modality.slug, renderPage(modality)]),
     ["modalidades", renderModalitiesIndex()],
+    [yogaInterest.slug, renderYogaPage()],
   ];
   const failures = [];
   for (const [directory, output] of outputs) {

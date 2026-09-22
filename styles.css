@@ -5190,8 +5190,141 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .store-promotion-link,
-  .store-promotion-link > span[aria-hidden] {
+.store-promotion-link,
+.store-promotion-link > span[aria-hidden] {
     transition: none;
   }
+}
+
+/* Yoga — a quieter rhythm inside the existing ECVO visual language. */
+.yoga-home-teaser {
+  background: #d8d3c7;
+  color: #171918;
+  padding: 22px clamp(18px, 5vw, 72px);
+}
+
+.yoga-home-teaser-inner {
+  align-items: center;
+  display: grid;
+  gap: clamp(24px, 4vw, 52px);
+  grid-template-columns: 124px minmax(0, 1fr) auto;
+  margin: auto;
+  max-width: var(--max);
+  padding: 30px 0;
+}
+
+.yoga-home-symbol {
+  align-items: center;
+  aspect-ratio: 1;
+  border: 1px solid rgba(22, 26, 23, .4);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.yoga-home-symbol::after,
+.yoga-home-symbol span {
+  border: 1px solid #48594d;
+  border-radius: 50%;
+  content: "";
+  height: 58%;
+  position: absolute;
+  width: 58%;
+}
+
+.yoga-home-symbol span {
+  height: 12%;
+  width: 12%;
+  background: #48594d;
+}
+
+.yoga-home-teaser .eyebrow { color: #48594d; }
+.yoga-home-teaser h2,
+.yoga-directory-note h2 { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 3.7rem); line-height: 1.02; margin: 8px 0 15px; max-width: 740px; text-transform: uppercase; }
+.yoga-home-teaser p:not(.eyebrow) { font-size: .98rem; line-height: 1.55; margin: 0 0 10px; max-width: 670px; }
+.yoga-home-status { color: #48594d; font-family: var(--font-data); font-size: .71rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.yoga-home-teaser .button { border-color: #171918; color: #171918; white-space: nowrap; }
+.yoga-home-teaser .button:hover { background: #171918; color: #f1eee6; }
+
+.yoga-page { --sage: #9cac95; --sand: #ded9cb; }
+.yoga-page .breadcrumb { background: #171918; }
+.yoga-hero {
+  background: #171918;
+  border-bottom: 1px solid rgba(222, 217, 203, .24);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+  min-height: min(820px, 92vh);
+  overflow: hidden;
+  padding: 110px max(clamp(18px, 5vw, 72px), calc((100vw - var(--max)) / 2 + 32px)) 80px;
+  position: relative;
+}
+.yoga-hero::before { background: repeating-linear-gradient(0deg, transparent 0 77px, rgba(222, 217, 203, .055) 78px 79px); content: ""; inset: 0; pointer-events: none; position: absolute; }
+.yoga-hero-copy { align-self: center; max-width: 690px; position: relative; z-index: 1; }
+.yoga-page .eyebrow { color: var(--sage); }
+.yoga-page .pulse { background: var(--sage); }
+.yoga-hero h1 { font-family: var(--font-display); font-size: clamp(3.5rem, 6.5vw, 7rem); letter-spacing: -.035em; line-height: .98; margin: 25px 0; max-width: 850px; text-transform: uppercase; }
+.yoga-intro { color: var(--sand); font-size: clamp(1rem, 1.6vw, 1.25rem); line-height: 1.65; max-width: 620px; }
+.yoga-hero .hero-actions { margin: 34px 0 24px; }
+.yoga-honesty { border-left: 2px solid var(--sage); color: var(--sage); font-family: var(--font-data); font-size: .74rem; letter-spacing: .02em; padding-left: 13px; }
+.yoga-art { align-self: center; aspect-ratio: 1; display: grid; place-items: center; position: relative; }
+.yoga-art-orbit { aspect-ratio: 1; border: 1px solid rgba(222, 217, 203, .5); border-radius: 50%; display: grid; place-items: center; position: relative; width: 93%; }
+.yoga-art-orbit::before, .yoga-art-orbit::after { aspect-ratio: 1; border: 1px solid rgba(156, 172, 149, .65); border-radius: 50%; content: ""; position: absolute; width: 72%; }
+.yoga-art-orbit::after { border-color: rgba(222, 217, 203, .25); width: 44%; }
+.yoga-art-core { background: var(--sage); border-radius: 50%; box-shadow: 0 0 90px 55px rgba(156, 172, 149, .1); height: 24px; width: 24px; }
+.yoga-art-word { background: #171918; color: var(--sand); font-family: var(--font-display); font-size: clamp(1.2rem, 3vw, 3rem); left: -4%; letter-spacing: .13em; padding: 4px 13px; position: absolute; top: 45%; transform: rotate(-90deg); }
+.yoga-art-caption { bottom: 3%; color: var(--sage); font-family: var(--font-data); font-size: .62rem; letter-spacing: .16em; position: absolute; text-align: center; }
+.yoga-proposal, .yoga-location { display: grid; gap: clamp(30px, 7vw, 110px); grid-template-columns: 1fr 1fr; }
+.yoga-proposal { background: var(--sand); color: #1b211d; }
+.yoga-proposal .eyebrow { color: #48594d; }
+.yoga-proposal h2, .yoga-steps h2, .yoga-interest h2, .yoga-location h2, .yoga-questions h2 { font-family: var(--font-display); font-size: clamp(2.2rem, 4.3vw, 4.8rem); line-height: 1.04; margin: 12px 0 20px; text-transform: uppercase; }
+.yoga-proposal-body { align-self: end; font-size: clamp(1.02rem, 1.8vw, 1.3rem); line-height: 1.65; }
+.yoga-proposal-body p:last-child { margin-bottom: 0; }
+.yoga-steps { background: #202723; }
+.yoga-step-grid { display: grid; gap: 1px; grid-template-columns: repeat(3, 1fr); margin-top: 40px; background: rgba(222, 217, 203, .35); }
+.yoga-step-grid article { background: #202723; padding: clamp(23px, 3vw, 42px); }
+.yoga-step-grid span, .yoga-panel-index { color: var(--sage); font-family: var(--font-data); font-size: .78rem; letter-spacing: .1em; }
+.yoga-step-grid h3 { font-family: var(--font-display); font-size: clamp(1.4rem, 2.2vw, 2.2rem); line-height: 1.1; margin: 34px 0 14px; text-transform: uppercase; }
+.yoga-step-grid p { color: var(--sand); font-size: .95rem; line-height: 1.55; margin: 0; }
+.yoga-interest { align-items: center; background: #171918; display: grid; gap: clamp(32px, 7vw, 110px); grid-template-columns: 1fr 1fr; }
+.yoga-interest-copy > p:not(.eyebrow) { color: var(--sand); max-width: 480px; }
+.yoga-interest-copy .yoga-interest-note { color: var(--sage) !important; font-size: .83rem; }
+.yoga-interest-panel { background: var(--sand); border-top: 5px solid var(--sage); color: #1b211d; display: grid; gap: 13px; padding: clamp(24px, 4vw, 52px); }
+.yoga-interest-panel .yoga-panel-index { color: #48594d; margin: 0 0 22px; }
+.yoga-interest-panel label { font-size: .9rem; font-weight: 700; line-height: 1.4; }
+.yoga-interest-panel select { appearance: none; background: #f8f6f0; border: 1px solid #8b988c; border-radius: 0; color: #1b211d; font: inherit; margin-bottom: 18px; padding: 13px 42px 13px 14px; width: 100%; background-image: linear-gradient(45deg, transparent 50%, #48594d 50%), linear-gradient(135deg, #48594d 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-size: 6px 6px; background-repeat: no-repeat; }
+.yoga-interest-panel select:focus-visible { outline-color: #48594d; }
+.yoga-interest-panel .button { justify-content: space-between; text-align: left; }
+.yoga-interest-panel small { color: #48594d; font-size: .76rem; line-height: 1.5; }
+.yoga-location { background: #252b27; }
+.yoga-location p:not(.eyebrow) { color: var(--sand); }
+.yoga-questions { background: #171918; }
+.yoga-questions .faq-list { max-width: 900px; }
+.yoga-directory-note { align-items: center; background: #202723; display: flex; gap: 32px; justify-content: space-between; }
+.yoga-directory-note p:not(.eyebrow) { color: var(--sand); max-width: 650px; }
+.yoga-directory-note .button { flex-shrink: 0; }
+
+@media (max-width: 900px) {
+  .yoga-home-teaser-inner { grid-template-columns: 80px minmax(0, 1fr); }
+  .yoga-home-teaser-inner > a { grid-column: 2; justify-self: start; }
+  .yoga-hero { grid-template-columns: 1fr; min-height: 0; }
+  .yoga-hero-copy { max-width: 760px; }
+  .yoga-art { display: none; }
+  .yoga-directory-note { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 600px) {
+  .yoga-page .site-header nav { align-items: center; flex-wrap: nowrap; justify-content: space-between; }
+  .yoga-page .site-header nav a:nth-child(1), .yoga-page .site-header nav a:nth-child(2) { display: none; }
+  .yoga-page .site-header nav .nav-app-link { font-size: .62rem; min-height: 38px; padding: 8px 10px; }
+  .yoga-home-teaser-inner { gap: 15px; grid-template-columns: 1fr; }
+  .yoga-home-symbol { width: 70px; }
+  .yoga-home-teaser-inner > a { grid-column: 1; white-space: normal; width: 100%; }
+  .yoga-hero { padding-top: 110px; padding-bottom: 65px; }
+  .yoga-hero h1 { font-size: clamp(3rem, 13vw, 4.5rem); }
+  .yoga-hero .hero-actions .button { width: 100%; }
+  .yoga-proposal, .yoga-location, .yoga-interest { grid-template-columns: 1fr; }
+  .yoga-step-grid { grid-template-columns: 1fr; }
+  .yoga-step-grid h3 { margin-top: 18px; }
+  .yoga-interest-panel { margin: 0 -4px; }
+  .yoga-interest-panel .button { font-size: .82rem; white-space: normal; }
 }

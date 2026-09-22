@@ -37,6 +37,21 @@ export const storePromotion = {
   url: "https://lojadecombate.com.br/",
 };
 
+// Interesse em uma proposta futura; não integra a grade nem o catálogo de aulas confirmadas.
+export const yogaInterest = {
+  slug: "yoga-joao-pessoa",
+  name: "Yoga",
+  title: "Yoga em breve no Valentina, João Pessoa | ECVO",
+  description: "A ECVO estuda oferecer Yoga no Valentina, em João Pessoa. Professor e horários ainda não estão definidos. Conte seu interesse e acompanhe as novidades.",
+  eyebrow: "ECVO · Bem-estar em construção",
+  headline: "Além do combate, espaço para respirar.",
+  introduction: "Somos uma escola de artes marciais. E acreditamos que cuidar do corpo também passa por desacelerar, ganhar presença e encontrar seu próprio ritmo. Por isso, estamos preparando um novo espaço para o Yoga na ECVO.",
+  status: "Estamos mapeando o interesse pela futura turma. Professor, formato e horários ainda estão em definição; não há aulas de Yoga disponíveis para agendamento neste momento.",
+  message: "Olá! Vi a página de Yoga da ECVO e tenho interesse em saber quando a turma começar. Podem anotar meu interesse e me avisar quando houver novidades?",
+  teaser: "A ECVO continua sendo uma escola de lutas. Em breve, queremos abrir espaço também para o Yoga — uma nova forma de cuidar do movimento e do bem-estar.",
+  teaserLabel: "Conhecer a proposta de Yoga",
+};
+
 export const recruitment = {
   headline: "Traga sua técnica para a ECVO.",
   roles: ["Jiu-Jitsu", "NoGi", "Judô", "Boxe", "Wrestling"],

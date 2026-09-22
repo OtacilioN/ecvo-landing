@@ -1,7 +1,7 @@
 import { access, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { blogPosts, featuredBlogPost } from "../data/blog-posts.mjs";
-import { modalities, monthlyPromotion, recruitment, schedule, site, storePromotion, teachers } from "../data/ecvo-content.mjs";
+import { modalities, monthlyPromotion, recruitment, schedule, site, storePromotion, teachers, yogaInterest } from "../data/ecvo-content.mjs";
 import { originStory } from "../data/origin-story.mjs";
 import { testimonials } from "../data/testimonials.mjs";
 
@@ -51,7 +51,7 @@ expect(home.includes(`<meta property="og:title" content="${site.homeTitle}" />`)
 expect(home.includes(`<meta name="twitter:title" content="${site.homeTitle}" />`), "index.html: Twitter title deve ser igual ao title geral");
 expect(home.includes(`<h1 id="hero-title">${site.positioning}</h1>`), "index.html: H1 deve apresentar a ECVO como escola de lutas e artes marciais sem animação que atrase o LCP");
 expect(!home.match(/<section class="hero"[\s\S]*?<\/section>/)?.[0].includes("data-reveal"), "index.html: conteúdo inicial do hero não pode ficar oculto por animação");
-expect(homeHead.includes('rel="preload" as="style" href="styles.css?v=23"'), "index.html: CSS principal deve ser carregado sem bloquear a renderização");
+expect(homeHead.includes('rel="preload" as="style" href="styles.css?v=24"'), "index.html: CSS principal deve ser carregado sem bloquear a renderização");
 expect(homeBusiness?.description?.startsWith(site.positioning), "index.html: LocalBusiness deve começar pelo posicionamento geral da ECVO");
 expect(homeBusiness?.address?.streetAddress === site.address, "index.html: streetAddress deve usar o endereço canônico");
 expect(homeBusiness?.address?.postalCode === site.postalCode, "index.html: postalCode deve usar o CEP canônico");
@@ -77,6 +77,12 @@ expect(storeSection.includes(`href="${storePromotion.url}"`), "index.html: URL d
 expect(storeSection.includes('target="_blank" rel="noopener noreferrer"'), "index.html: link da Loja de Combate deve abrir com segurança em nova aba");
 expect(storeSection.includes('data-track="store_click"'), "index.html: evento da Loja de Combate ausente");
 expect(storeSection.includes('data-cta-position="store-promotion"'), "index.html: CTA da Loja de Combate deve manter rastreamento próprio");
+const yogaTeaser = home.match(/<aside class="yoga-home-teaser"[\s\S]*?<\/aside>/)?.[0] ?? "";
+expect(yogaTeaser.includes(yogaInterest.teaser), "index.html: convite de Yoga fora da fonte canônica");
+expect(yogaTeaser.includes(yogaInterest.teaserLabel), "index.html: CTA de Yoga ausente");
+expect(yogaTeaser.includes(`href="/${yogaInterest.slug}/"`), "index.html: link para Yoga ausente");
+expect(yogaTeaser.includes("Professor e horários em definição"), "index.html: estado de pré-lançamento do Yoga ausente");
+expect(yogaTeaser.includes('data-cta-position="home-wellness"'), "index.html: rastreamento do convite de Yoga ausente");
 const careersSection = home.match(/<section class="section careers-section"[\s\S]*?<\/section>/)?.[0] ?? "";
 expect(careersSection.includes(recruitment.headline), "index.html: título da seção Trabalhe conosco ausente");
 for (const role of recruitment.roles) {
@@ -95,6 +101,7 @@ const rentalWhatsapp = careersSection.match(/href="(https:\/\/wa\.me\/[^\"]+)" d
 expect(decodeURIComponent(rentalWhatsapp).includes(recruitment.spaceRental.whatsappMessage), "index.html: mensagem de WhatsApp da locação de espaço fora da fonte canônica");
 const offeredServiceNames = (homeBusiness?.makesOffer ?? []).map((offer) => offer?.itemOffered?.name);
 expect(offeredServiceNames.length === modalities.filter((item) => !item.independentTeacher).length, "index.html: makesOffer deve representar apenas modalidades oferecidas pela ECVO");
+expect(!offeredServiceNames.some((name) => name?.includes("Yoga")), "index.html: Yoga em preparação não pode constar como oferta ativa");
 for (const modality of modalities.filter((item) => !item.independentTeacher)) {
   expect(offeredServiceNames.includes(`Aulas de ${modality.name} em João Pessoa`), `index.html: makesOffer de ${modality.name} ausente`);
 }
@@ -120,6 +127,7 @@ for (const teacherName of teachersOnHold) {
   expect(!home.includes(teacherName), `index.html: ${teacherName} não deve aparecer publicamente`);
 }
 expect(publishedClasses.length === 23, "data/ecvo-content.mjs: a grade confirmada deve conter 23 aulas");
+expect(!publishedClasses.some(([, slugs]) => slugs.split(" ").includes(yogaInterest.slug)), "data/ecvo-content.mjs: Yoga ainda não pode entrar na grade");
 expect(publishedClasses.every((entry) => entry.length === 3), "data/ecvo-content.mjs: horários públicos não devem armazenar nome de professor");
 expect((publicHomeSchedule.match(/class="aula"/g) || []).length === publishedClasses.length, "index.html: grade pública fora de sincronia com a fonte");
 expect((publicHomeSchedule.match(/class="dia"/g) || []).length === schedule.length, "index.html: quantidade de dias da grade fora de sincronia");
@@ -251,13 +259,29 @@ for (const modality of modalities) {
 }
 
 const sitemap = await read("sitemap.xml");
+const yogaPath = `${yogaInterest.slug}/index.html`;
+const yogaHtml = await read(yogaPath);
+const yogaSchemas = schemaBlocks(yogaHtml).flat();
+const yogaWhatsapp = [...yogaHtml.matchAll(/href="(https:\/\/wa\.me\/[^\"]+)"/g)].map(([, link]) => link);
+expect(yogaHtml.includes(`<title>${yogaInterest.title}</title>`) && yogaHtml.includes(`<link rel="canonical" href="${site.url}/${yogaInterest.slug}/" />`), `${yogaPath}: SEO e canonical incorretos`);
+expect(yogaHtml.includes(yogaInterest.headline) && yogaHtml.includes(yogaInterest.introduction) && yogaHtml.includes(yogaInterest.status), `${yogaPath}: comunicação canônica ausente`);
+expect((yogaHtml.match(/<h1[ >]/g) || []).length === 1, `${yogaPath}: deve ter um H1`);
+expect(!yogaSchemas.some((schema) => schema["@type"] === "Service" || schema["@type"] === "Offer"), `${yogaPath}: turma ainda não disponível não pode ser anunciada como serviço/oferta`);
+expect(yogaSchemas.some((schema) => schema["@type"] === "BreadcrumbList"), `${yogaPath}: breadcrumb estruturado ausente`);
+expect(!yogaHtml.includes("Agendar primeira aula") && !yogaHtml.includes("modality-schedule-grid") && !yogaHtml.includes("modality-teachers"), `${yogaPath}: Yoga não pode parecer uma aula ativa`);
+expect(yogaWhatsapp.length >= 2 && yogaWhatsapp.every((link) => decodeURIComponent(link).includes(yogaInterest.message)), `${yogaPath}: CTAs devem ter mensagem específica de interesse`);
+expect(yogaHtml.includes('id="yoga-whatsapp"') && yogaHtml.includes('data-track="whatsapp_click"') && yogaHtml.includes("yoga-interest.js"), `${yogaPath}: captação por WhatsApp ausente`);
+expect(yogaHtml.includes(site.address) && yogaHtml.includes(site.postalCode) && yogaHtml.includes(site.reference), `${yogaPath}: localização canônica ausente`);
+expect(sitemap.includes(`${site.url}/${yogaInterest.slug}/`), "sitemap.xml: página de Yoga ausente");
 for (const modality of modalities) {
   expect(sitemap.includes(`${site.url}/${modality.slug}/`), `sitemap.xml: ${modality.slug} ausente`);
 }
 expect(sitemap.includes(`${site.url}/modalidades/`), "sitemap.xml: página agregadora ausente");
 
 const modalitiesDirectory = await read("modalidades/index.html");
-expect((modalitiesDirectory.match(/<a(?=[^>]*href="\/[^"]+-joao-pessoa\/")[^>]*>/g) || []).length === modalities.length, "modalidades/index.html: deve manter todas as modalidades no hall");
+expect(modalitiesDirectory.includes(`href="/${yogaInterest.slug}/"`) && modalitiesDirectory.includes(yogaInterest.teaser), "modalidades/index.html: Yoga em preparação deve aparecer separado do catálogo de lutas");
+const martialArtsDirectory = modalitiesDirectory.match(/<div class="modalities-directory">([\s\S]*?)<\/div><\/section>/)?.[1] ?? "";
+expect((martialArtsDirectory.match(/<a(?=[^>]*href="\/[^"]+-joao-pessoa\/")[^>]*>/g) || []).length === modalities.length, "modalidades/index.html: deve manter todas as modalidades no hall");
 for (const modality of modalities.filter((item) => item.heroImage)) {
   expect(modalitiesDirectory.includes(`alt="${modality.heroImage.alt}"`), `modalidades/index.html: foto de ${modality.name} deve ter texto alternativo`);
 }
@@ -270,6 +294,7 @@ for (const teacherName of teachersOnHold) {
 
 const publicHtmlPaths = [
   ...generalistPages,
+  yogaPath,
   ...modalities.map((modality) => `${modality.slug}/index.html`),
   ...blogPosts.map((post) => `blog/${post.slug}/index.html`),
 ];
