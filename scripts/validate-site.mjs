@@ -61,7 +61,7 @@ const tuesdayThursdayHours = homeBusiness?.openingHoursSpecification?.find(({ da
 ));
 expect(tuesdayThursdayHours?.closes === "22:00", "index.html: JSON-LD deve manter a ECVO aberta até 22:00 às terças e quintas");
 expect(modalities.length === 12, "data/ecvo-content.mjs: o catálogo deve manter doze modalidades");
-expect(home.includes("<dt>12</dt>"), "index.html: contador público deve informar doze modalidades");
+expect(home.includes("<dt>11</dt>"), "index.html: contador público deve informar onze modalidades oferecidas pela ECVO");
 const homePromotion = home.match(/<aside class="hero-offer"[\s\S]*?<\/aside>/)?.[0] ?? "";
 expect(homePromotion.includes(monthlyPromotion.headline), "index.html: chamada da promoção de mensalidade ausente");
 expect(homePromotion.includes(`<s>R$ ${monthlyPromotion.basePrice}</s>`), "index.html: preço-base da promoção ausente");
@@ -94,10 +94,11 @@ expect(careersSection.includes('data-cta-position="space-rental"'), "index.html:
 const rentalWhatsapp = careersSection.match(/href="(https:\/\/wa\.me\/[^\"]+)" data-track="whatsapp_click" data-cta-position="space-rental"/)?.[1] ?? "";
 expect(decodeURIComponent(rentalWhatsapp).includes(recruitment.spaceRental.whatsappMessage), "index.html: mensagem de WhatsApp da locação de espaço fora da fonte canônica");
 const offeredServiceNames = (homeBusiness?.makesOffer ?? []).map((offer) => offer?.itemOffered?.name);
-expect(offeredServiceNames.length === modalities.length, "index.html: makesOffer deve representar as doze modalidades");
-for (const modality of modalities) {
+expect(offeredServiceNames.length === modalities.filter((item) => !item.independentTeacher).length, "index.html: makesOffer deve representar apenas modalidades oferecidas pela ECVO");
+for (const modality of modalities.filter((item) => !item.independentTeacher)) {
   expect(offeredServiceNames.includes(`Aulas de ${modality.name} em João Pessoa`), `index.html: makesOffer de ${modality.name} ausente`);
 }
+expect(!offeredServiceNames.some((name) => /Karatê Adulto|Aulas de Karatê em João Pessoa/.test(name)), "index.html: Karatê Adulto independente não pode constar como oferta da ECVO");
 expect(home.includes(site.reference), "index.html: ponto de referência ausente");
 expect(!/Academia de Jiu-Jitsu/i.test(homeHead), "index.html: metadados gerais não podem definir a ECVO como academia de Jiu-Jitsu");
 
@@ -118,7 +119,7 @@ for (const teacher of Object.values(teachers)) {
 for (const teacherName of teachersOnHold) {
   expect(!home.includes(teacherName), `index.html: ${teacherName} não deve aparecer publicamente`);
 }
-expect(publishedClasses.length === 21, "data/ecvo-content.mjs: a grade confirmada deve conter 21 aulas");
+expect(publishedClasses.length === 23, "data/ecvo-content.mjs: a grade confirmada deve conter 23 aulas");
 expect(publishedClasses.every((entry) => entry.length === 3), "data/ecvo-content.mjs: horários públicos não devem armazenar nome de professor");
 expect((publicHomeSchedule.match(/class="aula"/g) || []).length === publishedClasses.length, "index.html: grade pública fora de sincronia com a fonte");
 expect((publicHomeSchedule.match(/class="dia"/g) || []).length === schedule.length, "index.html: quantidade de dias da grade fora de sincronia");
@@ -138,7 +139,7 @@ for (const day of ["Terça", "Quinta"]) {
 }
 const kravMagaClasses = publishedClasses.filter(([, slugs]) => slugs.split(" ").includes("krav-maga-joao-pessoa"));
 expect(kravMagaClasses.length === 2, "data/ecvo-content.mjs: Krav Maga deve ter duas aulas publicadas");
-for (const slug of ["karate-joao-pessoa", "karate-turma-kids-joao-pessoa", "krav-maga-joao-pessoa"]) {
+for (const slug of ["karate-turma-kids-joao-pessoa", "krav-maga-joao-pessoa"]) {
   const modality = modalities.find((item) => item.slug === slug);
   expect(JSON.stringify(modality?.teacherIds) === JSON.stringify(["adriano"]), `data/ecvo-content.mjs: ${slug} deve estar associado somente ao Sensei Adriano`);
 }
@@ -178,6 +179,20 @@ for (const modality of modalities) {
   const whatsappLinks = [...html.matchAll(/href="(https:\/\/wa\.me\/[^\"]+)"/g)].map(([, link]) => link);
   const schemas = schemaBlocks(html).flat();
 
+  if (modality.independentTeacher) {
+    const teacher = modality.independentTeacher;
+    expect(html.includes(`<title>${modality.title}</title>`) && html.includes(`<link rel="canonical" href="${url}" />`), `${relativePath}: título e canonical incorretos`);
+    expect(html.includes(modality.hero) && html.includes("manhãs de sábado") && html.includes(teacher.phone), `${relativePath}: informação sobre locação e contato direto ausente`);
+    expect(html.includes("Até 14 anos") && html.includes('href="/karate-turma-kids-joao-pessoa/"') && html.includes("Karatê Kids da ECVO"), `${relativePath}: recomendação da turma Kids para crianças de até 14 anos ausente`);
+    expect(home.includes("Para crianças de até 14 anos, recomendamos o Karatê Kids da ECVO."), "index.html: orientação entre Karatê Kids e professor parceiro ausente");
+    expect(whatsappLinks.length >= 3 && whatsappLinks.every((link) => link.startsWith(`https://wa.me/${teacher.whatsapp}?`) && decodeURIComponent(link).includes(teacher.message)), `${relativePath}: todos os contatos devem direcionar ao professor Dennys`);
+    expect(!schemas.some((schema) => schema["@type"] === "Service"), `${relativePath}: aula independente não deve constar como serviço da ECVO`);
+    expect(schemas.some((schema) => schema["@type"] === "FAQPage" && schema.mainEntity.length === modality.faq.length), `${relativePath}: FAQ estruturado incorreto`);
+    expect(!html.includes("modality-schedule-grid") && !schedule.some(({ day, classes }) => day === "Sábado" || classes.some(([, slugs]) => slugs.split(" ").includes(modality.slug))), `${relativePath}: aula independente não pode entrar na grade oficial`);
+    expect(home.includes(`href="/${modality.slug}/"`), `index.html: link para ${modality.slug} ausente`);
+    continue;
+  }
+
   expect((html.match(/<h1[ >]/g) || []).length === 1, `${relativePath}: deve ter exatamente um H1`);
   expect(html.includes(`<title>${modality.title}</title>`), `${relativePath}: title incorreto`);
   expect(html.includes(`<link rel="canonical" href="${url}" />`), `${relativePath}: canonical incorreto`);
@@ -193,6 +208,10 @@ for (const modality of modalities) {
   expect(html.includes(site.address), `${relativePath}: endereço canônico ausente`);
   expect(html.includes(site.postalCode), `${relativePath}: CEP canônico ausente`);
   expect(html.includes(site.reference), `${relativePath}: ponto de referência ausente`);
+  if (modality.slug === "karate-turma-kids-joao-pessoa") {
+    expect(html.includes("crianças de até 14 anos"), `${relativePath}: idade indicada para Karatê Kids ausente`);
+    expect(home.includes("Karatê Kids da ECVO para crianças de até 14 anos"), "index.html: faixa etária do Karatê Kids ausente");
+  }
   expect(whatsappLinks.length >= 3, `${relativePath}: CTAs de WhatsApp insuficientes`);
   expect(whatsappLinks.every((link) => decodeURIComponent(link).includes(`página de ${modality.name}`)), `${relativePath}: mensagem de WhatsApp não é específica`);
   expect(schemas.some((schema) => schema['@type'] === 'Service'), `${relativePath}: Service JSON-LD ausente`);
