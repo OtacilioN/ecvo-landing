@@ -75,7 +75,7 @@ ${modality.teacherIds.map((id) => {
   const teacher = teachers[id];
   if (!teacher) throw new Error(`Professor não encontrado: ${id}`);
   return `          <article class="modality-teacher-card">
-            <img src="..${teacher.image}" alt="${escapeHtml(teacher.alt)}" width="160" height="160" loading="lazy" decoding="async" />
+            <img src="..${teacher.image}" alt="${escapeHtml(teacher.alt)}" width="160" height="160" loading="lazy" decoding="async"${teacher.imagePosition ? ` style="object-position: ${escapeHtml(teacher.imagePosition)};"` : ""} />
             <div><p>${escapeHtml(teacher.area)}</p><h3>${escapeHtml(teacher.name)}</h3><p>${escapeHtml(teacher.summary)}</p></div>
           </article>`;
 }).join("\n")}
@@ -84,6 +84,7 @@ ${modality.teacherIds.map((id) => {
 }
 
 function homeScheduleClass(slugs) {
+  if (slugs.includes("jiu-jitsu")) return "jiujitsu";
   if (slugs.includes("muay-thai")) return "muaythai";
   if (slugs.includes("kickboxing")) return "kickboxing";
   if (slugs.includes("krav-maga")) return "karate";

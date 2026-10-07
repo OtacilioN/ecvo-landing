@@ -87,6 +87,14 @@ export const teachers = {
     alt: "Sensei Adriano, professor de Karatê e Krav Maga da ECVO",
     summary: "Com quase 40 anos de trajetória nas artes marciais, Sensei Adriano é faixa-preta de Karatê e marrom G5 de Krav Maga. Seu ensino valoriza equilíbrio, segurança, disciplina e autodefesa.",
   },
+  samuel: {
+    name: "Prof. Samuel Laet",
+    area: "Jiu-Jitsu · Faixa-preta · Técnica e disciplina",
+    image: "/assets/profSamuelLaet.webp",
+    imagePosition: "50% 25%",
+    alt: "Professor Samuel Laet de kimono branco e faixa-preta de Jiu-Jitsu",
+    summary: "Natural de Brasília, Samuel Laet iniciou sua trajetória no Jiu-Jitsu em 2016 e recebeu a faixa-preta em setembro de 2026. Começou a ensinar ainda na faixa-roxa, sob a orientação do professor Matheus Apolinário, na equipe CJJ. Hoje, em João Pessoa, compartilha um ensino que valoriza técnica, disciplina, respeito e evolução constante.",
+  },
 };
 
 export const schedule = [
@@ -101,6 +109,7 @@ export const schedule = [
     ["10:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
     ["15:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
     ["19:00", "muay-thai-joao-pessoa", "Muay Thai"],
+    ["20:00", "jiu-jitsu-joao-pessoa", "Jiu-Jitsu"],
     ["21:00", "krav-maga-joao-pessoa", "Krav Maga"],
   ] },
   { day: "Quarta", classes: [
@@ -114,6 +123,7 @@ export const schedule = [
     ["10:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
     ["15:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
     ["19:00", "muay-thai-joao-pessoa", "Muay Thai"],
+    ["20:00", "jiu-jitsu-joao-pessoa", "Jiu-Jitsu"],
     ["21:00", "krav-maga-joao-pessoa", "Krav Maga"],
   ] },
   { day: "Sexta", classes: [
@@ -135,14 +145,15 @@ const firstTraining = [
 export const modalities = [
   {
     slug: "jiu-jitsu-joao-pessoa", name: "Jiu-Jitsu", title: "Jiu-Jitsu em João Pessoa | ECVO",
-    description: "Treine Jiu-Jitsu no Valentina, em João Pessoa, com acompanhamento técnico e turmas para diferentes níveis. Consulte horários e fale com a ECVO.",
-    hero: "Treine Jiu-Jitsu no Valentina, em João Pessoa, com acompanhamento técnico para desenvolver posições, controle, raspagens e finalizações no tatame.",
+    description: "Jiu-Jitsu no Valentina, em João Pessoa, com o professor Samuel Laet, faixa-preta. Aulas às terças e quintas, às 20h. Conheça a turma da ECVO.",
+    hero: "Treine Jiu-Jitsu com o professor Samuel Laet, faixa-preta, no Valentina, em João Pessoa. Aulas às terças e quintas, às 20h, para desenvolver técnica, controle e evolução no tatame.",
     audiences: ["Quem quer começar no Jiu-Jitsu com orientação desde os fundamentos.", "Praticantes que buscam aprofundar técnica, posições e leitura de jogo.", "Pessoas que querem incluir uma prática de luta agarrada na rotina de treino.", "Alunos interessados em evolução esportiva, respeitando o próprio momento."],
     benefits: [["Controle e técnica", "O treino explora posições, transições, controles e finalizações com progressão."], ["Coordenação", "Movimentações, base e conexão com o parceiro ajudam a desenvolver consciência corporal."], ["Disciplina no tatame", "A prática valoriza atenção, respeito ao parceiro e constância no aprendizado."]],
+    teacherIds: ["samuel"],
     scheduleSlugs: ["jiu-jitsu-joao-pessoa"],
-    method: "Na ECVO, o Jiu-Jitsu é apresentado como uma prática técnica de chão, com espaço para quem treina de forma recreativa e para quem quer avançar no esporte.",
+    method: "Com o professor Samuel Laet, o Jiu-Jitsu na ECVO valoriza o aprendizado técnico, a disciplina e o respeito ao parceiro. Sua experiência de ensino começou ainda na faixa-roxa, seguindo a didática aprendida com seu professor. Para Samuel, a evolução no tatame caminha junto com responsabilidade, humildade e maturidade fora dele.",
     related: ["nogi-joao-pessoa", "mma-joao-pessoa"],
-    faq: [["Preciso ter experiência para começar?", "Não. Fale com a equipe para encontrar a turma de Jiu-Jitsu mais adequada ao seu momento."], ["Preciso comprar kimono antes da primeira aula?", "A equipe informa o que levar e quais equipamentos fazem sentido antes do seu primeiro treino."], ["Qual é a diferença entre Jiu-Jitsu e NoGi?", "No Jiu-Jitsu com kimono, a roupa faz parte das pegadas e controles. No NoGi, a luta acontece sem kimono, com uma dinâmica diferente de movimentação e controle."], ["Há turmas para iniciantes?", "A ECVO recebe alunos em diferentes níveis. Confirme pelo WhatsApp o horário mais indicado para começar."]],
+    faq: [["Preciso ter experiência para começar?", "Não. Fale com a equipe para receber orientação sobre o primeiro treino."], ["Preciso comprar kimono antes da primeira aula?", "A equipe informa o que levar e quais equipamentos fazem sentido antes do seu primeiro treino."], ["Qual é a diferença entre Jiu-Jitsu e NoGi?", "No Jiu-Jitsu com kimono, a roupa faz parte das pegadas e controles. No NoGi, a luta acontece sem kimono, com uma dinâmica diferente de movimentação e controle."], ["Quem conduz as aulas?", "O professor Samuel Laet, faixa-preta de Jiu-Jitsu desde setembro de 2026, conduz a turma da ECVO."], ["Quais são os horários?", "As aulas de Jiu-Jitsu acontecem às terças e quintas, às 20h. Fale com a equipe para confirmar disponibilidade antes de ir."]],
   },
   {
     slug: "nogi-joao-pessoa", name: "NoGi", title: "NoGi em João Pessoa | ECVO",
@@ -153,7 +164,7 @@ export const modalities = [
     scheduleSlugs: ["nogi-joao-pessoa"],
     method: "NoGi é a vertente de luta agarrada sem kimono. Na ECVO, ele compartilha base técnica com o Jiu-Jitsu, mas trabalha uma dinâmica própria de controle e movimentação.",
     related: ["jiu-jitsu-joao-pessoa", "mma-joao-pessoa"],
-    faq: [["O que é NoGi?", "NoGi é uma prática de luta agarrada sem kimono. Por isso, as pegadas e a movimentação têm dinâmica diferente do Jiu-Jitsu com kimono."], ["Posso começar no NoGi sem experiência?", "Sim. Fale com a equipe para confirmar a turma e receber orientação sobre como participar do primeiro treino."], ["Preciso levar kimono?", "Não. Como a prática é sem kimono, a equipe orienta pelo WhatsApp quais roupas e equipamentos são adequados."], ["NoGi e Jiu-Jitsu têm horário juntos?", "A grade atual identifica a turma como Jiu-Jitsu/NoGi. Confirme pelo WhatsApp como o conteúdo é organizado no horário escolhido."]],
+    faq: [["O que é NoGi?", "NoGi é uma prática de luta agarrada sem kimono. Por isso, as pegadas e a movimentação têm dinâmica diferente do Jiu-Jitsu com kimono."], ["Posso começar no NoGi sem experiência?", "Sim. Fale com a equipe para confirmar a turma e receber orientação sobre como participar do primeiro treino."], ["Preciso levar kimono?", "Não. Como a prática é sem kimono, a equipe orienta pelo WhatsApp quais roupas e equipamentos são adequados."], ["NoGi e Jiu-Jitsu têm horário juntos?", "A grade publicada às terças e quintas, às 20h, é de Jiu-Jitsu. O NoGi ainda não tem horário confirmado; consulte a equipe sobre disponibilidade."]],
   },
   {
     slug: "kickboxing-joao-pessoa", name: "Kickboxing", title: "Kickboxing em João Pessoa | ECVO",

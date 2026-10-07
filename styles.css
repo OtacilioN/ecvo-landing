@@ -1302,7 +1302,8 @@ h3 {
 [data-mod="boxe"] {
   --mod: var(--ink);
 }
-[data-mod="nogi"] {
+[data-mod="nogi"],
+[data-mod="jiujitsu"] {
   --mod: var(--steel);
 }
 [data-mod="mma"] {
