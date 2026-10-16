@@ -37,21 +37,6 @@ export const storePromotion = {
   url: "https://lojadecombate.com.br/",
 };
 
-// Interesse em uma proposta futura; não integra a grade nem o catálogo de aulas confirmadas.
-export const yogaInterest = {
-  slug: "yoga-joao-pessoa",
-  name: "Yoga",
-  title: "Yoga em breve no Valentina, João Pessoa | ECVO",
-  description: "A ECVO estuda oferecer Yoga no Valentina, em João Pessoa. Professor e horários ainda não estão definidos. Conte seu interesse e acompanhe as novidades.",
-  eyebrow: "ECVO · Bem-estar em construção",
-  headline: "Além do combate, espaço para respirar.",
-  introduction: "Somos uma escola de artes marciais. E acreditamos que cuidar do corpo também passa por desacelerar, ganhar presença e encontrar seu próprio ritmo. Por isso, estamos preparando um novo espaço para o Yoga na ECVO.",
-  status: "Estamos mapeando o interesse pela futura turma. Professor, formato e horários ainda estão em definição; não há aulas de Yoga disponíveis para agendamento neste momento.",
-  message: "Olá! Vi a página de Yoga da ECVO e tenho interesse em saber quando a turma começar. Podem anotar meu interesse e me avisar quando houver novidades?",
-  teaser: "A ECVO continua sendo uma escola de lutas. Em breve, queremos abrir espaço também para o Yoga — uma nova forma de cuidar do movimento e do bem-estar.",
-  teaserLabel: "Conhecer a proposta de Yoga",
-};
-
 export const recruitment = {
   headline: "Traga sua técnica para a ECVO.",
   roles: ["Jiu-Jitsu", "NoGi", "Judô", "Boxe", "Wrestling"],
@@ -87,14 +72,7 @@ export const teachers = {
     alt: "Sensei Adriano, professor de Karatê e Krav Maga da ECVO",
     summary: "Com quase 40 anos de trajetória nas artes marciais, Sensei Adriano é faixa-preta de Karatê e marrom G5 de Krav Maga. Seu ensino valoriza equilíbrio, segurança, disciplina e autodefesa.",
   },
-  samuel: {
-    name: "Prof. Samuel Laet",
-    area: "Jiu-Jitsu · Faixa-preta · Técnica e disciplina",
-    image: "/assets/profSamuelLaet.webp",
-    imagePosition: "50% 25%",
-    alt: "Professor Samuel Laet de kimono branco e faixa-preta de Jiu-Jitsu",
-    summary: "Natural de Brasília, Samuel Laet iniciou sua trajetória no Jiu-Jitsu em 2016 e recebeu a faixa-preta em setembro de 2026. Começou a ensinar ainda na faixa-roxa, sob a orientação do professor Matheus Apolinário, na equipe CJJ. Hoje, em João Pessoa, compartilha um ensino que valoriza técnica, disciplina, respeito e evolução constante.",
-  },
+
 };
 
 export const schedule = [
@@ -109,7 +87,6 @@ export const schedule = [
     ["10:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
     ["15:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
     ["19:00", "muay-thai-joao-pessoa", "Muay Thai"],
-    ["20:00", "jiu-jitsu-joao-pessoa", "Jiu-Jitsu"],
     ["21:00", "krav-maga-joao-pessoa", "Krav Maga"],
   ] },
   { day: "Quarta", classes: [
@@ -123,7 +100,6 @@ export const schedule = [
     ["10:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
     ["15:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
     ["19:00", "muay-thai-joao-pessoa", "Muay Thai"],
-    ["20:00", "jiu-jitsu-joao-pessoa", "Jiu-Jitsu"],
     ["21:00", "krav-maga-joao-pessoa", "Krav Maga"],
   ] },
   { day: "Sexta", classes: [
@@ -145,26 +121,27 @@ const firstTraining = [
 export const modalities = [
   {
     slug: "jiu-jitsu-joao-pessoa", name: "Jiu-Jitsu", title: "Jiu-Jitsu em João Pessoa | ECVO",
-    description: "Jiu-Jitsu no Valentina, em João Pessoa, com o professor Samuel Laet, faixa-preta. Aulas às terças e quintas, às 20h. Conheça a turma da ECVO.",
-    hero: "Treine Jiu-Jitsu com o professor Samuel Laet, faixa-preta, no Valentina, em João Pessoa. Aulas às terças e quintas, às 20h, para desenvolver técnica, controle e evolução no tatame.",
+    description: "Tem interesse em Jiu-Jitsu no Valentina, em João Pessoa? Professor e horários estão em definição. Fale com a ECVO para receber novidades sobre a turma.",
+    hero: "Conheça a proposta de Jiu-Jitsu na ECVO, no Valentina, em João Pessoa. Professor e horários estão em definição. Registre seu interesse para receber novidades sobre a turma.",
+    interestOnly: true,
     audiences: ["Quem quer começar no Jiu-Jitsu com orientação desde os fundamentos.", "Praticantes que buscam aprofundar técnica, posições e leitura de jogo.", "Pessoas que querem incluir uma prática de luta agarrada na rotina de treino.", "Alunos interessados em evolução esportiva, respeitando o próprio momento."],
     benefits: [["Controle e técnica", "O treino explora posições, transições, controles e finalizações com progressão."], ["Coordenação", "Movimentações, base e conexão com o parceiro ajudam a desenvolver consciência corporal."], ["Disciplina no tatame", "A prática valoriza atenção, respeito ao parceiro e constância no aprendizado."]],
-    teacherIds: ["samuel"],
     scheduleSlugs: ["jiu-jitsu-joao-pessoa"],
-    method: "Com o professor Samuel Laet, o Jiu-Jitsu na ECVO valoriza o aprendizado técnico, a disciplina e o respeito ao parceiro. Sua experiência de ensino começou ainda na faixa-roxa, seguindo a didática aprendida com seu professor. Para Samuel, a evolução no tatame caminha junto com responsabilidade, humildade e maturidade fora dele.",
+    method: "O Jiu-Jitsu com kimono explora posições, transições, controles e finalizações. A proposta valoriza técnica, disciplina e respeito ao parceiro. O professor e a organização da futura turma ainda serão definidos.",
     related: ["nogi-joao-pessoa", "mma-joao-pessoa"],
-    faq: [["Preciso ter experiência para começar?", "Não. Fale com a equipe para receber orientação sobre o primeiro treino."], ["Preciso comprar kimono antes da primeira aula?", "A equipe informa o que levar e quais equipamentos fazem sentido antes do seu primeiro treino."], ["Qual é a diferença entre Jiu-Jitsu e NoGi?", "No Jiu-Jitsu com kimono, a roupa faz parte das pegadas e controles. No NoGi, a luta acontece sem kimono, com uma dinâmica diferente de movimentação e controle."], ["Quem conduz as aulas?", "O professor Samuel Laet, faixa-preta de Jiu-Jitsu desde setembro de 2026, conduz a turma da ECVO."], ["Quais são os horários?", "As aulas de Jiu-Jitsu acontecem às terças e quintas, às 20h. Fale com a equipe para confirmar disponibilidade antes de ir."]],
+    faq: [["Preciso ter experiência para demonstrar interesse?", "Não. Iniciantes e praticantes podem registrar interesse e contar seus objetivos à equipe."], ["Preciso comprar kimono agora?", "Não é necessário comprar equipamentos para registrar interesse. Quando houver turma definida, a equipe orientará sobre o que levar."], ["Qual é a diferença entre Jiu-Jitsu e NoGi?", "No Jiu-Jitsu com kimono, a roupa faz parte das pegadas e controles. No NoGi, a luta acontece sem kimono, com uma dinâmica diferente de movimentação e controle."], ["Quem será o professor?", "O professor ainda está em definição. A equipe compartilhará novidades quando houver confirmação."], ["Quais são os horários?", "Ainda não há horários definidos nem aulas disponíveis para agendamento. Registre seu interesse pelo WhatsApp para receber novidades."]],
   },
   {
     slug: "nogi-joao-pessoa", name: "NoGi", title: "NoGi em João Pessoa | ECVO",
-    description: "Treine NoGi no Valentina, em João Pessoa, com técnica de luta agarrada sem kimono, controle e movimentação. Consulte horários na ECVO.",
-    hero: "Treine NoGi no Valentina, em João Pessoa, e desenvolva controle, movimentação, transições e finalizações na luta agarrada sem kimono.",
+    description: "Tem interesse em NoGi no Valentina, em João Pessoa? Conheça a luta agarrada sem kimono e registre seu interesse na ECVO. Professor e horários em definição.",
+    hero: "Conheça a proposta de NoGi, a luta agarrada sem kimono, na ECVO no Valentina, em João Pessoa. Professor e horários estão em definição. Registre seu interesse para receber novidades.",
+    interestOnly: true,
     audiences: ["Iniciantes curiosos para conhecer a luta agarrada sem kimono.", "Praticantes de Jiu-Jitsu que querem explorar uma dinâmica diferente de pegadas e movimentação.", "Pessoas que buscam técnica, coordenação e condicionamento em uma prática de chão.", "Alunos interessados em aprofundar fundamentos de grappling."],
     benefits: [["Movimentação", "A ausência do kimono muda as pegadas e incentiva ajustes de posição e deslocamento."], ["Controle", "Entradas, transições e finalizações são treinadas com atenção aos fundamentos."], ["Evolução técnica", "O NoGi amplia o repertório de luta agarrada de forma complementar ao Jiu-Jitsu com kimono."]],
     scheduleSlugs: ["nogi-joao-pessoa"],
-    method: "NoGi é a vertente de luta agarrada sem kimono. Na ECVO, ele compartilha base técnica com o Jiu-Jitsu, mas trabalha uma dinâmica própria de controle e movimentação.",
+    method: "NoGi é a vertente de luta agarrada sem kimono. Compartilha fundamentos com o Jiu-Jitsu, mas tem uma dinâmica própria de controle e movimentação. O professor e a organização da futura turma ainda serão definidos.",
     related: ["jiu-jitsu-joao-pessoa", "mma-joao-pessoa"],
-    faq: [["O que é NoGi?", "NoGi é uma prática de luta agarrada sem kimono. Por isso, as pegadas e a movimentação têm dinâmica diferente do Jiu-Jitsu com kimono."], ["Posso começar no NoGi sem experiência?", "Sim. Fale com a equipe para confirmar a turma e receber orientação sobre como participar do primeiro treino."], ["Preciso levar kimono?", "Não. Como a prática é sem kimono, a equipe orienta pelo WhatsApp quais roupas e equipamentos são adequados."], ["NoGi e Jiu-Jitsu têm horário juntos?", "A grade publicada às terças e quintas, às 20h, é de Jiu-Jitsu. O NoGi ainda não tem horário confirmado; consulte a equipe sobre disponibilidade."]],
+    faq: [["O que é NoGi?", "NoGi é uma prática de luta agarrada sem kimono. Por isso, as pegadas e a movimentação têm dinâmica diferente do Jiu-Jitsu com kimono."], ["Posso registrar interesse sem experiência?", "Sim. Iniciantes e praticantes podem falar com a equipe e contar seus objetivos."], ["Preciso levar kimono?", "NoGi é praticado sem kimono. Quando houver turma definida, a equipe orientará sobre roupas e equipamentos adequados."], ["Quem será o professor?", "O professor ainda está em definição. Registre seu interesse para receber novidades quando houver confirmação."], ["NoGi e Jiu-Jitsu têm horário juntos?", "Nenhuma das duas modalidades tem horários definidos neste momento. Ainda não há aulas disponíveis para agendamento. Registre seu interesse na modalidade que deseja conhecer."]],
   },
   {
     slug: "kickboxing-joao-pessoa", name: "Kickboxing", title: "Kickboxing em João Pessoa | ECVO",
@@ -311,4 +288,23 @@ export const modalities = [
     related: ["karate-turma-kids-joao-pessoa", "jiu-jitsu-joao-pessoa"],
     faq: [["Para qual idade é a Turma Kids de Judô?", "A faixa etária atendida será informada pela ECVO quando a turma estiver disponível."], ["A criança precisa ter experiência?", "Não. A proposta permite começar pelos fundamentos, com orientação."], ["É preciso ter uniforme antes de começar?", "A equipe informará previamente quais roupas e equipamentos serão necessários."], ["Quando serão divulgados os horários?", "Os horários serão publicados no site assim que estiverem disponíveis."]],
   },
-].map((modality) => ({ firstTraining, ...modality }));
+].map((modality) => ({
+  firstTraining,
+  ...(modality.interestOnly ? {
+    scheduleTitle: "Professor e horários em definição.",
+    scheduleCopy: "Ainda não há aulas disponíveis para agendamento. Fale com a equipe para registrar seu interesse e receber novidades quando a turma estiver definida.",
+    scheduleCtaLabel: "Ver situação da turma",
+    firstTrainingEyebrow: "Como registrar interesse",
+    firstTrainingTitle: "Conte à equipe o que você procura.",
+    firstTrainingIntro: "Professor e horários ainda estão em definição. O contato pelo WhatsApp registra seu interesse; não é matrícula nem reserva de aula.",
+    firstTraining: ["Conheça a proposta da modalidade e veja se combina com seus objetivos.", "Fale com a ECVO pelo WhatsApp para registrar seu interesse.", "Conte sua experiência e os dias ou períodos em que gostaria de treinar.", "Receba novidades da equipe quando professor e horários estiverem definidos."],
+    cta: {
+      shortLabel: "Tenho interesse",
+      label: "Registrar meu interesse",
+      message: `Olá! Encontrei a ECVO pela página de ${modality.name} e gostaria de registrar meu interesse. Podem me avisar quando o professor e os horários estiverem definidos?`,
+      finalTitle: `Quer receber novidades sobre ${modality.name}?`,
+      finalCopy: "Fale com a equipe pelo WhatsApp e conte seu interesse. Professor e horários ainda estão em definição.",
+    },
+  } : {}),
+  ...modality,
+}));

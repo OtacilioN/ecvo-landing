@@ -11,8 +11,8 @@ Títulos e descrições centrados em uma modalidade são reservados às páginas
 **Krav Maga**:
 Modalidade de autodefesa conduzida pelo Sensei Adriano, marrom G5 de Krav Maga e faixa-preta de Karatê. A comunicação deve enfatizar segurança, disciplina, equilíbrio e aplicação responsável, sem prometer invulnerabilidade ou resultados garantidos. A grade publicada tem aulas às terças e quintas, às 21:00.
 
-**Jiu-Jitsu**:
-Modalidade conduzida pelo professor Samuel Laet, natural de Brasília, praticante desde 2016 e faixa-preta desde setembro de 2026. Começou a ensinar ainda na faixa-roxa, sob orientação do professor Matheus Apolinário, na equipe CJJ. A grade publicada tem aulas às terças e quintas, às 20:00. Valorize técnica, disciplina, respeito e evolução constante. Este horário é de Jiu-Jitsu; NoGi continua sem grade confirmada.
+**Jiu-Jitsu e NoGi**:
+As duas páginas permanecem para captação de interesse, sem professor definido e sem horários na grade. Não anunciar aulas disponíveis, matrícula ou agendamento. Os CTAs devem convidar a registrar interesse pelo WhatsApp e receber novidades quando professor e horários forem definidos. Preserve a distinção entre Jiu-Jitsu com kimono e NoGi sem kimono.
 
 **Kickboxing Funcional e AeroBoxe**:
 Atividade física sem contato, conduzida pelo professor Vinicius Oliveira, que combina movimentos inspirados no Kickboxing, sequências de AeroBoxe e exercícios funcionais. A comunicação deve enfatizar movimento, ritmo, acolhimento e diferentes níveis, sem restringir o público por gênero e sem prometer emagrecimento ou resultados garantidos. Enquanto não houver grade definida, convide a pessoa a registrar interesse em vez de agendar uma aula.
