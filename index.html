@@ -69,6 +69,7 @@
           }
         ],
         "makesOffer": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aulas de Jiu-Jitsu em João Pessoa" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aulas de Kickboxing em João Pessoa" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aulas de Kickboxing Funcional e AeroBoxe em João Pessoa" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aulas de Kickboxing - Turma Kids em João Pessoa" } },
@@ -402,7 +403,7 @@
           </p>
           <dl class="hero-stats">
             <div>
-              <dt>9</dt>
+              <dt>10</dt>
               <dd>Modalidades</dd>
             </div>
             <div>
@@ -502,7 +503,7 @@
             <span class="card-index">03</span>
             <h3>Jiu-Jitsu / NoGi</h3>
             <p>Jiu-Jitsu e NoGi para desenvolver quedas, controle, raspagens e finalizações.</p>
-            <p>Professor e horários em definição para as duas modalidades. Registre seu interesse nas páginas abaixo.</p>
+            <p>Jiu-Jitsu às terças e quintas, às 19:00. Para NoGi, registre seu interesse na página da modalidade.</p>
             <span class="card-tag">Chão</span>
             <a class="card-link" href="/jiu-jitsu-joao-pessoa/">Página de Jiu-Jitsu</a>
             <a class="card-link" href="/nogi-joao-pessoa/">Página de NoGi</a>
@@ -654,7 +655,6 @@
                 <li>Controle</li>
                 <li>Estratégia</li>
               </ul>
-              <!-- Espaço reservado para os professores desta modalidade (foto + mini bio). -->
             </div>
             <div class="modalidade-conteudo">
               <p>
@@ -663,10 +663,10 @@
                 baseada em pegadas no próprio corpo.
               </p>
               <p>
-                Jiu-Jitsu e NoGi estão sem professor e sem horários definidos.
-                As páginas seguem disponíveis para registrar interesse:
-                <a href="/jiu-jitsu-joao-pessoa/">tenho interesse em Jiu-Jitsu</a> ou
-                <a href="/nogi-joao-pessoa/">tenho interesse em NoGi</a>.
+                O Jiu-Jitsu tem aulas às terças e quintas, às 19:00.
+                <a href="/jiu-jitsu-joao-pessoa/">Conheça a turma e agende seu primeiro treino</a>.
+                O NoGi ainda não tem horários definidos;
+                <a href="/nogi-joao-pessoa/">registre seu interesse em NoGi</a>.
               </p>
               <p>
                 Desenvolve força, mobilidade e raciocínio em partes iguais. É a
@@ -871,11 +871,10 @@
             </p>
             <p class="careers-list-label">Modalidades com vagas abertas</p>
             <ul class="careers-roles" aria-label="Professores procurados pela ECVO">
-              <li><span>01</span>Jiu-Jitsu</li>
-              <li><span>02</span>NoGi</li>
-              <li><span>03</span>Judô</li>
-              <li><span>04</span>Boxe</li>
-              <li><span>05</span>Wrestling</li>
+              <li><span>01</span>NoGi</li>
+              <li><span>02</span>Judô</li>
+              <li><span>03</span>Boxe</li>
+              <li><span>04</span>Wrestling</li>
             </ul>
           </div>
           <aside class="careers-action" aria-label="Candidatura pelo WhatsApp" data-reveal>
@@ -923,6 +922,7 @@
         </div>
 
         <ul class="horarios-legenda" data-reveal aria-label="Modalidades">
+          <li data-mod="jiujitsu">Jiu-Jitsu</li>
           <li data-mod="muaythai">Muay Thai</li>
           <li data-mod="kickboxing">Kickboxing</li>
           <li data-mod="karate">Karatê - Turma Kids</li>
@@ -942,11 +942,12 @@
             </ul>
           </article>
           <article class="dia" data-reveal>
-            <header class="dia-head"><h3>Terça</h3><span class="dia-count">4 aulas</span></header>
+            <header class="dia-head"><h3>Terça</h3><span class="dia-count">5 aulas</span></header>
             <ul class="dia-aulas">
               <li class="aula" data-mod="karate"><span class="aula-hora">10:00</span><span class="aula-info"><span class="aula-nome">Karatê - Turma Kids</span></span></li>
               <li class="aula" data-mod="karate"><span class="aula-hora">15:00</span><span class="aula-info"><span class="aula-nome">Karatê - Turma Kids</span></span></li>
-              <li class="aula" data-mod="muaythai"><span class="aula-hora">19:00</span><span class="aula-info"><span class="aula-nome">Muay Thai</span></span></li>
+              <li class="aula" data-mod="jiujitsu"><span class="aula-hora">19:00</span><span class="aula-info"><span class="aula-nome">Jiu-Jitsu</span></span></li>
+              <li class="aula" data-mod="muaythai"><span class="aula-hora">20:00</span><span class="aula-info"><span class="aula-nome">Muay Thai</span></span></li>
               <li class="aula" data-mod="karate"><span class="aula-hora">21:00</span><span class="aula-info"><span class="aula-nome">Krav Maga</span></span></li>
             </ul>
           </article>
@@ -961,11 +962,12 @@
             </ul>
           </article>
           <article class="dia" data-reveal>
-            <header class="dia-head"><h3>Quinta</h3><span class="dia-count">4 aulas</span></header>
+            <header class="dia-head"><h3>Quinta</h3><span class="dia-count">5 aulas</span></header>
             <ul class="dia-aulas">
               <li class="aula" data-mod="karate"><span class="aula-hora">10:00</span><span class="aula-info"><span class="aula-nome">Karatê - Turma Kids</span></span></li>
               <li class="aula" data-mod="karate"><span class="aula-hora">15:00</span><span class="aula-info"><span class="aula-nome">Karatê - Turma Kids</span></span></li>
-              <li class="aula" data-mod="muaythai"><span class="aula-hora">19:00</span><span class="aula-info"><span class="aula-nome">Muay Thai</span></span></li>
+              <li class="aula" data-mod="jiujitsu"><span class="aula-hora">19:00</span><span class="aula-info"><span class="aula-nome">Jiu-Jitsu</span></span></li>
+              <li class="aula" data-mod="muaythai"><span class="aula-hora">20:00</span><span class="aula-info"><span class="aula-nome">Muay Thai</span></span></li>
               <li class="aula" data-mod="karate"><span class="aula-hora">21:00</span><span class="aula-info"><span class="aula-nome">Krav Maga</span></span></li>
             </ul>
           </article>
@@ -1165,8 +1167,8 @@
               Kickboxing - Turma Kids, Karatê - Turma Kids, Krav Maga,
               Judô - Turma Kids, MMA, Muay Thai, Boxe, Jiu-Jitsu e NoGi.
               Consulte a grade para ver as modalidades com horários disponíveis.
-              Jiu-Jitsu e NoGi estão com professor e horários em definição;
-              suas páginas recebem registros de interesse pelo WhatsApp.
+              Jiu-Jitsu tem aulas às terças e quintas, às 19:00.
+              NoGi segue com captação de interesse pelo WhatsApp, sem horários definidos.
             </p>
           </details>
           <details>
@@ -1174,10 +1176,10 @@
             <p>
               A ECVO fica no Valentina, em João Pessoa - PB, na Rua Funcionário
               Publico Paulo Antônio Bastos Portela, 144, ao lado do Instituto
-              Educacional Sucesso. Jiu-Jitsu e NoGi estão sem professor e sem
-              horários definidos neste momento. Registre seu interesse na
-              <a href="/jiu-jitsu-joao-pessoa/">página de Jiu-Jitsu</a> ou na
-              <a href="/nogi-joao-pessoa/">página de NoGi</a> para receber novidades.
+              Educacional Sucesso. As aulas de Jiu-Jitsu acontecem às terças e
+              quintas, às 19:00. Conheça a turma e agende seu primeiro treino na
+              <a href="/jiu-jitsu-joao-pessoa/">página de Jiu-Jitsu</a>.
+              Para NoGi, <a href="/nogi-joao-pessoa/">registre seu interesse</a>.
             </p>
           </details>
           <details>

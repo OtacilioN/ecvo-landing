@@ -39,7 +39,7 @@ export const storePromotion = {
 
 export const recruitment = {
   headline: "Traga sua técnica para a ECVO.",
-  roles: ["Jiu-Jitsu", "NoGi", "Judô", "Boxe", "Wrestling"],
+  roles: ["NoGi", "Judô", "Boxe", "Wrestling"],
   whatsappMessage: "Sou professor e gostaria de trabalhar com a Escola de Combate ECVO.",
   ctaLabel: "Quero trabalhar com a ECVO",
   spaceRental: {
@@ -86,7 +86,8 @@ export const schedule = [
   { day: "Terça", classes: [
     ["10:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
     ["15:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
-    ["19:00", "muay-thai-joao-pessoa", "Muay Thai"],
+    ["19:00", "jiu-jitsu-joao-pessoa", "Jiu-Jitsu"],
+    ["20:00", "muay-thai-joao-pessoa", "Muay Thai"],
     ["21:00", "krav-maga-joao-pessoa", "Krav Maga"],
   ] },
   { day: "Quarta", classes: [
@@ -99,7 +100,8 @@ export const schedule = [
   { day: "Quinta", classes: [
     ["10:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
     ["15:00", "karate-turma-kids-joao-pessoa", "Karatê - Turma Kids"],
-    ["19:00", "muay-thai-joao-pessoa", "Muay Thai"],
+    ["19:00", "jiu-jitsu-joao-pessoa", "Jiu-Jitsu"],
+    ["20:00", "muay-thai-joao-pessoa", "Muay Thai"],
     ["21:00", "krav-maga-joao-pessoa", "Krav Maga"],
   ] },
   { day: "Sexta", classes: [
@@ -121,27 +123,27 @@ const firstTraining = [
 export const modalities = [
   {
     slug: "jiu-jitsu-joao-pessoa", name: "Jiu-Jitsu", title: "Jiu-Jitsu em João Pessoa | ECVO",
-    description: "Tem interesse em Jiu-Jitsu no Valentina, em João Pessoa? Professor e horários estão em definição. Fale com a ECVO para receber novidades sobre a turma.",
-    hero: "Conheça a proposta de Jiu-Jitsu na ECVO, no Valentina, em João Pessoa. Professor e horários estão em definição. Registre seu interesse para receber novidades sobre a turma.",
-    interestOnly: true,
+    description: "Treine Jiu-Jitsu na ECVO, no Valentina, em João Pessoa. Aulas às terças e quintas, às 19:00. Fale com a equipe e agende seu primeiro treino.",
+    hero: "Treine Jiu-Jitsu com kimono na ECVO, no Valentina, em João Pessoa. Desenvolva técnica, controle de posições e finalizações, com aulas às terças e quintas, às 19:00.",
     audiences: ["Quem quer começar no Jiu-Jitsu com orientação desde os fundamentos.", "Praticantes que buscam aprofundar técnica, posições e leitura de jogo.", "Pessoas que querem incluir uma prática de luta agarrada na rotina de treino.", "Alunos interessados em evolução esportiva, respeitando o próprio momento."],
     benefits: [["Controle e técnica", "O treino explora posições, transições, controles e finalizações com progressão."], ["Coordenação", "Movimentações, base e conexão com o parceiro ajudam a desenvolver consciência corporal."], ["Disciplina no tatame", "A prática valoriza atenção, respeito ao parceiro e constância no aprendizado."]],
     scheduleSlugs: ["jiu-jitsu-joao-pessoa"],
-    method: "O Jiu-Jitsu com kimono explora posições, transições, controles e finalizações. A proposta valoriza técnica, disciplina e respeito ao parceiro. O professor e a organização da futura turma ainda serão definidos.",
+    method: "O Jiu-Jitsu com kimono explora posições, transições, controles e finalizações. O treino valoriza técnica, disciplina e respeito ao parceiro, com progressão nos fundamentos.",
+    firstTraining: ["Escolha entre terça e quinta, às 19:00.", "Agende pelo WhatsApp e diga que quer conhecer o Jiu-Jitsu.", "Fale com a equipe sobre roupas e equipamentos antes da aula.", "Participe do treino com atenção aos fundamentos e respeito ao parceiro."],
     related: ["nogi-joao-pessoa", "mma-joao-pessoa"],
-    faq: [["Preciso ter experiência para demonstrar interesse?", "Não. Iniciantes e praticantes podem registrar interesse e contar seus objetivos à equipe."], ["Preciso comprar kimono agora?", "Não é necessário comprar equipamentos para registrar interesse. Quando houver turma definida, a equipe orientará sobre o que levar."], ["Qual é a diferença entre Jiu-Jitsu e NoGi?", "No Jiu-Jitsu com kimono, a roupa faz parte das pegadas e controles. No NoGi, a luta acontece sem kimono, com uma dinâmica diferente de movimentação e controle."], ["Quem será o professor?", "O professor ainda está em definição. A equipe compartilhará novidades quando houver confirmação."], ["Quais são os horários?", "Ainda não há horários definidos nem aulas disponíveis para agendamento. Registre seu interesse pelo WhatsApp para receber novidades."]],
+    faq: [["Posso começar Jiu-Jitsu sem experiência?", "Sim. Iniciantes e praticantes podem falar com a equipe, contar seus objetivos e agendar o primeiro treino."], ["Preciso comprar kimono antes da primeira aula?", "Fale com a equipe antes de ir. Ela orienta sobre roupas e equipamentos para o primeiro treino."], ["Qual é a diferença entre Jiu-Jitsu e NoGi?", "No Jiu-Jitsu com kimono, a roupa faz parte das pegadas e controles. No NoGi, a luta acontece sem kimono, com uma dinâmica diferente de movimentação e controle."], ["Quais são os horários?", "As aulas de Jiu-Jitsu acontecem às terças e quintas, às 19:00. Fale com a equipe pelo WhatsApp para agendar o primeiro treino."]],
   },
   {
     slug: "nogi-joao-pessoa", name: "NoGi", title: "NoGi em João Pessoa | ECVO",
     description: "Tem interesse em NoGi no Valentina, em João Pessoa? Conheça a luta agarrada sem kimono e registre seu interesse na ECVO. Professor e horários em definição.",
-    hero: "Conheça a proposta de NoGi, a luta agarrada sem kimono, na ECVO no Valentina, em João Pessoa. Professor e horários estão em definição. Registre seu interesse para receber novidades.",
+    hero: "Conheça a proposta de NoGi, a luta agarrada sem kimono, na ECVO no Valentina, em João Pessoa. Registre seu interesse para receber novidades sobre a turma, que ainda não tem horários definidos.",
     interestOnly: true,
     audiences: ["Iniciantes curiosos para conhecer a luta agarrada sem kimono.", "Praticantes de Jiu-Jitsu que querem explorar uma dinâmica diferente de pegadas e movimentação.", "Pessoas que buscam técnica, coordenação e condicionamento em uma prática de chão.", "Alunos interessados em aprofundar fundamentos de grappling."],
     benefits: [["Movimentação", "A ausência do kimono muda as pegadas e incentiva ajustes de posição e deslocamento."], ["Controle", "Entradas, transições e finalizações são treinadas com atenção aos fundamentos."], ["Evolução técnica", "O NoGi amplia o repertório de luta agarrada de forma complementar ao Jiu-Jitsu com kimono."]],
     scheduleSlugs: ["nogi-joao-pessoa"],
     method: "NoGi é a vertente de luta agarrada sem kimono. Compartilha fundamentos com o Jiu-Jitsu, mas tem uma dinâmica própria de controle e movimentação. O professor e a organização da futura turma ainda serão definidos.",
     related: ["jiu-jitsu-joao-pessoa", "mma-joao-pessoa"],
-    faq: [["O que é NoGi?", "NoGi é uma prática de luta agarrada sem kimono. Por isso, as pegadas e a movimentação têm dinâmica diferente do Jiu-Jitsu com kimono."], ["Posso registrar interesse sem experiência?", "Sim. Iniciantes e praticantes podem falar com a equipe e contar seus objetivos."], ["Preciso levar kimono?", "NoGi é praticado sem kimono. Quando houver turma definida, a equipe orientará sobre roupas e equipamentos adequados."], ["Quem será o professor?", "O professor ainda está em definição. Registre seu interesse para receber novidades quando houver confirmação."], ["NoGi e Jiu-Jitsu têm horário juntos?", "Nenhuma das duas modalidades tem horários definidos neste momento. Ainda não há aulas disponíveis para agendamento. Registre seu interesse na modalidade que deseja conhecer."]],
+    faq: [["O que é NoGi?", "NoGi é uma prática de luta agarrada sem kimono. Por isso, as pegadas e a movimentação têm dinâmica diferente do Jiu-Jitsu com kimono."], ["Posso registrar interesse sem experiência?", "Sim. Iniciantes e praticantes podem falar com a equipe e contar seus objetivos."], ["Preciso levar kimono?", "NoGi é praticado sem kimono. Quando houver turma definida, a equipe orientará sobre roupas e equipamentos adequados."], ["Quem será o professor?", "O professor ainda está em definição. Registre seu interesse para receber novidades quando houver confirmação."], ["NoGi e Jiu-Jitsu têm horário juntos?", "O Jiu-Jitsu com kimono tem aulas às terças e quintas, às 19:00. O NoGi ainda não tem horários definidos nem aulas disponíveis para agendamento. Registre seu interesse em NoGi para receber novidades."]],
   },
   {
     slug: "kickboxing-joao-pessoa", name: "Kickboxing", title: "Kickboxing em João Pessoa | ECVO",
