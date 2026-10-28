@@ -39,7 +39,7 @@ export const storePromotion = {
 
 export const recruitment = {
   headline: "Traga sua técnica para a ECVO.",
-  roles: ["NoGi", "Judô", "Boxe", "Wrestling"],
+  roles: ["NoGi", "Judô", "Wrestling"],
   whatsappMessage: "Sou professor e gostaria de trabalhar com a Escola de Combate ECVO.",
   ctaLabel: "Quero trabalhar com a ECVO",
   spaceRental: {
@@ -52,11 +52,11 @@ export const recruitment = {
 
 export const teachers = {
   vinicius: {
-    name: "Prof. Vinicius",
+    name: "Prof. Vinícius Oliveira",
     area: "Head Coach · Kickboxing · Boxe · AeroBoxe",
     image: "/assets/profVinicius.jpeg",
-    alt: "Professor Vinicius, head coach da ECVO",
-    summary: "Professor de Kickboxing, Kickboxing Funcional e AeroBoxe, além de técnico de Boxe, Vinicius de Oliveira conduz o treino com disciplina, respeito e orientação próxima.",
+    alt: "Professor Vinícius Oliveira, head coach da ECVO",
+    summary: "Professor de Kickboxing, Kickboxing Funcional e AeroBoxe, além de técnico de Boxe, Vinícius de Oliveira conduz o treino com disciplina, respeito e orientação próxima.",
   },
   oyama: {
     name: "Prof. Oyama",
@@ -81,6 +81,7 @@ export const schedule = [
     ["08:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["17:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["18:00", "kickboxing-infantil-joao-pessoa", "Kickboxing - Turma Kids"],
+    ["19:00", "boxe-joao-pessoa", "Boxe"],
     ["20:00", "kickboxing-joao-pessoa", "Kickboxing"],
   ] },
   { day: "Terça", classes: [
@@ -95,6 +96,7 @@ export const schedule = [
     ["08:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["17:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["18:00", "kickboxing-infantil-joao-pessoa", "Kickboxing - Turma Kids"],
+    ["19:00", "boxe-joao-pessoa", "Boxe"],
     ["20:00", "kickboxing-joao-pessoa", "Kickboxing"],
   ] },
   { day: "Quinta", classes: [
@@ -109,6 +111,7 @@ export const schedule = [
     ["08:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["17:00", "kickboxing-joao-pessoa", "Kickboxing"],
     ["18:00", "kickboxing-infantil-joao-pessoa", "Kickboxing - Turma Kids"],
+    ["19:00", "boxe-joao-pessoa", "Boxe"],
     ["20:00", "kickboxing-joao-pessoa", "Kickboxing"],
   ] },
 ];
@@ -211,14 +214,16 @@ export const modalities = [
   },
   {
     slug: "boxe-joao-pessoa", name: "Boxe", title: "Boxe em João Pessoa | ECVO",
-    description: "Treine Boxe no Valentina, em João Pessoa, com acompanhamento técnico em golpes com as mãos, defesa e movimentação. Consulte horários na ECVO.",
-    hero: "Treine Boxe no Valentina, em João Pessoa, com foco em guarda, golpes com as mãos, defesa, distância, coordenação e trabalho de pés.",
+    description: "Boxe na ECVO, no Valentina, em João Pessoa, com o professor Vinícius Oliveira. Aulas às segundas, quartas e sextas, às 19:00. Agende seu primeiro treino.",
+    hero: "Treine Boxe com o professor Vinícius Oliveira na ECVO, no Valentina, em João Pessoa. Aulas às segundas, quartas e sextas, às 19:00, com foco em guarda, golpes com as mãos, defesa e trabalho de pés.",
     audiences: ["Pessoas sem experiência que querem começar pelo trabalho técnico de mãos.", "Quem busca uma prática que una coordenação, ritmo e condicionamento.", "Praticantes que desejam aprimorar defesa, distância e movimentação.", "Alunos interessados na evolução esportiva, sem obrigação de competir."],
     benefits: [["Trabalho de mãos", "Jab, direto, cruzado, upper e combinações são desenvolvidos com atenção à precisão."], ["Defesa e distância", "Guarda, esquiva e deslocamento ajudam a construir leitura de combate em pé."], ["Ritmo e coordenação", "O trabalho de pés e as sequências criam oportunidades para evoluir de forma consistente."]],
+    teacherIds: ["vinicius"],
     scheduleSlugs: ["boxe-joao-pessoa"],
-    method: "O Boxe na ECVO trabalha técnica, movimentação e acompanhamento dos professores. A prática pode fazer parte de uma rotina recreativa ou esportiva, de acordo com o objetivo do aluno.",
+    method: "Com orientação do professor Vinícius Oliveira, o mesmo professor do Kickboxing, o Boxe na ECVO trabalha técnica, defesa e movimentação. A prática pode fazer parte de uma rotina recreativa ou esportiva, de acordo com o objetivo do aluno.",
+    firstTraining: ["Escolha entre segunda, quarta e sexta, às 19:00.", "Agende pelo WhatsApp e diga que quer conhecer o Boxe.", "A equipe orienta sobre roupas, luvas e equipamentos antes da aula.", "Participe do treino com acompanhamento do professor Vinícius Oliveira."],
     related: ["kickboxing-joao-pessoa", "muay-thai-joao-pessoa", "mma-joao-pessoa"],
-    faq: [["Posso começar Boxe sem experiência?", "Sim. Fale com a ECVO para receber orientação sobre a turma e o que levar no primeiro treino."], ["Boxe ajuda no condicionamento físico?", "O treino combina técnica e movimento, podendo fazer parte de uma rotina de condicionamento. A experiência varia de pessoa para pessoa."], ["É necessário participar de sparring?", "A organização das atividades é definida pelos professores. Confirme pelo WhatsApp como a turma funciona no seu nível."], ["Quais equipamentos são utilizados?", "A equipe orienta sobre roupas, luvas e demais equipamentos antes de você começar."]],
+    faq: [["Quais são os horários de Boxe?", "As aulas de Boxe acontecem às segundas, quartas e sextas, às 19:00. Fale com a equipe pelo WhatsApp para agendar o primeiro treino."], ["Quem é o professor de Boxe?", "As aulas são conduzidas pelo professor Vinícius Oliveira, o mesmo professor do Kickboxing da ECVO."], ["Posso começar Boxe sem experiência?", "Sim. Fale com a ECVO para receber orientação sobre a turma e o que levar no primeiro treino."], ["Boxe ajuda no condicionamento físico?", "O treino combina técnica e movimento, podendo fazer parte de uma rotina de condicionamento. A experiência varia de pessoa para pessoa."], ["É necessário participar de sparring?", "A organização das atividades é definida pelo professor. Confirme pelo WhatsApp como a turma funciona no seu nível."], ["Quais equipamentos são utilizados?", "A equipe orienta sobre roupas, luvas e demais equipamentos antes de você começar."]],
   },
   {
     slug: "mma-joao-pessoa", name: "MMA", title: "MMA em João Pessoa | ECVO",

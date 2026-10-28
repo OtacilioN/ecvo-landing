@@ -20,6 +20,9 @@ A página permanece para captação de interesse, sem professor definido e sem h
 **Muay Thai**:
 A grade publicada tem aulas às terças e quintas, às 20:00.
 
+**Boxe**:
+Aulas às segundas, quartas e sextas, às 19:00, com o professor Vinícius Oliveira, o mesmo professor do Kickboxing. Esse horário passa a ser de Boxe. Divulgue a turma na homepage, na grade e na página da modalidade, com agendamento do primeiro treino pelo WhatsApp. Boxe não integra a lista de vagas abertas para professor.
+
 **Kickboxing Funcional e AeroBoxe**:
 Atividade física sem contato, conduzida pelo professor Vinicius Oliveira, que combina movimentos inspirados no Kickboxing, sequências de AeroBoxe e exercícios funcionais. A comunicação deve enfatizar movimento, ritmo, acolhimento e diferentes níveis, sem restringir o público por gênero e sem prometer emagrecimento ou resultados garantidos. Enquanto não houver grade definida, convide a pessoa a registrar interesse em vez de agendar uma aula.
 

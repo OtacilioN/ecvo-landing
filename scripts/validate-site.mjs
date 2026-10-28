@@ -8,11 +8,10 @@ import { testimonials } from "../data/testimonials.mjs";
 const root = resolve(import.meta.dirname, "..");
 const failures = [];
 const retiredReferencePattern = new RegExp("d[ií]namos?\\s+suplementos", "i");
-const activeTeacherNames = ["Prof. Vinicius", "Prof. Oyama", "Sensei Adriano"];
+const activeTeacherNames = [teachers.vinicius.name, "Prof. Oyama", "Sensei Adriano"];
 const teachersOnHold = ["Prof. Anderson", "Prof. Dimitri", "Prof. Rodrigo", "Prof. Sauro"];
 const modalitiesWithoutPublishedSchedule = [
   "nogi-joao-pessoa",
-  "boxe-joao-pessoa",
   "kickboxing-funcional-aeroboxe-joao-pessoa",
   "karate-joao-pessoa",
   "judo-turma-kids-joao-pessoa",
@@ -118,7 +117,7 @@ for (const teacher of Object.values(teachers)) {
 for (const teacherName of teachersOnHold) {
   expect(!home.includes(teacherName), `index.html: ${teacherName} não deve aparecer publicamente`);
 }
-expect(publishedClasses.length === 25, "data/ecvo-content.mjs: a grade confirmada deve conter 25 aulas");
+expect(publishedClasses.length === 28, "data/ecvo-content.mjs: a grade confirmada deve conter 28 aulas");
 expect(publishedClasses.every((entry) => entry.length === 3), "data/ecvo-content.mjs: horários públicos não devem armazenar nome de professor");
 expect((publicHomeSchedule.match(/class="aula"/g) || []).length === publishedClasses.length, "index.html: grade pública fora de sincronia com a fonte");
 expect((publicHomeSchedule.match(/class="dia"/g) || []).length === schedule.length, "index.html: quantidade de dias da grade fora de sincronia");
@@ -129,6 +128,17 @@ expect((publicHomeSchedule.match(/data-mod="jiujitsu"/g) || []).length === 2, "i
 expect(!publicHomeSchedule.includes('data-mod="nogi"'), "index.html: grade não deve incluir NoGi sem horários definidos");
 expect((publicHomeSchedule.match(/data-mod="karate"[^>]*><span class="aula-hora">21:00<\/span><span class="aula-info"><span class="aula-nome">Krav Maga<\/span>/g) || []).length === 2, "index.html: Krav Maga deve usar o destaque visual correto nas duas aulas");
 expect(!modalitiesWithoutPublishedSchedule.some((slug) => publishedClasses.some(([, slugs]) => slugs.split(" ").includes(slug))), "data/ecvo-content.mjs: modalidade sem grade confirmada não pode ter horário publicado");
+expect(home.includes('<li data-mod="boxe">Boxe</li>'), "index.html: legenda da grade deve incluir Boxe");
+expect((publicHomeSchedule.match(/data-mod="boxe"[^>]*><span class="aula-hora">19:00<\/span><span class="aula-info"><span class="aula-nome">Boxe<\/span>/g) || []).length === 3, "index.html: grade deve incluir três aulas de Boxe às 19:00");
+const boxing = modalities.find((item) => item.slug === "boxe-joao-pessoa");
+expect(boxing?.teacherIds?.length === 1 && boxing.teacherIds[0] === "vinicius", "data/ecvo-content.mjs: Boxe deve ter o professor Vinícius Oliveira");
+expect(publishedClasses.filter(([, slug]) => slug === "boxe-joao-pessoa").length === 3, "data/ecvo-content.mjs: Boxe deve ter três aulas publicadas");
+expect(!recruitment.roles.includes("Boxe") && !careersSection.includes("Boxe"), "index.html: Boxe não deve anunciar vaga de professor");
+for (const day of ["Segunda", "Quarta", "Sexta"]) {
+  const dayClasses = schedule.find((item) => item.day === day)?.classes ?? [];
+  expect(dayClasses.some(([time, slug]) => time === "19:00" && slug === "boxe-joao-pessoa"), `data/ecvo-content.mjs: Boxe deve ter aula na ${day} às 19:00`);
+  expect(!dayClasses.some(([time, slug]) => time === "19:00" && slug.split(" ").some((item) => item.startsWith("kickboxing"))), `data/ecvo-content.mjs: ${day} às 19:00 deve ser Boxe`);
+}
 const karateKidsClasses = publishedClasses.filter(([, slugs]) => slugs.split(" ").includes("karate-turma-kids-joao-pessoa"));
 expect(karateKidsClasses.length === 4, "data/ecvo-content.mjs: Karatê - Turma Kids deve ter quatro aulas publicadas");
 expect(karateKidsClasses.filter(([time]) => time === "10:00").length === 2, "data/ecvo-content.mjs: Karatê - Turma Kids deve ter duas aulas às 10:00");
